@@ -1,0 +1,49 @@
+body {
+	background-color: #3a476d;
+}
+
+h5 {
+	font-size:12px; margin:0px; color:gold;
+}
+
+table.register{
+	border-collapse: collapse;
+}
+
+table.register tr td {
+   color:white;
+   border: solid 1px;
+}
+
+table.register tr td  a{
+   color:white;
+}
+
+table.register  tr.header  td {
+	font-size:22px;
+	color:gold;
+	background-color:black;
+	padding:8px;
+	border: solid 1px white;
+}
+table.register  tr.header  td  a{
+	text-decoration:underline;
+	color:gold;
+}
+
+table.register tr.odd{
+ background-color:grey;
+}
+
+table.register tr:hover {
+ background-color:red;
+ color:red;
+}
+
+ul.tableref  li a:hover{
+  color:green;
+}
+
+.highlight{
+	background-color:#ca1434;
+}

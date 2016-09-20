@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="css/css.css">
+<script src="navscript.js"></script>
+<style>
+
+</style>
+</head>
+<body style="background-color: #3a476d;">
+<h3 style="color:red;" id="seldb"></h3>
+<h5 style="color:gold;margin:0px; padding:0px;">REAL DATABASES:</h5>
+
+<!--real applications-->
+<ul style="font-size:12px; margin:0px; padding:0px;">
+<script >
+  for(i =0; i < testOffset; i++) document.write(createLink(links[i], i));
+ </script>
+</ul>
+<hr/>
+
+<!--test applications-->
+<h5 style="color:gold;margin:0px; padding:0px;">TEST DATABASES:</h5>
+<ul style="font-size:12px; margin:0px; padding:0px;">
+<script >
+  for(i =testOffset; i < links.length; i++) document.write(createLink(links[i], i));
+</script>
+ <hr/>
+
+ 
+ 
+ 
+ <!--docs & registers-->
+<h5>DOCUMENTATION</h5>
+<ul style="font-size:12px; margin-top:5px; padding:0px;">
+	<li><a style="text-decoration:none; color:white;" target="mateus" href="dbtables.html">DB TABLES</a></li>
+	<li><a style="text-decoration:none; color:white;" target="mateus" href="decodetypes.html">DECODE TYPES</a> </li>
+	<li><a style="text-decoration:none; color:white;" target="mateus" href="kinddebtreg.html">KINDDEBTREG</a> </li>
+	<li><a style="text-decoration:none; color:white;" target="mateus" href="country.html">COUNTRIES</a> </li>
+	<li><a style="text-decoration:none; color:white;" target="mateus" href="province.html">PROVINCE</a> </li>
+	<li><a style="text-decoration:none; color:white;" target="mateus" href="taxperiod.html">TAXPERIOD</a> </li>
+	<li><a style="text-decoration:none; color:white;" target="mateus" href="municipality.html">MUNICIPALITIES</a> </li>
+	<li><a style="text-decoration:none; color:white;" target="mateus" href="city.html">CITIES</a> </li>
+	<li><a style="text-decoration:none; color:white;" target="mateus" href="doctype.html">DOCUMENTTTYPE</a> </li>
+	<li><a style="text-decoration:none; color:white;" target="mateus" href="contacts.html">CONTACTS</a> </li>
+	<li><a style="text-decoration:none; color:white;" target="mateus" href="meto.html">METO</a> </li>
+	<li><a style="text-decoration:none; color:white;" target="mateus" href="dbresources.html">DBRESOURCES</a> </li>
+</ul>
+<hr/>
+ 
+<!--vpns -->
+<h5>VPN's</h5>
+   <a style="text-decoration:none; color:white;" target="mateus" href="vpn.html">VPN-sofia/io-pld</a>
+</ul>
+<hr/>
+ 
+<!--rdp's -->
+<h5>RDP</h5>
+<ul style="font-size:12px; margin:0px;  padding:0px;">
+	<li><a style="text-decoration:none; color:white;" target="mateus" href="rdp.html">RDPS</a></li>
+</ul>
+<hr/>
+
+<h5>LTF users - sofia</h5>
+<ul style="font-size:12px; margin:0px;  padding:0px;">
+	<li><a style="text-decoration:none; color:white;" target="mateus" href="uers_sofia.html">LTF users sofia</a></li>
+</ul>
+<hr/>
+
+<h5>AGENT_WS</h5>
+<ul style="font-size:12px; margin:0px;  padding:0px;">
+	<li><a style="text-decoration:none; color:white;" target="mateus" href="agentws.html">AGENTWS</a></li>
+</ul>
+<hr/>
+
+<h5>BANK_WS</h5>
+<ul style="font-size:12px; margin:0px;  padding:0px;">
+	<li><a style="text-decoration:none; color:white;" target="mateus" href="bankws.html">BANKWS</a></li>
+</ul>
+<hr/>
+
+<h5>SEARCH_TAB_COLS</h5>
+<ul style="font-size:12px; margin:0px;  padding:0px;">
+	<li><a style="text-decoration:none; color:white;" target="mateus" href="tablecolumnsearch.html">TAB_COLS</a></li>
+</ul>
+<hr/>
+
+
+<script>
+	var tablerefvisible = false;
+	function showtableref(){
+		tablerefvisible= !tablerefvisible;
+		var ebut = document.getElementById('expandbtn');
+		var hbut = document.getElementById('hidebtn');
+		var list = document.getElementById('tableref');
+		if(tablerefvisible){
+			ebut.style.display = 'none';
+			hbut.style.display = '';
+			list.style.display = 'block';
+		}else{
+			ebut.style.display = '';
+			hbut.style.display = 'none';
+			list.style.display = 'none';
+		}
+	}
+</script>
+
+<h5>TABLE REFERENCE <span id="hidebtn" onclick="showtableref();" style="display:none;color:white; cursor:pointer;margin-left:10px;">[-]</span> <span id="expandbtn" onclick="showtableref();" style=" cursor:pointer;color:white;margin-left:10px;">[+]</span> </h5>
+<ul id="tableref" class="tableref" style="font-size:15px;  margin-top:5px; padding:0px;display:none;">
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/acceptdd.html">acceptdd</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/accountreg.html">accountreg</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/act.html">act</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/action.html">action</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/actionitem.html">actionitem</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/actionmotives.html">actionmotives</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/address.html">address</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/address_del.html">address_del</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/admregion.html">admregion</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/agent.html">agent</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/appeal.html">appeal</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/auditmotives.html">auditmotives</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/baccount.html">baccount</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/baldebtinst.html">baldebtinst</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/baloverinst.html">baloverinst</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/bank.html">bank</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/bankfile.html">bankfile</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/bankfilecnt.html">bankfilecnt</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/bankfiletransfer.html">bankfiletransfer</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/bankfiletypereg.html">bankfiletypereg</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/bankpaidfile.html">bankpaidfile</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/bn_export.html">bn_export</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/bnavigatormap.html">bnavigatormap</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/building.html">building</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/calendar.html">calendar</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/carmark.html">carmark</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/carmarkcorr.html">carmarkcorr</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/carmodel.html">carmodel</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/carreg.html">carreg</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/cartaxprice.html">cartaxprice</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/certreg.html">certreg</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/chargeprice.html">chargeprice</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/chargereg.html">chargereg</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/city.html">city</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/city_admregion.html">city_admregion</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/citycat_normkm3.html">citycat_normkm3</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/close_date.html">close_date</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/company.html">company</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/config.html">config</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/container.html">container</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/containernorm.html">containernorm</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/country.html">country</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/courts.html">courts</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/dbf_sal_.html">dbf_sal_</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/dbf_salp.html">dbf_salp</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/dbfdebt.html">dbfdebt</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/dbfegn.html">dbfegn</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/dbfpayment.html">dbfpayment</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/dditems.html">dditems</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/debtdoc.html">debtdoc</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/debtinstalment.html">debtinstalment</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/debtinstalmentcorr.html">debtinstalmentcorr</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/debtobject.html">debtobject</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/debtpartproperty.html">debtpartproperty</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/debtsubject.html">debtsubject</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/debtsubjectcorr.html">debtsubjectcorr</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/dec14_17_notused.html">dec14_17_notused</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/decode.html">decode</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/delegatecompany.html">delegatecompany</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/delegateusers.html">delegateusers</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/department.html">department</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/directdebit.html">directdebit</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/discount.html">discount</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/doctyperegnum.html">doctyperegnum</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/documenttype.html">documenttype</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/dog.html">dog</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/dog64.html">dog64</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/dsalist.html">dsalist</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/dsarequest.html">dsarequest</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/dsk_err_tbl.html">dsk_err_tbl</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/dsk_kasa_tbl.html">dsk_kasa_tbl</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/dspnhead.html">dspnhead</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/dspnlist.html">dspnlist</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/dual.html">dual</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/ecocategories.html">ecocategories</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/ek_atte.html">ek_atte</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/errparts.html">errparts</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/esgraonchange.html">esgraonchange</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/exchange_reg.html">exchange_reg</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/falloff.html">falloff</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/finishcashier.html">finishcashier</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/finishday.html">finishday</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/firm_1417.html">firm_1417</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/firm_1417_obj.html">firm_1417_obj</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/firmobj14.html">firmobj14</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/firmproperty.html">firmproperty</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/firmpropobj.html">firmpropobj</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/fromaddress.html">fromaddress</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/fromaddressorg.html">fromaddressorg</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/frombulstat.html">frombulstat</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/fromcharsubject.html">fromcharsubject</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/fromesgraon.html">fromesgraon</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/fromkat.html">fromkat</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/garb_taxdoc_tmp.html">garb_taxdoc_tmp</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/garbobject.html">garbobject</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/garbproperty.html">garbproperty</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/garbtax.html">garbtax</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/garbtaxhuman.html">garbtaxhuman</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/garbtaxperson.html">garbtaxperson</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/getproperty.html">getproperty</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/groupaction.html">groupaction</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/groupmenu.html">groupmenu</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/grouppersontbo.html">grouppersontbo</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/groups.html">groups</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/grouptbo.html">grouptbo</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/homeobj.html">homeobj</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/inheritance.html">inheritance</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/institution.html">institution</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/interestcorr.html">interestcorr</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/interestdebt.html">interestdebt</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/interestoper.html">interestoper</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/interestoverinst.html">interestoverinst</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/interestpct.html">interestpct</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/invoice.html">invoice</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/invoiceitem.html">invoiceitem</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/katdata.html">katdata</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/katmarksmodels.html">katmarksmodels</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/kattranspreg.html">kattranspreg</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/kinddebtreg.html">kinddebtreg</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/kindhomeobjreg.html">kindhomeobjreg</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/kindparreg.html">kindparreg</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/land.html">land</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/legalnorm.html">legalnorm</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/mask.html">mask</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/menu.html">menu</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/message.html">message</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/migr_sal_.html">migr_sal_</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/migr_salp.html">migr_salp</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/migr_salsum.html">migr_salsum</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/migr_stage_states.html">migr_stage_states</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/monthlytouristtax.html">monthlytouristtax</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/motivesreg.html">motivesreg</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/msglog.html">msglog</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/msgtype.html">msgtype</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/municipality.html">municipality</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/napfilehistory.html">napfilehistory</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/nelk.html">nelk</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/newtableaccvalvarna.html">newtableaccvalvarna</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/normbs.html">normbs</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/normbsobject.html">normbsobject</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/normdni.html">normdni</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/normet.html">normet</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/normki.html">normki</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/normkm3.html">normkm3</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/normkm4.html">normkm4</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/normpod.html">normpod</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/normzzbs.html">normzzbs</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/normzzkat.html">normzzkat</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/normzzraz.html">normzzraz</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/office.html">office</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/official.html">official</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/onlinepayment.html">onlinepayment</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/operation.html">operation</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/operdebt.html">operdebt</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/organization.html">organization</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/organizationhist.html">organizationhist</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/oversubject.html">oversubject</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/partgetproperty.html">partgetproperty</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/parthomeobj.html">parthomeobj</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/parthomeusers.html">parthomeusers</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/partinheritance.html">partinheritance</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/partland.html">partland</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/partlandusers.html">partlandusers</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/partproperty.html">partproperty</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/parttransport.html">parttransport</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/patent.html">patent</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/patentactivity.html">patentactivity</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/patentactivityobj.html">patentactivityobj</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/patentactivityreg.html">patentactivityreg</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/patentother.html">patentother</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/patenttaxprice.html">patenttaxprice</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/patentzone.html">patentzone</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/paydebt.html">paydebt</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/paydocument.html">paydocument</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/paytransaction.html">paytransaction</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/person.html">person</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/personhist.html">personhist</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/persontbo.html">persontbo</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/prescription.html">prescription</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/prevyear.html">prevyear</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/prh.html">prh</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/privatejudcont.html">privatejudcont</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/procdoc.html">procdoc</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/procdocbank.html">procdocbank</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/procdoccatch.html">procdoccatch</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/procdocdebt.html">procdocdebt</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/procdocdebtrecov.html">procdocdebtrecov</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/procdocdebtrecovobl.html">procdocdebtrecovobl</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/procdocopis.html">procdocopis</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/procdocrecov.html">procdocrecov</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/procdocstatus.html">procdocstatus</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/procdoctype.html">procdoctype</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/proceed.html">proceed</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/proceedinit.html">proceedinit</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/proceedtype.html">proceedtype</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/process.html">process</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/processdebt.html">processdebt</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/processinspectors.html">processinspectors</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/promtbo.html">promtbo</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/promtboobj.html">promtboobj</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/property.html">property</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/propgrouptbo.html">propgrouptbo</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/propgrouptbo_arx.html">propgrouptbo_arx</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/province.html">province</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/rdvr.html">rdvr</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/reasonreg.html">reasonreg</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/regnumber.html">regnumber</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/regularnotice.html">regularnotice</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/regularnoticedebt.html">regularnoticedebt</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/regularnoticeobject.html">regularnoticeobject</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/relief.html">relief</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/removeddebts.html">removeddebts</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/removeoperation.html">removeoperation</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/reportconfig.html">reportconfig</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/representative.html">representative</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/request.html">request</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/resolution.html">resolution</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/rpureg.html">rpureg</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/saldoduty.html">saldoduty</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/saldooverpay.html">saldooverpay</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/servgroup.html">servgroup</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/serviceprice.html">serviceprice</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/servicereg.html">servicereg</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/session.html">session</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/sirmalog.html">sirmalog</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/street.html">street</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/streetchange.html">streetchange</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/subjgrouptbo.html">subjgrouptbo</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/tabinheritance.html">tabinheritance</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/tabinhreg.html">tabinhreg</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/taxdoc.html">taxdoc</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/taxdocarx.html">taxdocarx</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/taxobject.html">taxobject</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/taxperiod.html">taxperiod</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/taxperiodpay.html">taxperiodpay</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/taxsubject.html">taxsubject</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/taxsubjecthist.html">taxsubjecthist</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/taxsubjmergehist.html">taxsubjmergehist</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/termlimit.html">termlimit</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/touristtax.html">touristtax</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/touristtaxprice.html">touristtaxprice</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/transpmeansreg.html">transpmeansreg</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/transport.html">transport</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/trucktaxprice.html">trucktaxprice</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/ts_link.html">ts_link</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/tvbuilding.html">tvbuilding</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/tvhomeobj.html">tvhomeobj</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/tvland.html">tvland</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/tvparthomeobj.html">tvparthomeobj</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/tvpartland.html">tvpartland</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/tvpartproperty.html">tvpartproperty</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/tvproperty.html">tvproperty</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/tvtaxdoc.html">tvtaxdoc</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/ulink.html">ulink</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/updaterlog.html">updaterlog</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/updaterreg.html">updaterreg</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/usergroups.html">usergroups</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/users.html">users</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/userscert.html">userscert</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/usershistory.html">usershistory</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/validvalue.html">validvalue</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/vetodo.html">vetodo</a></li>
+<li><a style="text-decoration:none; color:white;" target="mateus" href="public/tables/pages/workhistory.html">workhistory</a></li>
+</ul>
+
+</body>
+</html>

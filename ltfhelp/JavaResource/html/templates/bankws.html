@@ -1,0 +1,51 @@
+<HTML>
+<HEAD>
+<META http-equiv="content-type" content="text/html; charset=UTF-8">
+<Title>Bankws</Title>
+<link rel="stylesheet" type="text/css" href="css/css.css">
+<script src="js/data/bankws.js"></script>
+<script src="js/functions/bankws.js"></script>
+
+</HEAD>
+<BODY>
+<div id="tableDiv"></div>
+
+<script>
+	recreateTable(sortByMunicipality);
+</script>
+
+<h1>Redirect policy properties</h1>
+<pre style="color:white;">
+1202=https\:46.10.158.42\:443
+1116=https\:109.104.216.200\:8444
+1055=https\:84.54.188.219\:8443
+1069=https\:94.190.183.146\:8443
+1184=https\:212.5.144.18\:8443
+1243=https\:213.149.137.21\:8443
+1163=https\:217.9.237.27\:8443
+1084=https\:109.199.140.88\:8443
+1112=https\:109.199.132.111\:8443
+1120=https\:62.73.127.26\:8444
+1079=https\:92.247.31.62\:8443
+1161=https\:87.126.246.239\:8443
+1089=https:\89.106.106.50\:8443
+1226=https\:91.92.68.21\:8443
+1252=https\:213.149.137.21\:8443
+1141=https\:94.139.204.150\:8443
+</pre>
+
+
+<a href="wsconnections.xml"  target="_blank">WsConnections</a>
+<br/>
+<a href="connections.xml" target="_blank">Connections</a>
+
+<script type="text/javascript">
+function myFunction(){
+   WshShell = new ActiveXObject("WScript.Shell"); //Create WScript Object
+   WshShell.run("D://DSK_2016//sqlterminal//start.bat"); // Please change the path and file name with your relevant available path in client system. This code can be used to execute .exe file as well
+}
+
+</script>
+
+</BODY>
+</HTML>

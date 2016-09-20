@@ -69,7 +69,7 @@ public class HelpUtils {
 	}
 	
 	/**save each table columns as json*/
-	private static void saveJsonToFile(Table t) throws FileNotFoundException{
+	private static void saveJsonTableToFile(Table t) throws FileNotFoundException{
 		PrintWriter pr  =  new PrintWriter(new FileOutputStream("public" + File.separator + "tables" + File.separator + "js" + File.separator +   "data"
 	    + File.separator +  t.getTableName()+".js"));
 		pr.println();
@@ -119,13 +119,41 @@ public class HelpUtils {
 	/**Save html $ json js needed by the html*/
 	private static void saveTablesToFile() throws FileNotFoundException{
 		for(Table t :  tablesMap.values()){
-			saveJsonToFile(t);
+			saveJsonTableToFile(t);
 		}
 		for(String k : tablesMap.keySet()){
 			saveHtmltoFile(tablesMap.get(k));
 		}
 		
 		saveTableIndex(tablesMap.keySet());
+	}
+
+	
+	/***
+	 * Create the menu page!
+	 */
+	public static void createMenu() {
+		// TODO Auto-generated method stub
+		MenuSelect mselect = new MenuSelect();
+		serviceLocator.getHelpDao().execute(mselect);
+		
+		int i, last;
+		i = 0; last= mselect.getResult().size() - 1;
+		System.out.println("var menu = [ ");
+		for(Menu c : mselect.getResult()){
+			System.out.println(c.toJSON() + (i == last ?  "" :  ","));
+			i++;
+		}
+		System.out.println(" ]; ");
+		
+		
+		i = 0; last= mselect.mainNodes.size() - 1;
+		System.out.println("var rootnodes = [ ");
+		for(Menu c : mselect.mainNodes){
+			System.out.println(c.toJSON() + (i == last ?  "" :  ","));
+			i++;
+		}
+		System.out.println(" ]; ");
 	}
 	
 	

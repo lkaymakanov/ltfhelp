@@ -1,0 +1,27 @@
+﻿var ltfusers = [
+{userid:-2,username:'LTF',municipalityname:'СТОЛИЧНА'},
+{userid:1078,username:'LTF_14',municipalityname:'ИСКЪР'},
+{userid:1279,username:'LTF_08',municipalityname:'ИЗГРЕВ'},
+{userid:2286,username:'LTF_16',municipalityname:'СТУДЕНТСКА'},
+{userid:1568,username:'LTF_18',municipalityname:'ОВЧА КУПЕЛ'},
+{userid:3002,username:'LTF_10',municipalityname:'СРЕДЕЦ - ТРИАДИЦА'},
+{userid:1379,username:'LTF_05',municipalityname:'СЕРДИКА'},
+{userid:1,username:'LTF_20',municipalityname:'НАДЕЖДА - ВРЪБНИЦА'},
+{userid:1202,username:'LTF_21',municipalityname:'НОВИ ИСКЪР'},
+{userid:2557,username:'LTF_22',municipalityname:'КРЕМИКОВЦИ'},
+{userid:2642,username:'LTF_11',municipalityname:'КРАСНА ПОЛЯНА'},
+{userid:624,username:'LTF_06',municipalityname:'ПОДУЯНЕ'},
+{userid:1689,username:'LTF_15',municipalityname:'МЛАДОСТ'},
+{userid:152,username:'LTF_13',municipalityname:'НАДЕЖДА - ВРЪБНИЦА'},
+{userid:513,username:'LTF_17',municipalityname:'ВИТОША'},
+{userid:2814,username:'LTF_19',municipalityname:'ЛЮЛИН'},
+{userid:585,username:'LTF_03',municipalityname:'ВЪЗРАЖДАНЕ'},
+{userid:897,username:'LTF_02',municipalityname:'КРАСНО СЕЛО'},
+{userid:2364,username:'LTF_04',municipalityname:'ОБОРИЩЕ'},
+{userid:726,username:'LTF_12',municipalityname:'ИЛИНДЕН'},
+{userid:2094,username:'LTF_07',municipalityname:'СЛАТИНА'},
+{userid:372,username:'LTF_24',municipalityname:'БАНКЯ'},
+{userid:1596,username:'LTF_09',municipalityname:'ЛОЗЕНЕЦ'},
+{userid:325,username:'LTF_23',municipalityname:'ПАНЧАРЕВО'}
+
+];

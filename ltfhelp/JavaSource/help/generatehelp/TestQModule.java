@@ -1,6 +1,9 @@
 package help.generatehelp;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -24,7 +27,7 @@ import net.is_bg.ltf.db.common.interfaces.visit.IVisitFactory;
 /**
  * The Class TestQueriesModule.
  */
-class TestQModule {
+public class TestQModule {
 
  
 
@@ -168,8 +171,8 @@ class TestQModule {
       // DecodeTypesSelect s = new DecodeTypesSelect();
        //getServiceLocator().getActDao().execute(s);
        //s.getResult();
-       HelpUtils.createTables();
-       	
+      // HelpUtils.createTables();
+       	HelpUtils.createMenu();
     	
     }
 
@@ -214,6 +217,16 @@ class TestQModule {
      */
     public static void main(String[] args) throws IOException, ClassNotFoundException {
     	
+    	InputStream is = TestQModule.class.getResourceAsStream("help/index.html");
+    	FileOutputStream os = new FileOutputStream(new File("input.html"));
+    	int x  = is.read();
+    	while (x!=-1){
+    		os.write(x);
+    		x = is.read();
+    	}
+    	is.close();
+    	os.close();
+    	
     /*	BufferedReader f = new BufferedReader(new FileReader(new File("lib.txt")));	
     	String s;
     	s = f.readLine();
@@ -239,7 +252,7 @@ class TestQModule {
 		}
 	});*/
     	
-	Locale.setDefault(new Locale("bg", "BG"));
+	/*Locale.setDefault(new Locale("bg", "BG"));
 	SimpleDateFormat daytime = new SimpleDateFormat("dd.MM.yyyy");
 	Date d = new Date();
 	System.out.println(daytime.format(d));
@@ -263,7 +276,7 @@ class TestQModule {
 
 	for (int i = 0; i < arr.length; i++) {
 	    System.out.println(arr[i]);
-	}
+	}*/
 
     }
 }
