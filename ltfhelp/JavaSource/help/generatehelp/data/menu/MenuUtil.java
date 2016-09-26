@@ -5,10 +5,8 @@ import help.generatehelp.HelpUtils;
 
 
 public class MenuUtil {
-
-	
 	/***
-	 * Create the menu page!
+	 * Create the menu as json array the menu nodes + root nodes!
 	 */
 	public static void createMenu() {
 		// TODO Auto-generated method stub
@@ -33,5 +31,4 @@ public class MenuUtil {
 		}
 		System.out.println(" ]; ");
 	}
-	
 }

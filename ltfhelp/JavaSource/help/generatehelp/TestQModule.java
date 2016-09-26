@@ -1,5 +1,7 @@
 package help.generatehelp;
 
+import help.generatehelp.data.menu.MenuUtil;
+
 import java.io.IOException;
 import java.sql.Connection;
 import net.is_bg.ltf.db.common.DBConfig;
@@ -43,7 +45,7 @@ public class TestQModule {
      */
     public static void main(String[] args) throws IOException, ClassNotFoundException {
     	//init resource locator
-    	ResourceLocator.initResourceLocator();
+    	//ResourceLocator.initResourceLocator();
     	
     	//init database connection
     	DBConfig.initDBConfig(new LogFactorySystemOut(), new IVisitFactory() {
@@ -56,6 +58,7 @@ public class TestQModule {
     	    }
     	});
     	System.out.println("Data base connection initialized.....");
+    	
     	
     	//do the test!!!
     	TestQModule module = new TestQModule();
@@ -76,5 +79,6 @@ public class TestQModule {
        //HelpUtils.createTables();
        //HelpUtils.createMenu();
        //System.out.println(HelpUtils.getDecodeTypeAsJson());
+    	MenuUtil.createMenu();
     }
 }
