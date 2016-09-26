@@ -1,10 +1,10 @@
-package help.generatehelp;
+package help.generatehelp.data.databasetable;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-class Table implements Serializable{
+class DataBaseTable implements Serializable{
 
 	/**
 	 * 
@@ -13,7 +13,7 @@ class Table implements Serializable{
 	private String tableSchema;
 	private String tableName;
 	private String tableKey;
-	private List<TableColumn> columns = new ArrayList<TableColumn>();
+	private List<DataBaseTableTableColumn> columns = new ArrayList<DataBaseTableTableColumn>();
 	
 	
 	public String getTableName() {
@@ -28,10 +28,10 @@ class Table implements Serializable{
 	public void setTableKey(String tableKey) {
 		this.tableKey = tableKey;
 	}
-	public List<TableColumn> getColumns() {
+	public List<DataBaseTableTableColumn> getColumns() {
 		return columns;
 	}
-	public void setColumns(List<TableColumn> columns) {
+	public void setColumns(List<DataBaseTableTableColumn> columns) {
 		this.columns = columns;
 	}
 	public String getTableSchema() {

@@ -1,4 +1,4 @@
-package help.generatehelp;
+package help.generatehelp.data.databasetable;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -7,10 +7,10 @@ import java.util.List;
 
 import net.is_bg.ltf.db.common.SelectSqlStatement;
 
-public class TableColumnsSelesct extends SelectSqlStatement {
+class DataBaseTableTableColumnsSelesct extends SelectSqlStatement {
 
 	
-	List<TableColumn> columns = new ArrayList<TableColumn>();
+	List<DataBaseTableTableColumn> columns = new ArrayList<DataBaseTableTableColumn>();
 	
 	@Override
 	protected String getSqlString() {
@@ -54,7 +54,7 @@ public class TableColumnsSelesct extends SelectSqlStatement {
 		// TODO Auto-generated method stub
 		
 		while(rs.next()){
-			TableColumn td = new TableColumn();
+			DataBaseTableTableColumn td = new DataBaseTableTableColumn();
 			
 			td.setSchema(rs.getString("table_schema"));
 			td.setTableName(rs.getString("table_name"));
@@ -70,7 +70,7 @@ public class TableColumnsSelesct extends SelectSqlStatement {
 	}
 
 
-	public List<TableColumn> getColumns() {
+	public List<DataBaseTableTableColumn> getColumns() {
 		return columns;
 	}
 	

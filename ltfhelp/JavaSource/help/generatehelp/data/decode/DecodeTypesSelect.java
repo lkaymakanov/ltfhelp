@@ -1,15 +1,17 @@
-package help.generatehelp;
+package help.generatehelp.data.decode;
+
+import help.generatehelp.data.SelectItem;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.model.SelectItem;
+
 
 import net.is_bg.ltf.db.common.SelectSqlStatement;
 
-public class DecodeTypesSelect extends SelectSqlStatement {
+class DecodeTypesSelect extends SelectSqlStatement {
 	
 	private List<DecodeType> result = new ArrayList<DecodeType>();
 

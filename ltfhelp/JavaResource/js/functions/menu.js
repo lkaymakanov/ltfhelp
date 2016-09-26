@@ -105,7 +105,7 @@ function bfs(menu, rootNode, createmenuFunction){
 
 /**Creates a ul with menu items*/
 function createUl(ulid, children){
-	var ul='<ul id="' + ulid +'">';
+	var ul='<ul class="menu" id="' + ulid +'">';
 	var i=0;
 	
 	//create main nodes

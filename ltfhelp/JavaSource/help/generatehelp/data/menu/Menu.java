@@ -1,4 +1,4 @@
-package help.generatehelp;
+package help.generatehelp.data.menu;
 
 import java.util.Set;
 import java.util.TreeSet;
@@ -67,7 +67,7 @@ class Menu {
 
 	Set<Long> children = new TreeSet<Long>();
 	
-	private String siblingstoJSON(){
+	private String childrentoJSON(){
 		String s ="[";
 		for(Long k :children){
 			s+=( "," + k);
@@ -86,7 +86,7 @@ class Menu {
 				+ ", menuname:'" + menuName 
 				+ "', nodeno:'" + nodeNo 
 				+ "', href:'" + href 
-				+ "', children:" + siblingstoJSON() + " }";
+				+ "', children:" + childrentoJSON() + " }";
 	}
 
 	

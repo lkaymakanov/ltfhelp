@@ -1,4 +1,4 @@
-package help.generatehelp;
+package help.generatehelp.data.menu;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,7 +10,7 @@ import java.util.Set;
 import java.util.TreeSet;
 import net.is_bg.ltf.db.common.SelectSqlStatement;
 
-public class MenuSelect extends SelectSqlStatement{
+class MenuSelect extends SelectSqlStatement{
 	
 	private Map<Long, Long> menuIdIndex = new HashMap<Long, Long>();
 	private List<Menu> result = new  ArrayList<Menu>();

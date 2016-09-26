@@ -1,17 +1,17 @@
-package help.generatehelp;
+package help.generatehelp.data.databasetable;
+
+import help.generatehelp.data.SelectItem;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.model.SelectItem;
 
 
-class TableColumn  {
+class DataBaseTableTableColumn  {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -7928600180616607582L;
 	
 	private String tableKey;
 	private String colKey;

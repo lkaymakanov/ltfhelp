@@ -2,8 +2,17 @@ body {
 	background-color: #3a476d;
 }
 
+h1{
+	color:white;
+}
+
 h5 {
 	font-size:12px; margin:0px; color:gold;
+}
+
+a.wlink{
+	text-decoration:none; 
+	color:white;
 }
 
 table.register{
@@ -41,7 +50,15 @@ table.register tr:hover {
 }
 
 ul.tableref  li a:hover{
-  color:green;
+  color:gold;
+}
+
+ul{
+	font-size:12px; margin:0px; padding:0px;
+}
+
+ul.menu{
+	padding-left:25px;
 }
 
 .highlight{

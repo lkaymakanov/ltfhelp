@@ -1,4 +1,6 @@
-package help.generatehelp;
+package help.generatehelp.data.decode;
+
+import help.generatehelp.data.SelectItem;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -7,7 +9,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.faces.model.SelectItem;
+
+
+
 
 import net.is_bg.ltf.db.common.SelectSqlStatement;
 
@@ -16,7 +20,7 @@ import net.is_bg.ltf.db.common.SelectSqlStatement;
  * @author lubo
  *
  */
-class DecodeForColumnSelect extends SelectSqlStatement {
+public class DecodeForColumnSelect extends SelectSqlStatement {
 	
 	private Map<String, List<SelectItem>>  colnamesItems = new HashMap<String, List<SelectItem>>();
 

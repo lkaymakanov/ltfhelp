@@ -4,9 +4,9 @@ import net.is_bg.ltf.db.common.DBConfig;
 import net.is_bg.ltf.db.common.interfaces.IConnectionFactory;
 
 
-class ServiceLocator {
+public class ServiceLocator {
 	
-	HelpDao hd;
+	private HelpDao hd;
 	
 	public ServiceLocator() {
 		// TODO Auto-generated constructor stub
