@@ -1,20 +1,29 @@
 package help.generatehelp.data.decode;
 
+import help.generatehelp.HelpUtils;
+import help.generatehelp.Property;
+import help.generatehelp.StringToJsonWrapper;
+import help.generatehelp.ToJsonBase;
 import help.generatehelp.data.SelectItem;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
-class DecodeType {
+class DecodeType extends ToJsonBase {
 
-	private String type;
+	{
+		addProperty(new Property<StringToJsonWrapper>(new StringToJsonWrapper(""), "type"));
+	}
+	
 	private List<SelectItem> values;
+	private List<String>  refTableColumns = new ArrayList<String>();
 	
 	public String getType() {
-		return type;
+		return ((StringToJsonWrapper)getPropertyByName("type").getValue()).getValue();
 	}
 	public void setType(String type) {
-		this.type = type;
+		HelpUtils.setString(this, "type", type);
 	}
 	public List<SelectItem> getValues() {
 		return values;
@@ -23,19 +32,23 @@ class DecodeType {
 		this.values = values;
 	}
 	
+	private String refColumnsToString (){
+		String res ="";
+		for(String s: refTableColumns){
+			res+=s+"</br>";
+		}
+		return res;
+	}
+	
+	public void addrefTableColumn(String s){
+		refTableColumns.add(s);
+	}
+	
 	public String toJson(){
-		return "{ type:'" + type + "', " + "options:[" + getOptions()+ "] } "; 
+		return "{"+ getPropertyByName("type").toJson() +  ", " + getOptions()+ ", refcol:'"+refColumnsToString()+"' } "; 
 	}
 	
 	private String getOptions(){
-		int last = values == null ? 0 : values.size() - 1;
-		int i = 0;
-		String res = "";
-		for(SelectItem item : values){
-			res += "'"+ item.getLabel() +"'" + (i == last ?  "" :  ",");
-			i++;
-		}
-		
-		return res;
+		return HelpUtils.toJson(values, "options:", "");
 	}
 }

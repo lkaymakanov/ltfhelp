@@ -1,6 +1,8 @@
 package help.generatehelp.data;
 
-public class SelectItem {
+import help.generatehelp.IToJson;
+
+public class SelectItem implements IToJson {
     private String label = null;
     private Object value = null;
 	 
@@ -20,6 +22,12 @@ public class SelectItem {
 	}
 	public void setValue(Object value) {
 		this.value = value;
+	}
+
+	@Override
+	public String toJson() {
+		// TODO Auto-generated method stub
+		return "{value:" +value +", label:'"+label+"'}";
 	}
 
 	  

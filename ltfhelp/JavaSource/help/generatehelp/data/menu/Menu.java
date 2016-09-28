@@ -1,69 +1,91 @@
 package help.generatehelp.data.menu;
 
+import help.generatehelp.LongToJsonWrapper;
+import help.generatehelp.Property;
+import help.generatehelp.StringToJsonWrapper;
+import help.generatehelp.ToJsonBase;
+
 import java.util.Set;
 import java.util.TreeSet;
 
-class Menu {
-
-	long menuId;
-	long parentId;
-	String href;
-	String menuName;
-	String nodeNo;
-	long parentIdex = -1;
-	long currentIndex =-1;
-	long rootIndex  = -1;
+class Menu extends ToJsonBase{
+	{
+		addProperty(new Property<LongToJsonWrapper>(new LongToJsonWrapper(0) , "menurole_id"));
+		addProperty(new Property<LongToJsonWrapper>(new LongToJsonWrapper(0), "parent_id"));
+		addProperty(new Property<LongToJsonWrapper>(new LongToJsonWrapper(-1l), "index"));
+		addProperty(new Property<LongToJsonWrapper>(new LongToJsonWrapper(-1l), "parentIndex"));
+		addProperty(new Property<LongToJsonWrapper>(new LongToJsonWrapper(-1l), "rootIndex"));
+		
+		addProperty(new Property<StringToJsonWrapper>(new  StringToJsonWrapper(""), "menuname"));
+		addProperty(new Property<StringToJsonWrapper>(new  StringToJsonWrapper(""), "href"));
+		addProperty(new Property<StringToJsonWrapper>(new  StringToJsonWrapper(""), "nodeno"));
+	}
+	
+	private long getLong(String name){
+		return (Long) ((LongToJsonWrapper)getPropertyByName(name).getValue()).getValue();
+	}
+	
+	private String getString(String name){
+		return (String) ((StringToJsonWrapper)getPropertyByName(name).getValue()).getValue();
+	}
+	
+	private void setLong(String name, long value){
+		  getPropertyByName(name).setValue(new LongToJsonWrapper(value));
+	}
+	
+	private void setString(String name, String value){
+		getPropertyByName(name).setValue(new StringToJsonWrapper(value));
+	}
 	
 	public long getMenuId() {
-		return menuId;
+		return getLong("menurole_id");
 	}
 	public void setMenuId(long menuId) {
-		this.menuId = menuId;
+		setLong("menurole_id", menuId);
 	}
 	public long getParentId() {
-		return parentId;
+		return getLong("parent_id");
 	}
 	public void setParentId(long parentId) {
-		this.parentId = parentId;
+		setLong("parent_id", parentId);
 	}
 	public String getHref() {
-		return href;
+		return getString("href");
 	}
 	public void setHref(String href) {
-		this.href = href;
+		setString("href", href);
 	}
 	public String getMenuName() {
-		return menuName;
+		return getString("menuname");
 	}
 	public void setMenuName(String menuName) {
-		this.menuName = menuName;
+		setString("menuname", menuName);
 	}
 	public String getNodeNo() {
-		return nodeNo;
+		return getString("nodeno");
 	}
 	public void setNodeNo(String nodeNo) {
-		this.nodeNo = nodeNo;
+		setString("nodeno", nodeNo);
 	}
 	public long getParentIdex() {
-		return parentIdex;
+		return getLong("parentIndex");
 	}
 	public void setParentIdex(long parentIdex) {
-		this.parentIdex = parentIdex;
+		setLong("parentIndex", parentIdex);
 	}
 	public long getCurrentIndex() {
-		return currentIndex;
+		return getLong("index");
 	}
 	public void setCurrentIndex(long currentIndex) {
-		this.currentIndex = currentIndex;
+		setLong("index", currentIndex);
 	}
 	
 	public long getRootIndex() {
-		return rootIndex;
+		return getLong("rootIndex");
 	}
 	public void setRootIndex(long rootIndex) {
-		this.rootIndex = rootIndex;
+		setLong("rootIndex", rootIndex);
 	}
-
 
 	Set<Long> children = new TreeSet<Long>();
 	
@@ -77,15 +99,15 @@ class Menu {
 		return s;
 	}
 	
-	String toJSON(){
-		return "{menuid:" + menuId 
-				+ ", index: " + currentIndex 
-				+ ", parentid:" + parentId  
-				+ ", parentind:" + parentIdex 
-				+ ", rootind:" + rootIndex
-				+ ", menuname:'" + menuName 
-				+ "', nodeno:'" + nodeNo 
-				+ "', href:'" + href 
+	public String toJson(){
+		return "{menuid:" + getMenuId()
+				+ ", index: " + getCurrentIndex()
+				+ ", parentid:" + getParentId()
+				+ ", parentind:" + getParentIdex()
+				+ ", rootind:" + getRootIndex()
+				+ ", menuname:'" + getMenuName() 
+				+ "', nodeno:'" + getNodeNo() 
+				+ "', href:'" + getHref()
 				+ "', children:" + childrentoJSON() + " }";
 	}
 

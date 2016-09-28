@@ -1,120 +1,51 @@
 package help.generatehelp.data.documenttype;
 
-class Documenttype {
+import help.generatehelp.LongToJsonWrapper;
+import help.generatehelp.Property;
+import help.generatehelp.StringToJsonWrapper;
+import help.generatehelp.ToJsonBase;
 
-	private long documenttypeid;
-	private String doccode;
-	private String docname;
-	private String termgive;
-	private String termworking;
-	private String fullname;
-	private String termgive_enddate;
-	private long dt_accountreg_id;
-	private long kt_accountreg_id;
-	private long isalwaccepting;
-	private long kinddoc;
-	private long isincl;
-	private long interest;
-	private long overinterest;
-	private int instnumber;
+class Documenttype extends ToJsonBase{
 	
+
+/*	c.getPropertyByName("documenttype_id").setValue(new LongToJsonWrapper(rs.getLong("documenttype_id")));
+	c.getPropertyByName("dt_accountreg_id").setValue(new LongToJsonWrapper(rs.getLong("dt_accountreg_id")));
+	c.getPropertyByName("kt_accountreg_id").setValue(new LongToJsonWrapper(rs.getLong("kt_accountreg_id")));
 	
-	public long getDocumenttypeid() {
-		return documenttypeid;
-	}
-	public void setDocumenttypeid(long documenttypeid) {
-		this.documenttypeid = documenttypeid;
-	}
-	public String getDoccode() {
-		return doccode;
-	}
-	public void setDoccode(String doccode) {
-		this.doccode = doccode;
-	}
-	public String getDocname() {
-		return docname;
-	}
-	public void setDocname(String docname) {
-		this.docname = docname;
-	}
-	public String getTermgive() {
-		return termgive;
-	}
-	public void setTermgive(String termgive) {
-		this.termgive = termgive;
-	}
-	public String getTermworking() {
-		return termworking;
-	}
-	public void setTermworking(String termworking) {
-		this.termworking = termworking;
-	}
-	public String getFullname() {
-		return fullname;
-	}
-	public void setFullname(String fullname) {
-		this.fullname = fullname;
-	}
-	public String getTermgive_enddate() {
-		return termgive_enddate;
-	}
-	public void setTermgive_enddate(String termgive_enddate) {
-		this.termgive_enddate = termgive_enddate;
-	}
-	public long getDt_accountreg_id() {
-		return dt_accountreg_id;
-	}
-	public void setDt_accountreg_id(long dt_accountreg_id) {
-		this.dt_accountreg_id = dt_accountreg_id;
-	}
-	public long getKt_accountreg_id() {
-		return kt_accountreg_id;
-	}
-	public void setKt_accountreg_id(long kt_accountreg_id) {
-		this.kt_accountreg_id = kt_accountreg_id;
-	}
-	public long getIsalwaccepting() {
-		return isalwaccepting;
-	}
-	public void setIsalwaccepting(long isalwaccepting) {
-		this.isalwaccepting = isalwaccepting;
-	}
-	public long getKinddoc() {
-		return kinddoc;
-	}
-	public void setKinddoc(long kinddoc) {
-		this.kinddoc = kinddoc;
-	}
-	public long getIsincl() {
-		return isincl;
-	}
-	public void setIsincl(long isincl) {
-		this.isincl = isincl;
-	}
-	public long getInterest() {
-		return interest;
-	}
-	public void setInterest(long interest) {
-		this.interest = interest;
-	}
-	public long getOverinterest() {
-		return overinterest;
-	}
-	public void setOverinterest(long overinterest) {
-		this.overinterest = overinterest;
-	}
-	public int getInstnumber() {
-		return instnumber;
-	}
-	public void setInstnumber(int instnumber) {
-		this.instnumber = instnumber;
-	}
+	c.getPropertyByName("isalwaccepting").setValue(new LongToJsonWrapper(rs.getLong("isalwaccepting")));
+	c.getPropertyByName("kinddoc").setValue(new LongToJsonWrapper(rs.getLong("kinddoc")));
+	c.getPropertyByName("isinc").setValue(new LongToJsonWrapper(rs.getLong("isinc")));
+	c.getPropertyByName("interest").setValue(new LongToJsonWrapper(rs.getLong("interest")));
+	c.getPropertyByName("overinterest").setValue(new LongToJsonWrapper(rs.getLong("overinterest")));
+	c.getPropertyByName("instnumber").setValue(new LongToJsonWrapper(rs.getLong("instnumber")));
 	
-	public String toJson(){
-		return  " {documenttype_id:"  + documenttypeid + ", doccode:'"  + doccode + "', docname:'" +docname + "', term_give:'" + termgive +
-				"', term_working:'" + termworking + "',fullname:'" + fullname +  "', termgive_enddate:'" +termgive_enddate+
-				"', dt_accountreg_id:"+ dt_accountreg_id+ ", kt_accountreg_id:" + kt_accountreg_id+ ", isalwaccepting:"+ isalwaccepting+
-				", kinddoc:" + kinddoc + ", isinc:'" +isincl + ", interest:" + interest + ", overinterest:" +overinterest +", instnumber:"+instnumber+" }";
+	c.getPropertyByName("doccode").setValue(new StringToJsonWrapper(rs.getString("doccode")));
+	c.getPropertyByName("docname").setValue(new StringToJsonWrapper(rs.getString("docname")));
+	c.getPropertyByName("term_give").setValue(new StringToJsonWrapper(rs.getString("term_give")));
+	c.getPropertyByName("term_working").setValue(new StringToJsonWrapper(rs.getString("term_working")));
+	c.getPropertyByName("fullname").setValue(new StringToJsonWrapper(rs.getString("fullname")));
+	c.getPropertyByName("termgive_enddate").setValue(new StringToJsonWrapper(rs.getString("termgive_enddate")));
+*/
+	{
+		addProperty(new Property<LongToJsonWrapper>(null, "documenttype_id"));
+		addProperty(new Property<LongToJsonWrapper>(null, "dt_accountreg_id"));
+		addProperty(new Property<LongToJsonWrapper>(null, "kt_accountreg_id"));
+		addProperty(new Property<LongToJsonWrapper>(null, "isalwaccepting"));
+		addProperty(new Property<LongToJsonWrapper>(null, "kinddoc"));
+		addProperty(new Property<LongToJsonWrapper>(null, "interest"));
+		addProperty(new Property<LongToJsonWrapper>(null, "overinterest"));
+		addProperty(new Property<LongToJsonWrapper>(null, "isinc"));
+		addProperty(new Property<LongToJsonWrapper>(null, "interest"));
+		addProperty(new Property<LongToJsonWrapper>(null, "instnumber"));
+		
+		addProperty(new Property<StringToJsonWrapper>(null, "doccode"));
+		addProperty(new Property<StringToJsonWrapper>(null, "docname"));
+		addProperty(new Property<StringToJsonWrapper>(null, "term_give"));
+		addProperty(new Property<StringToJsonWrapper>(null, "term_working"));
+		addProperty(new Property<StringToJsonWrapper>(null, "fullname"));
+		addProperty(new Property<StringToJsonWrapper>(null, "termgive_enddate"));
 	}
+
+	
 	
 }

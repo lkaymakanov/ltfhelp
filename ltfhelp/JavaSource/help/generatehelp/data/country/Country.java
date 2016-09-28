@@ -1,41 +1,19 @@
 package help.generatehelp.data.country;
 
-public class Country {
+import help.generatehelp.LongToJsonWrapper;
+import help.generatehelp.Property;
+import help.generatehelp.StringToJsonWrapper;
+import help.generatehelp.ToJsonBase;
 
-	private long countryid;
-	private String name;
-	private String code;
-	private String shortname;
+public class Country extends ToJsonBase {
 	
-	
-	public long getCountryid() {
-		return countryid;
+	{
+		
+		addProperty(new Property<LongToJsonWrapper>(null, "country_id"));
+		addProperty(new Property<StringToJsonWrapper>(null, "cname"));
+		addProperty(new Property<StringToJsonWrapper>(null, "code"));
+		addProperty(new Property<StringToJsonWrapper>(null, "shortname"));
+
 	}
-	public void setCountryid(long countryid) {
-		this.countryid = countryid;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getCode() {
-		return code;
-	}
-	public void setCode(String code) {
-		this.code = code;
-	}
-	public String getShortname() {
-		return shortname;
-	}
-	public void setShortname(String shortname) {
-		this.shortname = shortname;
-	}
-	
-	public String toJson(){
-		return "{countryid:"  + countryid + ", name:'" + name + "', code:'" + code +  "', shortname:'" + shortname + "'}";
-	}
-	
 
 }

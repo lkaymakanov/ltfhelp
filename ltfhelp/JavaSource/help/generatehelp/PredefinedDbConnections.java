@@ -7,41 +7,22 @@ public class PredefinedDbConnections {
 
   /** drivers. */
   private final static String ORCL_DRIVER = "oracle.jdbc.OracleDriver";
-
-  /** The Constant PGR_DRIVER. */
   private final static String PGR_DRIVER = "org.postgresql.Driver";
-
-  /** The Constant PGR_DRIVER_DIGEST. */
   private final static String PGR_DRIVER_DIGEST = "com.is.util.db.driver.digestdriver.DigestDriver";
-
-  /** data bases url's. */
   public final static String URL_PGR_BRC = "digest:jdbc:postgresql://10.240.110.120:5432/brc";
-
-  /** The Constant URL_PGR_MDT. */
   public final static String URL_PGR_MDT = "digest:jdbc:postgresql://10.240.44.129:5432/mdt";
-
-  /** The Constant URL_ORC_SF_129. */
   public final static String URL_ORC_SF_129 = "jdbc:oracle:thin:@10.240.44.129:1521:ORCL";
-
-  /** The Constant URL_ORC_SF_146. */
   public final static String URL_ORC_SF_146 = "jdbc:oracle:thin:@10.240.44.146:1521:orcl";
-
-  /** The Constant URL_LOCAL. */
   public final static String URL_LOCAL = "jdbc:oracle:thin:@localhost:1521:ltf";
-
-  /** УРЛ. */
-  public final static String URL_PGR_149 = /* digest: */"jdbc:postgresql://10.240.44.149:5432/bnk11";
-
-  /** The Constant URL_PGR_LOCLHOST. */
+  public final static String URL_PGR_149 = "jdbc:postgresql://10.240.44.149:5432/bnk11";
   public final static String URL_PGR_LOCLHOST = "jdbc:postgresql://localhost:5432/bnk";
-
-  /** The Constant URL_PGR_PDV_7. */
   public final static String URL_PGR_PDV_7 = "jdbc:postgresql://10.240.110.70:5432/pdv";
   public final static String URL_PGR_PDV_BANITE = "jdbc:postgresql://10.240.110.70:5432/banite";
   public final static String URL_PGR_KLN_70 = "jdbc:postgresql://10.240.110.70:5432/kln";
   public final static String URL_PGR_SOF_184 = "jdbc:postgresql://10.240.44.184:5432/sofiamerge3";
 	
-  public static ConnectionProperties[] dBases = { new ConnectionProperties(ORCL_DRIVER, URL_ORC_SF_129, "brc", "brc", "orlc_brc_129"), // 0
+  public static ConnectionProperties[] dBases = { 
+	  	new ConnectionProperties(ORCL_DRIVER, URL_ORC_SF_129, "brc", "brc", "orlc_brc_129"), // 0
 	    new ConnectionProperties(ORCL_DRIVER, URL_ORC_SF_129, "krp", "krp", "orlc_krp_129"), // 1
 	    new ConnectionProperties(ORCL_DRIVER, URL_ORC_SF_146, "brc", "brc", "orlc_brc_146"), // 2
 	    new ConnectionProperties(ORCL_DRIVER, URL_ORC_SF_146, "sdk", "sdk", "orlc_sdk_146"), // 3

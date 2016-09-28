@@ -1,5 +1,9 @@
 package help.generatehelp.data.menu;
 
+import help.generatehelp.LongToJsonWrapper;
+import help.generatehelp.Property;
+import help.generatehelp.StringToJsonWrapper;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -8,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
+
 import net.is_bg.ltf.db.common.SelectSqlStatement;
 
 class MenuSelect extends SelectSqlStatement{
@@ -34,12 +39,12 @@ class MenuSelect extends SelectSqlStatement{
 		long index = 0;
 		while(rs.next()){
 			Menu m = new Menu();
-		    m.setMenuId(rs.getLong("menurole_id"));
-			m.setParentId(rs.getLong("parent_id"));
-			m.setMenuName(rs.getString("menuname"));
-			m.setHref(rs.getString("href"));
-			m.setNodeNo(rs.getString("nodeno"));
-			m.setCurrentIndex(index);
+			m.getPropertyByName("menurole_id").setValue(new LongToJsonWrapper(rs.getLong("menurole_id")));
+			m.getPropertyByName("parent_id").setValue(new LongToJsonWrapper(rs.getLong("parent_id")));
+			m.getPropertyByName("menuname").setValue(new StringToJsonWrapper(rs.getString("menuname")));
+			m.getPropertyByName("href").setValue(new StringToJsonWrapper(rs.getString("href")));
+			m.getPropertyByName("nodeno").setValue(new StringToJsonWrapper(rs.getString("nodeno")));
+			m.getPropertyByName("index").setValue(new LongToJsonWrapper(index));
 			menuIdIndex.put(m.getMenuId(), index);
 			
 			if(m.getParentId() == 0) mainNodes.add(m);

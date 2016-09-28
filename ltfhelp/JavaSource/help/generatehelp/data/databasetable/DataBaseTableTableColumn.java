@@ -1,5 +1,6 @@
 package help.generatehelp.data.databasetable;
 
+import help.generatehelp.IToJson;
 import help.generatehelp.data.SelectItem;
 
 import java.util.ArrayList;
@@ -7,7 +8,7 @@ import java.util.List;
 
 
 
-class DataBaseTableTableColumn  {
+class DataBaseTableTableColumn implements IToJson  {
 
 	/**
 	 * 
@@ -100,7 +101,7 @@ class DataBaseTableTableColumn  {
 		this.colCommnent = colCommnent;
 	}
 	
-	String toJSON(){
+	public String toJson(){
 		String opts="";
 		int i =0;
 		for(SelectItem it : decodeValues){

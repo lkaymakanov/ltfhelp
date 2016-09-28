@@ -80,15 +80,8 @@ public class DataBaseTableUtil {
 	private static void saveJsonTableToFile(DataBaseTable t) throws FileNotFoundException{
 		PrintWriter pr  =  new PrintWriter(new FileOutputStream("public" + File.separator + "tables" + File.separator + "js" + File.separator +   "data"
 	    + File.separator +  t.getTableName()+".js"));
-		pr.println();
-		int i, last;
-		i = 0; last= t.getColumns().size() - 1;
-		pr.println(" var tablecolumns = [ ");
-		for(DataBaseTableTableColumn c : t.getColumns()){
-			pr.println(c.toJSON() + (i == last ?  "" :  ","));
-			i++;
-		}
-		pr.println(" ]; ");
+		String json = HelpUtils.toJson(t.getColumns(), " var tablecolumns =  ", ";");
+		pr.println(json);
 		pr.flush();
 		pr.close();
 	}
