@@ -3,8 +3,12 @@ package help.generatehelp;
 
 
 import java.io.File;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
+
+import net.is_bg.ltf.db.common.BindVariableData;
+import net.is_bg.ltf.db.common.BindVariableInfo;
 
 
 
@@ -101,6 +105,20 @@ public class HelpUtils {
 		obj.getPropertyByName(name).setValue(new StringToJsonWrapper(value));
 	}
 	
+	/***
+	 * Returns a new string of the template string replacing template parameters with parameters from bindvardata
+	 * @param template
+	 * @param parameters
+	 * @return
+	 */
+	public static String setTemplateParameters(Template template, BindVariableData parameters){
+		String templateString = template.getTemplate();
+		Collection<BindVariableInfo> data =	parameters.getValues().values();
+		for(BindVariableInfo i : data){
+			templateString = templateString.replace("{"+ i.getPosition() + "P}", i.getValue() == null ? "null" : i.getValue().toString());
+		}
+		return templateString;
+	}
 	
 	
 	/***

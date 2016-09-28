@@ -5,29 +5,32 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+
 public class ResourceTemplateReader {
 	BufferedReader br;
 	InputStream in;
 	private Template template;
 	private boolean loaded;
 	
-	
 	public ResourceTemplateReader(InputStream in){
 		this.in= in;
 	}
 	
-	public BufferedReader getReader(){
-		if(br == null) br = new BufferedReader(new InputStreamReader(in));
-		return br;
-	}
-	
 	public Template load() throws IOException{
-		if(loaded == true) return template;
-		template = new Template();
-		
-		release();
-		loaded = true;
-		return template;
+		try{
+			if(loaded == true) return template;
+			template = new Template();
+			br = new BufferedReader(new InputStreamReader(in));
+			String line;
+	    	while( (line = br.readLine()) != null){
+	    		System.out.println(line);
+	    		template.addLine(line);
+	    	}
+			loaded = true;
+			return template;
+		}finally{
+			release();
+		}
 	}
 	
 	private  void release() throws IOException{
