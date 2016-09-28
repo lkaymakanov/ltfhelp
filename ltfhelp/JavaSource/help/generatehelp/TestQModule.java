@@ -1,9 +1,30 @@
 package help.generatehelp;
 
+import help.generatehelp.data.certreg.CertRegUtil;
+import help.generatehelp.data.chargereg.ChargeReg;
+import help.generatehelp.data.chargereg.ChargeRegUtil;
+import help.generatehelp.data.city.CityUtil;
+import help.generatehelp.data.country.CountrtyUtil;
+import help.generatehelp.data.decode.DecodeTypeUtils;
+import help.generatehelp.data.documenttype.DocumenttypeUtil;
+import help.generatehelp.data.exchangereg.ExchangeReg;
+import help.generatehelp.data.exchangereg.ExchangeRegUtil;
+import help.generatehelp.data.kindhomeobjreg.KindHomeObjReg;
+import help.generatehelp.data.kindhomeobjreg.KindHomeObjRegUtil;
+import help.generatehelp.data.kindparreg.KindParRegUtil;
 import help.generatehelp.data.menu.MenuUtil;
+import help.generatehelp.data.municipality.MunicipalityUtil;
+import help.generatehelp.data.patentactivityreg.PatentActivityRegUtil;
+import help.generatehelp.data.province.ProvinceUtil;
+import help.generatehelp.data.reasonreg.ReasonRegUtil;
+import help.generatehelp.data.regnumber.RegNumberUtil;
+import help.generatehelp.data.servicereg.ServiceRegUtil;
+import help.generatehelp.data.transpmeansreg.TranspmeansReg;
+import help.generatehelp.data.transpmeansreg.TranspmeansRegUtil;
 
 import java.io.IOException;
 import java.sql.Connection;
+
 import net.is_bg.ltf.db.common.DBConfig;
 import net.is_bg.ltf.db.common.impl.DataSourceConnectionFactoryDrManager;
 import net.is_bg.ltf.db.common.impl.logging.LogFactorySystemOut;
@@ -73,12 +94,6 @@ public class TestQModule {
      * @throws IOException 
      */
     public void test() throws IOException {
-       //DecodeTypesSelect s = new DecodeTypesSelect();
-       //getServiceLocator().getActDao().execute(s);
-       //s.getResult();
-       //HelpUtils.createTables();
-       //HelpUtils.createMenu();
-       //System.out.println(HelpUtils.getDecodeTypeAsJson());
-    	MenuUtil.createMenu();
+       
     }
 }
