@@ -1,26 +1,7 @@
 package help.generatehelp;
 
-import help.generatehelp.data.certreg.CertRegUtil;
-import help.generatehelp.data.chargereg.ChargeReg;
-import help.generatehelp.data.chargereg.ChargeRegUtil;
-import help.generatehelp.data.city.CityUtil;
-import help.generatehelp.data.country.CountrtyUtil;
-import help.generatehelp.data.decode.DecodeTypeUtils;
-import help.generatehelp.data.documenttype.DocumenttypeUtil;
-import help.generatehelp.data.exchangereg.ExchangeReg;
-import help.generatehelp.data.exchangereg.ExchangeRegUtil;
-import help.generatehelp.data.kindhomeobjreg.KindHomeObjReg;
-import help.generatehelp.data.kindhomeobjreg.KindHomeObjRegUtil;
-import help.generatehelp.data.kindparreg.KindParRegUtil;
-import help.generatehelp.data.menu.MenuUtil;
-import help.generatehelp.data.municipality.MunicipalityUtil;
-import help.generatehelp.data.patentactivityreg.PatentActivityRegUtil;
-import help.generatehelp.data.province.ProvinceUtil;
-import help.generatehelp.data.reasonreg.ReasonRegUtil;
-import help.generatehelp.data.regnumber.RegNumberUtil;
-import help.generatehelp.data.servicereg.ServiceRegUtil;
-import help.generatehelp.data.transpmeansreg.TranspmeansReg;
-import help.generatehelp.data.transpmeansreg.TranspmeansRegUtil;
+
+import help.generatehelp.data.taxperiod.TaxperiodUtil;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -65,35 +46,21 @@ public class TestQModule {
      * @throws ClassNotFoundException 
      */
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-    	//init resource locator
-    	//ResourceLocator.initResourceLocator();
     	
     	//init database connection
     	DBConfig.initDBConfig(new LogFactorySystemOut(), new IVisitFactory() {
     	    public IVisit getVist() {
-    		return new VisitEmpty();
+    	    	return new VisitEmpty();
     	    }
     	}, new DesktopAppConnectionFactory(), new IElaplsedTimerFactory() {
     	    public IElaplsedTimer getElapsedTimer() {
-    		return new ElapsedTimer();
+    	    	return new ElapsedTimer();
     	    }
     	});
     	System.out.println("Data base connection initialized.....");
-    	
-    	
-    	//do the test!!!
-    	TestQModule module = new TestQModule();
-    	module.test();
-
+    	TaxperiodUtil.createTaxperiod();
+    	HelpApplication hApp = new HelpApplication();
+    	hApp.init();
     }
     
-    
-    // do the tests here
-    /**
-     * Test.
-     * @throws IOException 
-     */
-    public void test() throws IOException {
-       
-    }
 }

@@ -6,18 +6,22 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Properties;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**Extract resources helper class*/
 public class ResourceLocator  {
 	
 	/**get properties file*/
 	private static Properties properties = new Properties();
-	private static String resourcesPath;
-
+	private static Set<String> propertyKeys = new TreeSet<String>();
 	
 	static void initResourceLocator(){
 		try {
 			properties.load(getResourceStream("prop.properties"));
+			for(Object p: properties.keySet()){
+				propertyKeys.add(p.toString());
+			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -25,7 +29,6 @@ public class ResourceLocator  {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		resourcesPath = properties.getProperty("path.to.resources");
 	}
 	
 	static  URL findResourceUrl(String resourceName){
@@ -40,30 +43,17 @@ public class ResourceLocator  {
 		return  ResourceLocator.class.getClassLoader().getResourceAsStream(resourceName);
 	}
 	
-	
-	static String getResourcePath(){
-		return resourcesPath;
+	static void printProperties(){
+		System.out.println("================ RESOURCES PROPERTIES =============\n");
+		for(Object p: properties.keySet()){
+			System.out.println(p.toString());
+		}
+		System.out.println("================END OF RESOURCES PROPERTIES =============\n");
 	}
 	
-	
-	static void printResourcePath(){
-		System.out.println(resourcesPath);
+	static Set<String> getPropertyKeys(){
+		return propertyKeys;
 	}
 	
-	static void printResources(){
-		HelpUtils.traverseDirs(getResourceFile(resourcesPath), new TraverseDirsCallBack() {
-			@Override
-			public void OnReturnFromRecursion(File node) {
-				// TODO Auto-generated method stub
-				System.out.println(node.getAbsolutePath());
-			}
-			
-			@Override
-			public void OnForward(File node) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
-	}
 	
 }
