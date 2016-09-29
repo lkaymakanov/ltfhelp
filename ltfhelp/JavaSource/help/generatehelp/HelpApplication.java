@@ -5,8 +5,9 @@ import java.io.IOException;
 public class HelpApplication {
 	PropertiesLoader appproperties;    //main application properties file
 	JsonDataPropertiesLoader jsonPoperties;  //property files containing json data for  pages
-	
-	
+	TemplateLoader htmlTemplateLoader;
+	TemplateLoader cssTemplateLoader;
+	TemplateLoader jsTemplateLoader;
 	
 	public void init() throws IOException{
 		
@@ -19,8 +20,18 @@ public class HelpApplication {
 		jsonPoperties = new JsonDataPropertiesLoader(appproperties);
 		
 		
-    	//load templates 
-    	//new TemplateLoader(appproperties.getProperties()).load();
+    	//load html templates 
+		//new PropertiesLoader(appproperties.getProperties().get(AppConstants.HTML_TEMPLATES_KEY).toString()).load();
+		htmlTemplateLoader = new TemplateLoader(new PropertiesLoader(appproperties.getProperties().get(AppConstants.HTML_TEMPLATES_KEY).toString()).load());
+		htmlTemplateLoader.load();
+		
+		//load css
+		cssTemplateLoader = new TemplateLoader(new PropertiesLoader(appproperties.getProperties().get(AppConstants.CSS_LINK_FILE_KEY).toString()).load());
+		cssTemplateLoader.load();
+		
+		//load java script
+		jsTemplateLoader = new TemplateLoader(new PropertiesLoader(appproperties.getProperties().get(AppConstants.JS_LINK_FILE_KEY).toString()).load());
+		jsTemplateLoader.load();
 	}
 	
 	

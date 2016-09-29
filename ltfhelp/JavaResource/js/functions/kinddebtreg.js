@@ -1,20 +1,22 @@
-﻿
+﻿var sortfunctions = {
+kinddebtregid:
+
 function sortByKindDebtRegId(a,b){
   if (a.kinddebtregid < b.kinddebtregid)
     return -1;
   if (a.kinddebtregid > b.kinddebtregid)
     return 1;
   return 0;
-};
-
+},
+code:
 function sortByCode(a,b){
   if (a.code < b.code)
     return -1;
   if (a.code > b.code)
     return 1;
   return 0;
-};
-
+},
+fullname:
 function sortByFullName(a,b){
   if (a.fullname < b.fullname)
     return -1;
@@ -22,14 +24,16 @@ function sortByFullName(a,b){
     return 1;
   return 0;
 };
-
+name:
 function sortByName(a,b){
-  if (a.name < b.name)
-    return -1;
-  if (a.name > b.name)
-    return 1;
+  if (a.name < b.name)  return -1; 
+  if (a.name > b.name)  return 1;  
   return 0;
+}
+
 };
+
+
 
 function createTableRow(kinddebtreg, index){
 	var cls = ( index%2 == 0) ? 'even': 'odd';

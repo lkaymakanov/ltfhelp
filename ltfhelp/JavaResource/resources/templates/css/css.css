@@ -1,5 +1,5 @@
 body {
-	background-color: #3a476d;
+	background-color: rgb(40,40,40);
 }
 
 h1{
@@ -45,7 +45,7 @@ table.register tr.odd{
 }
 
 table.register tr:hover {
- background-color:red;
+ background-color:green;
  color:red;
 }
 

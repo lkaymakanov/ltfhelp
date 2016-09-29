@@ -1,0 +1,23 @@
+<html>
+<head>
+<link   rel="stylesheet" type="text/css" href="css/css.css">
+<script src="js/data/menu.js"></script>
+<script src="js/functions/menu.js" ></script>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+
+<body> 
+<h5>Menu Search<h5>
+<div style="color:white">
+<input id="ckDirectMatch" type="checkbox" >Direct match<br>
+<input id="highlight" type="checkbox" checked="true" onchange="showMenu();">HighLight<br>
+<input id="treeview" type="checkbox" onchange="showMenu();" checked="true">Tree View<br>
+</div>
+<input id="searchtext" type="text" onkeyup="showMenu(); return true;"/>
+<div style="color:white" id="filtered"></div>
+
+<script>
+	showMenu();
+</script>
+</body>
+</html>

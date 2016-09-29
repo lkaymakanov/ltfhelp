@@ -19,7 +19,7 @@ public class PropertiesLoader {
 		this.propFile = propFile; 
 	}
 	
-	void load(){
+	Properties load(){
 		try {
 			properties.load(ResourceLocator.getResourceStream(propFile));
 		} catch (FileNotFoundException e) {
@@ -29,6 +29,7 @@ public class PropertiesLoader {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return properties;
 	}
 
 	void printProperties(){

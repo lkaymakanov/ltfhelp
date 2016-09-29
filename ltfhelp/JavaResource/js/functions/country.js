@@ -22,6 +22,8 @@ function sortByCode(a,b){
   return 0;
 };
 
+
+
 function createTableRow(country, index){
 	var cls = ( index%2 == 0) ? 'even': 'odd';
 	return '<tr class="' + cls +'">' +

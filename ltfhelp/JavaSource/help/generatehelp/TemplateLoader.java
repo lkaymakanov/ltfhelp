@@ -20,7 +20,7 @@ public class TemplateLoader {
 		this.properties = properties;
 	}
 	
-	public void load() throws IOException{
+	public Properties load() throws IOException{
 		Set<Object> keys  = properties.keySet();
 		for(Object k: keys){
 			try{
@@ -31,6 +31,7 @@ public class TemplateLoader {
 				continue;
 			}
 		}
+		return  properties;
 	}
 	
 	public Template getTemplate(String key){
