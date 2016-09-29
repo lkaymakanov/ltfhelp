@@ -7,6 +7,6 @@ public class KinddebtregUtil {
 	public static void createKindDebtReg(){
 		KinddebtregSelect sel = new KinddebtregSelect();
 		HelpUtils.getSerServiceLocator().getHelpDao().execute(sel);
-		System.out.println(HelpUtils.toJson(sel.getResult()));
+		HelpUtils.log(HelpUtils.toJson(sel.getResult()));
 	}
 }

@@ -1,7 +1,6 @@
 package help.generatehelp.data.menu;
 
 import help.generatehelp.HelpUtils;
-import help.generatehelp.data.certreg.CertReg;
 
 
 
@@ -14,9 +13,9 @@ public class MenuUtil {
 		MenuSelect mselect = new MenuSelect();
 		HelpUtils.getSerServiceLocator().getHelpDao().execute(mselect);
 		String jsonMainNodes = HelpUtils.toJson(mselect.getResult(), " var menu =  ", ";");
-		System.out.println(jsonMainNodes);
+		HelpUtils.log(jsonMainNodes);
 		String jsonroots = HelpUtils.toJson(mselect.mainNodes, " var rootnodes =  ", ";");
-		System.out.println(jsonroots);
+		HelpUtils.log(jsonroots);
 	}
 	
 	

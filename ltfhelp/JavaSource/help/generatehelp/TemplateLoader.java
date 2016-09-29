@@ -3,6 +3,7 @@ package help.generatehelp;
 import java.io.IOException;
 import java.util.Hashtable;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 
 /***
@@ -13,18 +14,20 @@ import java.util.Set;
 public class TemplateLoader {
 
 	private Map<String, Template> templates = new Hashtable<String, Template>();
-	private Set<String> templateKeys;
+	private Properties properties; 
 	
-	public TemplateLoader(Set<String> templateKeys){
-		this.templateKeys = templateKeys;
+	public TemplateLoader(Properties properties){
+		this.properties = properties;
 	}
 	
 	public void load() throws IOException{
-		for(String k: templateKeys){
+		Set<Object> keys  = properties.keySet();
+		for(Object k: keys){
 			try{
-				templates.put(k, new ResourceTemplateReader(k).load());
+				String key = k.toString();
+				templates.put(key, new ResourceTemplateReader(properties.getProperty(key), key).load());
 			}catch(Exception e){
-				System.out.println(e.toString());
+				HelpUtils.log(e.toString());
 				continue;
 			}
 		}

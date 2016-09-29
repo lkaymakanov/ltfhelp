@@ -10,16 +10,18 @@ import java.io.InputStreamReader;
  * @author lubo
  *
  */
-public class ResourceTemplateReader {
-	BufferedReader br;
-	InputStream in;
+class ResourceTemplateReader {
+	private BufferedReader br;
+	private InputStream in;
 	private Template template;
 	private boolean loaded;
-	private String resourceUrl= "";
+	private String resourceUrl= "";    //path to the template that is loaded from the jar file 
+	private String templateKey;
 	
-	public ResourceTemplateReader(String resourceUrl){
+	public ResourceTemplateReader(String resourceUrl, String templateKey){
 		this.in = ResourceLocator.getResourceStream(resourceUrl);
 		this.resourceUrl = resourceUrl;
+		this.templateKey = templateKey;
 	}
 	
 	
@@ -28,18 +30,22 @@ public class ResourceTemplateReader {
 		System.out.println("======================== LOADING TEMPLATE for URL : " + resourceUrl + " ======== ");
 		try{
 			if(loaded == true) return template;
-			template = new Template();
+			template = new Template(resourceUrl, templateKey);
+			HelpUtils.log("Template directory is : " + template.getTemplateDir());
+			HelpUtils.log("Template fileName is : " + template.getTemplateFileName());
+			HelpUtils.log("Template type is : " + template.getType());
+			HelpUtils.log("Template file extension is : " + template.getExtension());
 			br = new BufferedReader(new InputStreamReader(in));
 			String line;
 	    	while( (line = br.readLine()) != null){
-	    		System.out.println(line);
+	    		HelpUtils.log(line);
 	    		template.addLine(line);
 	    	}
 			loaded = true;
 			return template;
 		}finally{
 			release();
-			System.out.println("======================== END LOADING TEMPLATE for URL : " + resourceUrl + " ======== ");
+			HelpUtils.log("======================== END LOADING TEMPLATE for URL : " + resourceUrl + " ======== ");
 		}
 		
 	}

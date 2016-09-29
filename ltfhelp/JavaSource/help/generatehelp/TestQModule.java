@@ -1,7 +1,6 @@
 package help.generatehelp;
 
 
-import help.generatehelp.data.taxperiod.TaxperiodUtil;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -12,6 +11,8 @@ import net.is_bg.ltf.db.common.impl.logging.LogFactorySystemOut;
 import net.is_bg.ltf.db.common.impl.timer.ElapsedTimer;
 import net.is_bg.ltf.db.common.impl.visit.VisitEmpty;
 import net.is_bg.ltf.db.common.interfaces.IConnectionFactoryX;
+import net.is_bg.ltf.db.common.interfaces.logging.ILog;
+import net.is_bg.ltf.db.common.interfaces.logging.ILogFactory;
 import net.is_bg.ltf.db.common.interfaces.timer.IElaplsedTimer;
 import net.is_bg.ltf.db.common.interfaces.timer.IElaplsedTimerFactory;
 import net.is_bg.ltf.db.common.interfaces.visit.IVisit;
@@ -47,8 +48,17 @@ public class TestQModule {
      */
     public static void main(String[] args) throws IOException, ClassNotFoundException {
     	
+    	boolean allowlog = true;
+    	final HelpConsoleLogger logger = new HelpConsoleLogger(new LogFactorySystemOut().getLog(HelpUtils.class), allowlog);
+    	
     	//init database connection
-    	DBConfig.initDBConfig(new LogFactorySystemOut(), new IVisitFactory() {
+    	DBConfig.initDBConfig(new ILogFactory() {
+			@Override
+			public ILog getLog(Class<?> arg0) {
+				// TODO Auto-generated method stub
+				return logger;
+			}
+		}, new IVisitFactory() {
     	    public IVisit getVist() {
     	    	return new VisitEmpty();
     	    }
@@ -57,8 +67,8 @@ public class TestQModule {
     	    	return new ElapsedTimer();
     	    }
     	});
-    	System.out.println("Data base connection initialized.....");
-    	TaxperiodUtil.createTaxperiod();
+    	//HelpUtils.log("Data base connection initialized.....");
+    	//TaxperiodUtil.createTaxperiod();
     	HelpApplication hApp = new HelpApplication();
     	hApp.init();
     }

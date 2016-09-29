@@ -3,14 +3,24 @@ package help.generatehelp;
 import java.io.IOException;
 
 public class HelpApplication {
-
+	PropertiesLoader appproperties;    //main application properties file
+	JsonDataPropertiesLoader jsonPoperties;  //property files containing json data for  pages
+	
+	
+	
 	public void init() throws IOException{
-		//init resources
-    	ResourceLocator.initResourceLocator();
-    	ResourceLocator.printProperties();
-    	
+		
+		//load main property file
+		appproperties = new PropertiesLoader(AppConstants.PATH_TO_APP_PROPERTY_FILE);
+		appproperties.load();
+		appproperties.printProperties();
+		
+		//load json data files
+		jsonPoperties = new JsonDataPropertiesLoader(appproperties);
+		
+		
     	//load templates 
-    	new TemplateLoader(ResourceLocator.getPropertyKeys()).load();
+    	//new TemplateLoader(appproperties.getProperties()).load();
 	}
 	
 	

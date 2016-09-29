@@ -61,7 +61,7 @@ public class DataBaseTableUtil {
 		
 		saveTablesToFile();
 		saveTableIndex(tablesMap.keySet());
-		System.out.println(tablesMap.keySet());
+		HelpUtils.log(tablesMap.keySet());
 	}
 	
 	

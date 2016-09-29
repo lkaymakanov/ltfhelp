@@ -11,10 +11,14 @@ public class GetResourcesPaths {
 		this.resourceFolder = resourceFolder;
 	}
 	
-	
+	/**
+	 * get the relative paths to resources located in the target folder of this project!!!
+	 * @param prop
+	 * @return
+	 */
 	private Set<String> getResourcePropertiesP(final boolean prop){
 		final String base = ResourceLocator.getResourceFile("").getPath() + "\\";
-		System.out.println(ResourceLocator.getResourceFile("").getPath());
+		HelpUtils.log(ResourceLocator.getResourceFile("").getPath());
 		final Set<String> ret = new TreeSet<String>() ;
 		HelpUtils.traverseDirs(ResourceLocator.getResourceFile(resourceFolder), new TraverseDirsCallBack() {
 			@Override
@@ -23,7 +27,7 @@ public class GetResourcesPaths {
 				if(node.isFile()){
 					String el =node.getPath().replace(base, "").replace("\\", "/");
 					if(prop) el+="="+el;
-					System.out.println(el);
+					HelpUtils.log(el);
 					ret.add(el);
 				}
 			}

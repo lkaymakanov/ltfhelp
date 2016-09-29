@@ -7,10 +7,10 @@ public class RegNumberUtil {
 	public static void createRegNumber(){
 		RegNumberSelect sel = new RegNumberSelect();
 		HelpUtils.getSerServiceLocator().getHelpDao().execute(sel);
-		System.out.println(HelpUtils.toJson(sel.getResult()));
+		HelpUtils.log(HelpUtils.toJson(sel.getResult()));
 	}
 	
 	public static void createSortingFunctions(){
-		System.out.println(HelpUtils.createJsObjectSortFunctionByProperties(new RegNumber().getPropertyNames(), "regNumberSortFunctions"));
+		HelpUtils.log(HelpUtils.createJsObjectSortFunctionByProperties(new RegNumber().getPropertyNames(), "regNumberSortFunctions"));
 	}
 }

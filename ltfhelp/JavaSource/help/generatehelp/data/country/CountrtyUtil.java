@@ -7,6 +7,6 @@ public class CountrtyUtil {
 	public static void createCountry(){
 		CountrySelect sel = new CountrySelect();
 		HelpUtils.getSerServiceLocator().getHelpDao().execute(sel);
-		System.out.println(HelpUtils.toJson(sel.getResult()));
+		HelpUtils.log(HelpUtils.toJson(sel.getResult()));
 	}
 }

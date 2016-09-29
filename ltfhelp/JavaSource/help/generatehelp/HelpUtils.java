@@ -9,6 +9,7 @@ import java.util.Set;
 
 import net.is_bg.ltf.db.common.BindVariableData;
 import net.is_bg.ltf.db.common.BindVariableInfo;
+import net.is_bg.ltf.db.common.DBConfig;
 
 
 
@@ -128,5 +129,9 @@ public class HelpUtils {
 	 */
 	public static <T extends IToJson>  String toJson(List<T>  list){
 		return toJson(list, "", "");
+	}
+	
+	public static void log(Object o){
+		DBConfig.getDbLogFactory().getLog(HelpUtils.class).debug(o);
 	}
 }

@@ -7,10 +7,10 @@ public class TaxperiodUtil {
 	public static void createTaxperiod(){
 		TaxperiodSelect sel = new TaxperiodSelect();
 		HelpUtils.getSerServiceLocator().getHelpDao().execute(sel);
-		System.out.println(HelpUtils.toJson(sel.getResult()));
+		HelpUtils.log(HelpUtils.toJson(sel.getResult()));
 	}
 	
 	public static void createSortingFunctions(){
-		System.out.println(HelpUtils.createJsObjectSortFunctionByProperties(new Taxperiod().getPropertyNames(), "taxperiodSortFunctions"));
+		HelpUtils.log(HelpUtils.createJsObjectSortFunctionByProperties(new Taxperiod().getPropertyNames(), "taxperiodSortFunctions"));
 	}
 }
