@@ -94,7 +94,7 @@ function TableCreator(){
 	this.createTable = function(){
 		var tbl = '<table class="register">' + this.createHeader();
 		for(pp=0; pp < this.objects.length; pp++ ){
-			tbl+=createTableRow(this.objects[pp], pp);
+			tbl+=this.createTableRow(this.objects[pp], pp);
 		}
 		return tbl+='</table>';
 	};
@@ -113,7 +113,7 @@ function TableCreator(){
 	
 	//create single table row
 	this.createTableRow = function(obj, rowindex){
-		var cls = ( rowindex%2 == 0) ? evenrowclass: oddrowclass;
+		var cls = ( rowindex%2 == 0) ? this.evenrowclass: this.oddrowclass;
 		var cells = '';
 		for(i=0; i < this.objectpropNames.length; i++){
 			cells+= this.createTableCell(this.getPropertyValue(obj, this.objectpropNames[i]));
