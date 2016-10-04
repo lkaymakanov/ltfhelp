@@ -10,6 +10,13 @@ h5 {
 	font-size:12px; margin:0px; color:gold;
 }
 
+span.expandbuttontitle {
+	font-size:12px; margin:0px; color:gold;
+	position:relative;
+	top:-5px;
+}
+
+
 a.wlink{
 	text-decoration:none; 
 	color:white;
@@ -51,6 +58,11 @@ table.register tr:hover {
 
 ul.tableref  li a:hover{
   color:gold;
+}
+
+ul.navigation{
+   font-size:12px; margin-left:10px; padding:0px; 
+   list-style-type: none;
 }
 
 ul{

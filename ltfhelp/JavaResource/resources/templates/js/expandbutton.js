@@ -14,11 +14,11 @@ function ExpandButton(){
 		var state = el.dataset.expand;
 		if(state=='true'){
 			el.dataset.expand = 'false';
-			el.innerHTML = '<img style="width:' + this.width + 'px; height:' + this.height + 'px;" src="'+ this.closeImg + '"></img>';
+			el.innerHTML = '<img style="width:' + this.width + 'px; height:' + this.height + 'px; cursor:pointer;" src="'+ this.closeImg + '"></img>';
 			if(this.oncolapse != null )this.oncolapse(el);
 		}else{
 			el.dataset.expand='true';
-			el.innerHTML = '<img style="width:' + this.width + 'px; height:' + this.height + 'px;" src="'+ this.openImg + '"></img>';
+			el.innerHTML = '<img style="width:' + this.width + 'px; height:' + this.height + 'px; cursor:pointer;" src="'+ this.openImg + '"></img>';
 			if(this.onexpand !=null )this.onexpand(el);
 		}
 	};
@@ -49,9 +49,9 @@ function createExpandButton(openImg, closeImg, height, width, expand, onexpand, 
     var expression = 'new ExpandButton().init_1(\''+ openImg + '\',' +  '\'' +closeImg +  '\''  + ',' + height+ ',' + width + ',' +expand +  ',' +onexpand + ',' +oncolapse +  ')';
 	var btn = '<span  data-expand="' + expand + '" data-buttondata="'+ expression+'" ' + ' onclick="eval(this.dataset.buttondata).toggle(this);" >';
 	if(expand == 'true')
-	    btn+=' <img style="width:' + width + 'px; height:' + height + 'px;" src="'+ openImg + '"></img>';
+	    btn+=' <img style="width:' + width + 'px; height:' + height + 'px; cursor:pointer;" src="'+ openImg + '"></img>';
 	else {
-		btn+=' <img style="width:' + width + 'px; height:' + height + 'px;" src="'+ closeImg + '"></img>';
+		btn+=' <img style="width:' + width + 'px; height:' + height + 'px; cursor:pointer;" src="'+ closeImg + '"></img>';
 	}
 	btn+='</span>';
 	document.write(btn);
