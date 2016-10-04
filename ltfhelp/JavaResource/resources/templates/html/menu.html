@@ -2,6 +2,7 @@
 <head>
 <link   rel="stylesheet" type="text/css" href="css/css.css">
 <script src="js/data/menu.js"></script>
+<script src="js/functions/common.js" ></script>
 <script src="js/functions/menu.js" ></script>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 </head>
@@ -9,15 +10,18 @@
 <body> 
 <h5>Menu Search<h5>
 <div style="color:white">
-<input id="ckDirectMatch" type="checkbox" >Direct match<br>
-<input id="highlight" type="checkbox" checked="true" onchange="showMenu();">HighLight<br>
-<input id="treeview" type="checkbox" onchange="showMenu();" checked="true">Tree View<br>
+<input style="display:none;" id="ckDirectMatch" type="checkbox" >
+<input style="display:none;" id="highlight" type="checkbox" checked="true" onchange="">
+<input id="treeviewCheck" type="checkbox" checked="true" onchange="m.showMenu(document.getElementById('treeviewCheck').checked);" >Tree View<br>
 </div>
-<input id="searchtext" type="text" onkeyup="showMenu(); return true;"/>
-<div style="color:white" id="filtered"></div>
+
+<input id="searchtext" type="text" onkeyup="m.menuTable.filterText = this.value; m.showMenu(document.getElementById('treeviewCheck').checked); return true;" />
+<div id="treeview"></div>
 
 <script>
-	showMenu();
+	var m = new MenuCreate().init_1(menu, rootnodes);
+	var b = document.getElementById("treeviewCheck").checked;
+	m.showMenu(b);
 </script>
 </body>
 </html>
