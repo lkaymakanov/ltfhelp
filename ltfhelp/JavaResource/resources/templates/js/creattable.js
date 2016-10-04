@@ -1,29 +1,4 @@
 
-function escapeRegExp(str) {
-    return str.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
-};
-
-function replaceAll(str, find, replace) {
-  return str.replace(new RegExp(escapeRegExp(find), 'g'), replace);
-};
-
-//returns html span with the highlighted text
-function highlightTextStyle(text, textTohighlight, bhighlight, classss, style){
-	if(bhighlight == false || textTohighlight ==null  || textTohighlight == '') return text;
-	var highlighetdText = '<span class="' +classss +'" style="' + style + '" >' + textTohighlight + '</span>';
-	return replaceAll(text, textTohighlight, highlighetdText);
-};
-
-
-//returns html span with the highlighted text
-function highlightText(text, textTohighlight, bhighlight){
-	return highlightTextStyle(text, textTohighlight, bhighlight, 'highlight', '');
-};
-
-//returns array containing object property names
-function getObjectPropertyNames(obj){
-	return  Object.getOwnPropertyNames(obj);
-};
 
 /*A class that will create html tables based on json array object*/
 function TableCreator(){
@@ -36,6 +11,7 @@ function TableCreator(){
 	this.filterText='';       //text used to filter data
 	this.bDirectMatch = false;   //direct match in search or not
 	this.bHighLigh = true;       //hight light fount text or not
+	this.tableRefName = 'tc';
 	
 	/***/
 	this.searchForText = function(textToSearchIn, textToSearchFor){
@@ -127,7 +103,7 @@ function TableCreator(){
 		var hrefId;
 		for(i=0; i < this.objectpropNames.length; i++){
 			hrefId = singlequote + this.tableid + '_col' + i + singlequote;
-			sortLink = '<a id="'+ this.tableid + '_col' + i + '" href="#" data-ascend="true" onclick="tc.sortByColumnIndex(' + i+  ', ' + hrefId + ');">'+ this.objectpropNames[i]+' </a>';
+			sortLink = '<a id="'+ this.tableid + '_col' + i + '" href="#" data-ascend="true" onclick="'+ this.tableRefName+ '.sortByColumnIndex(' + i+  ', ' + hrefId + ');">'+ this.objectpropNames[i]+' </a>';
 			cells+= this.createTableCell(sortLink, false);
 		}
 		return '<tr class="header">' + cells + '</tr>';
@@ -183,69 +159,6 @@ TableCreator.prototype.init_1 = function (tableid, objects, objectpropNames){
     return this;
 };
 
-
-/*
-function sortByTaxperiodId(a,b){
-  if (a.taxperiod_id < b.taxperiod_id)
-    return -1;
-  if (a.taxperiod_id > b.taxperiod_id)
-    return 1;
-  return 0;
-};
-
-
-function createTableRow(taxperiod, index){
-	var cls = ( index%2 == 0) ? 'even': 'odd';
-	return '<tr class="' + cls +'">' +
-	'<td>' + taxperiod.taxperiod_id + '</td>' +  '<td>' + 
-	taxperiod.begin_date +   '</td>' + 
-	'<td>' +taxperiod.end_date +  '</td>' + 
-	'<td>' +taxperiod.taxperiod_kind +  '</td>' + '</tr>'; 
-}
-
-function recreateTable(sortfunction){
-	var d = document.getElementById('tableDiv');
-	var tableStr='<table class="register">';
-	var header='<tr class="header">' + '<td>' + '<a href="#" onclick="recreateTable(sortByTaxperiodId);" > TaxperiodId</a>' +  '</td>' +  '<td>' + '<a href="#" onclick="recreateTable(sortBybeginDate);" > BeginDate</a>' + '</td>' +  '<td>' + 'EndDate' + '</td>' +  '<td>' + 'Kind' + '</td>' +  '</tr>';
-	tableStr+=header;
-	taxperiods.sort(sortfunction);
-	for(i=0; i < taxperiods.length; i++){tableStr+=(createTableRow(taxperiods[i], i));}
-	tableStr+='</table>';
-	d.innerHTML = tableStr;
-}*/
-
-
-
-
-/*
-function sortByTaxperiodId(a,b){
-  if (a.taxperiod_id < b.taxperiod_id)
-    return -1;
-  if (a.taxperiod_id > b.taxperiod_id)
-    return 1;
-  return 0;
-};
-
-
-function createTableRow(taxperiod, index){
-	var cls = ( index%2 == 0) ? 'even': 'odd';
-	return '<tr class="' + cls +'">' +
-	'<td>' + taxperiod.taxperiod_id + '</td>' +  '<td>' + 
-	taxperiod.begin_date +   '</td>' + 
-	'<td>' +taxperiod.end_date +  '</td>' + 
-	'<td>' +taxperiod.taxperiod_kind +  '</td>' + '</tr>'; 
-}
-
-function recreateTable(sortfunction){
-	var d = document.getElementById('tableDiv');
-	var tableStr='<table class="register">';
-	var header='<tr class="header">' + '<td>' + '<a href="#" onclick="recreateTable(sortByTaxperiodId);" > TaxperiodId</a>' +  '</td>' +  '<td>' + '<a href="#" onclick="recreateTable(sortBybeginDate);" > BeginDate</a>' + '</td>' +  '<td>' + 'EndDate' + '</td>' +  '<td>' + 'Kind' + '</td>' +  '</tr>';
-	tableStr+=header;
-	taxperiods.sort(sortfunction);
-	for(i=0; i < taxperiods.length; i++){tableStr+=(createTableRow(taxperiods[i], i));}
-	tableStr+='</table>';
-	d.innerHTML = tableStr;
-}*/
 
 
 

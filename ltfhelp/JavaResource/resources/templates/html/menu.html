@@ -20,6 +20,7 @@
 
 <script>
 	var m = new MenuCreate().init_1(menu, rootnodes);
+	m.menuTable.tableRefName = 'm.menuTable';
 	var b = document.getElementById("treeviewCheck").checked;
 	m.showMenu(b);
 </script>
