@@ -1,0 +1,2 @@
+Class-Path: . lib/dblib.jar lib/postgresql-9.1-901-1.jdbc4.jar
+Main-Class: help.generatehelp.TestQModule
