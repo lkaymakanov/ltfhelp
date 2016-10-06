@@ -1,5 +1,3 @@
-
-
 /*A class that will create html tables based on json array object*/
 function TableCreator(){
 	this.objectpropNames;     //array with object properties

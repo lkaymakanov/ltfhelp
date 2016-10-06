@@ -1,35 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="css/css.css">
 <script src="js/data/applinks.js"></script>
 <script src="js/functions/applinks.js"></script>
+<script src="js/functions/expandbutton.js"></script>
 </head>
 <body>
 <h3 style="color:red;" id="seldb"></h3>
-<h5>REAL DATABASES:</h5>
-
+<script>
+	createExpandButton('css/folder_open.png',  'css/folder.png', 20, 20, 'false', 'function(el){showelement(\'realdblink\', true);}' , 'function(el){showelement(\'realdblink\', false);}');
+</script>
+<span class="expandbuttontitle">REAL APPLICATIONS:</span>
 <!--real applications-->
-<ul style="font-size:12px; margin:0px; padding:0px;">
 <script >
-  for(i =0; i < testOffset; i++) document.write(createLink(links[i], i));
+  var realapp = new AppLinks().init_1('realapp', links);
+  (realapp.writeLinkList('navigation','realdblink'));
  </script>
-</ul>
 <hr/>
 
 <!--test applications-->
-<h5>TEST DATABASES:</h5>
-<ul>
+<script>
+	createExpandButton('css/folder_open.png',  'css/folder.png', 20, 20, 'false', 'function(el){showelement(\'testdblink\', true);}' , 'function(el){showelement(\'testdblink\', false);}');
+</script>
+<span class="expandbuttontitle">TEST APPLICATIONS:</span>
 <script >
-  for(i =testOffset; i < links.length; i++) document.write(createLink(links[i], i));
+  var testapp = new AppLinks().init_1('testapp', testlinks);
+  (testapp.writeLinkList('navigation','testdblink'));
 </script>
 <hr/>
 
- 
- 
- <!--docs & registers-->
-<h5>DOCUMENTATION</h5>
-<ul>
+
+ <!--registers-->
+<script>
+	createExpandButton('css/folder_open.png',  'css/folder.png', 20, 20, 'false', 'function(el){showelement(\'docs\', true);}' , 'function(el){showelement(\'docs\', false);}');
+</script>
+<span class="expandbuttontitle">REGISTERS:</span>
+<ul class="navigation"  style="display:none;" id="docs">
 	<li><a class="wlink" target="mateus" href="decodetypes.html">DECODE TYPES</a> </li>
 	<li><a class="wlink" target="mateus" href="kinddebtreg.html">KINDDEBTREG</a> </li>
 	<li><a class="wlink" target="mateus" href="country.html">COUNTRIES</a> </li>
@@ -39,74 +47,83 @@
 	<li><a class="wlink" target="mateus" href="city.html">CITIES</a> </li>
 	<li><a class="wlink" target="mateus" href="doctype.html">DOCUMENTTTYPE</a> </li>
 	<li><a class="wlink" target="mateus" href="contacts.html">CONTACTS</a> </li>
+	<li><a class="wlink" target="mateus" href="reasonreg.html">REASONREG</a> </li>
+	<li><a class="wlink" target="mateus" href="transpmeansreg.html">TRANSPMEANSREG</a> </li>
+	<li><a class="wlink" target="mateus" href="patentactivityreg.html">PATENTACTIVITYREG</a> </li>
+	<li><a class="wlink" target="mateus" href="exchangereg.html">EXCHANGEREG</a> </li>
+	<li><a class="wlink" target="mateus" href="kindhomeobjreg.html">KINDHOMEOBJREG</a> </li>
+	<li><a class="wlink" target="mateus" href="kindparreg.html">KINDPARREG</a> </li>
+	<li><a class="wlink" target="mateus" href="regnumber.html">REGNUMBER</a> </li>
+	<li><a class="wlink" target="mateus" href="servgroup.html">SERVICEREG</a> </li>
 	<li><a class="wlink" target="mateus" href="meto.html">METO</a> </li>
-	<li><a class="wlink" target="mateus" href="dbresources.html">DBRESOURCES</a> </li>
 </ul>
 <hr/>
- 
-<!--vpns -->
-<h5>VPN's</h5>
-   <a class="wlink" target="mateus" href="vpn.html">VPN-sofia/io-pld</a>
+
+
+<!--database credentials-->
+<script>
+	createExpandButton('css/folder_open.png',  'css/folder.png', 20, 20, 'false', 'function(el){showelement(\'dbcredentials\', true);}' , 'function(el){showelement(\'dbcredentials\', false);}');
+</script>
+<span class="expandbuttontitle">DB CREDENTIALS:</span>
+<ul class="navigation"  style="display:none;" id="dbcredentials">
+	<li><a class="wlink" target="mateus" href="dbresources.html">DB CREDENTIALS</a> </li>
 </ul>
 <hr/>
+
  
 <!--rdp's -->
-<h5>RDP</h5>
-<ul>
+<script>
+	createExpandButton('css/folder_open.png',  'css/folder.png', 20, 20, 'false', 'function(el){showelement(\'rdpvpn\', true);}' , 'function(el){showelement(\'rdpvpn\', false);}');
+</script>
+<span class="expandbuttontitle">RDP, VPN:</span>
+<ul class="navigation"  style="display:none;" id="rdpvpn">
 	<li><a class="wlink" target="mateus" href="rdp.html">RDPS</a></li>
+	<a class="wlink" target="mateus" href="vpn.html">VPNS</a>
 </ul>
 <hr/>
 
-<h5>LTF users - sofia</h5>
-<ul>
-	<li><a class="wlink" target="mateus" href="uers_sofia.html">LTF users sofia</a></li>
+<!--LTF USERS in SOFIA -->
+<script>
+	createExpandButton('css/folder_open.png',  'css/folder.png', 20, 20, 'false', 'function(el){showelement(\'usrsofia\', true);}' , 'function(el){showelement(\'usrsofia\', false);}');
+</script>
+<span class="expandbuttontitle">LTF USERS (SF):</span>
+<ul class="navigation"  style="display:none;" id="usrsofia">
+	<li><a class="wlink" target="mateus" href="uers_sofia.html">LTF USERS</a></li>
 </ul>
 <hr/>
 
-<h5>AGENT_WS</h5>
-<ul>
+
+
+<!--WEB SERVICES -->
+<script>
+	createExpandButton('css/folder_open.png',  'css/folder.png', 20, 20, 'false', 'function(el){showelement(\'ws\', true);}' , 'function(el){showelement(\'ws\', false);}');
+</script>
+<span class="expandbuttontitle">WEB SERVICES:</span>
+<ul class="navigation"  style="display:none;" id="ws">
 	<li><a class="wlink" target="mateus" href="agentws.html">AGENTWS</a></li>
-</ul>
-<hr/>
-
-<h5>BANK_WS</h5>
-<ul>
 	<li><a class="wlink" target="mateus" href="bankws.html">BANKWS</a></li>
 </ul>
 <hr/>
 
-<h5>SEARCH_TAB_COLS</h5>
-<ul>
-	<li><a class="wlink" target="mateus" href="tablecolumnsearch.html">TAB_COLS</a></li>
+
+<!--MENU & TABLE COLUMNS IN PUBLIC-->
+<script>
+	createExpandButton('css/folder_open.png',  'css/folder.png', 20, 20, 'false', 'function(el){showelement(\'searchmenu\', true);}' , 'function(el){showelement(\'searchmenu\', false);}');
+</script>
+<span class="expandbuttontitle">MENU,DB TABLES:</span>
+<ul class="navigation"  id="searchmenu" style="display:none;" >
+	<li><a class="wlink" target="mateus" href="menu.html">MENU</a></li>
+	<li><a class="wlink" target="mateus" href="tablecolumnsearch.html">DB TABLES</a></li>
 </ul>
 <hr/>
 
-<h5>MENU</h5>
-<ul>
-	<li><a class="wlink" target="mateus" href="menu.html">Search Menu</a></li>
-</ul>
-<hr/>
+
 
 <script>
-	var tablerefvisible = false;
-	function showtableref(){
-		tablerefvisible= !tablerefvisible;
-		var ebut = document.getElementById('expandbtn');
-		var hbut = document.getElementById('hidebtn');
-		var list = document.getElementById('tableref');
-		if(tablerefvisible){
-			ebut.style.display = 'none';
-			hbut.style.display = '';
-			list.style.display = 'block';
-		}else{
-			ebut.style.display = '';
-			hbut.style.display = 'none';
-			list.style.display = 'none';
-		}
-	}
+	createExpandButton('css/folder_open.png',  'css/folder.png', 20, 20, 'false', 'function(el){showelement(\'tableref\', true);}' , 'function(el){showelement(\'tableref\', false);}');
 </script>
-<h5>TABLE REFERENCE <span id="hidebtn" onclick="showtableref();" style="display:none;color:white; cursor:pointer;margin-left:10px;">[-]</span> <span id="expandbtn" onclick="showtableref();" style=" cursor:pointer;color:white;margin-left:10px;">[+]</span> </h5>
-<ul id="tableref" class="tableref" style="font-size:15px;  margin-top:5px; padding:0px;display:none;">
+<span class="expandbuttontitle" >TABLE REFERENCE:</span>
+<ul id="tableref" class="tableref, navigation" style="font-size:15px;  margin-top:5px;display:none;">
 <li><a class="wlink" target="mateus" href="public/tables/pages/acceptdd.html">acceptdd</a></li>
 <li><a class="wlink" target="mateus" href="public/tables/pages/accountreg.html">accountreg</a></li>
 <li><a class="wlink" target="mateus" href="public/tables/pages/act.html">act</a></li>

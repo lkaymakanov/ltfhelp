@@ -1,20 +1,19 @@
-<HTML>
-<HEAD>
-	{1P}
-<META http-equiv="content-type" content="text/html; charset=UTF-8">
- <Title>Export Data</Title>
-<Style type="text/css">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<title>Export Data</title>
+	<link rel="stylesheet" type="text/css" href="css/css.css">
+	<script src="js/data/country.js"></script>
+	<script src="js/functions/common.js"></script>
+</head>
 
-</STYLE>
-	{2P}
-</HEAD>
-<BODY>
- 
-<div id="tableDiv"></div>
+<body>
+	<input id="searchtext" type="text" onkeyup="tc.filterText = this.value; tc.createTableForCurrentTableId(); return true;" />
+	<div id="tableDiv"></div>
 
-<script>
-	recreateTable({3P});
-</script>
-
-</BODY>
-</HTML>
+	<script>
+		var tc = new TableCreator().init_1('tableDiv', countries,getObjectPropertyNames(countries[0])); 
+		(tc.createTableForCurrentTableId());
+	</script>
+</body>
+</html>

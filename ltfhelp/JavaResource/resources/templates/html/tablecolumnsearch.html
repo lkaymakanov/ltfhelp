@@ -1,20 +1,20 @@
 <html>
 <head>
-<link   rel="stylesheet" type="text/css" href="css/css.css">
-<script src="js/data/tablecolumns.js"></script>
-<script src="js/functions/tablecolumns.js" ></script>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<link   rel="stylesheet" type="text/css" href="css/css.css">
+	<script src="js/data/tablecolumns.js"></script>
+	<script src="js/functions/tablecolumns.js" ></script>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 </head>
 
 <body> 
-<h5>Table Name<h5>
-<div style="color:white">
-<input id="ckSearchInTables" type="checkbox" checked="true">Search in tables<br>
-<input id="ckSearchInColumns" type="checkbox" checked="true" >Search in columns<br>
-<input id="ckDirectMatch" type="checkbox" >Direct match<br>
-<input id="highlight" type="checkbox" checked="true">HighLight<br>
-</div>
-<input id="searchtext" type="text" onkeyup="showFiltered(tablecolumns.filter(filterColumn)); return true;" onblur = "document.getElementById('filtered').innerHTML1 = '';" />
-<div id="filtered"></div>
+	<h5>Table Name<h5>
+	<div style="color:white">
+		<input id="ckSearchInTables" type="checkbox" checked="true">Search in tables<br>
+		<input id="ckSearchInColumns" type="checkbox" checked="true" >Search in columns<br>
+		<input id="ckDirectMatch" type="checkbox" >Direct match<br>
+		<input id="highlight" type="checkbox" checked="true">HighLight<br>
+	</div>
+	<input id="searchtext" type="text" onkeyup="showFiltered(tablecolumns.filter(filterColumn)); return true;" onblur = "document.getElementById('filtered').innerHTML1 = '';" />
+	<div id="filtered"></div>
 </body>
 </html>
