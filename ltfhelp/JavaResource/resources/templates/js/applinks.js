@@ -34,7 +34,6 @@ function AppLinks(){
 		if(link.id != selectedLinkId){
 			link.style.backgroundColor = this.highlightColor;
 		}
-		
 	};
 	
 	this.hideToolTip = function (link){
