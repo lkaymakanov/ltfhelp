@@ -59,10 +59,7 @@ function createExpandButton(openImg, closeImg, height, width, expand, onexpand, 
 
 /***
  example
- 
 <script>
 	createExpandButton('css/folder_open.png', 'css/folder.png', 20, 20, 'true', 'function(el){console.log(\'expand\');}' , 'function(el){console.log(\'collapse\');}');
 </script>
-
- 
  */

@@ -22,7 +22,7 @@ function AppLinks(){
 		if(selectedLinkId!="-1"){
 			document.getElementById(selectedLinkId).style.backgroundColor  = "";
 		}
-		link.style.backgroundColor  = this.selectColor;
+		link.style.backgroundColor = this.selectColor;
 		selectedLinkId = link.id;
 		document.getElementById('seldb').innerHTML =  link.innerHTML;
 	};
