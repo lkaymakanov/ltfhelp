@@ -106,4 +106,8 @@ public class HelpTree implements Serializable {
 		printNode(root);
 	}
 	
+	public HelpTreeNode getNodeByNodeName(String nodeName){
+		return linearNodes.get(nodeName);
+	}
+	
 }

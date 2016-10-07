@@ -130,7 +130,7 @@ public class HelpUtils {
 	public static void writeToFile(String  json, String fname) throws UnsupportedEncodingException, IOException{
 		FileOutputStream fos = null;
 		try{
-			fos =	new FileOutputStream(new File(fname));
+			fos = new FileOutputStream(new File(fname));
 			fos.write(json.getBytes("UTF-8"));
 		}finally{
 			if(fos!=null) fos.close();
@@ -150,6 +150,13 @@ public class HelpUtils {
 		writeToFile(toJson(list, prefix, suffix), fName);
 	}
 	
+	/***
+	 * Replaces the dots in the directory path with file separator
+	 * @return
+	 */
+	public static String replaceDotWithFileSeparator(String in){
+		return in.replaceAll("\\.", "\\" +  File.separator);
+	}
 	
 	/***
 	 * Converts a list of toJson objects into a json array

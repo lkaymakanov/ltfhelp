@@ -12,7 +12,7 @@ public class Template {
 	private String extension;
 	private String templateUrl;
 	
-	private TEMPLATE_TYPE type = TEMPLATE_TYPE.UNKNOWUN;
+	private FILE_TYPE type = FILE_TYPE.UNKNOWUN;
 	private List<String> templateLines = new ArrayList<>();
 	private StringBuilder bd = new StringBuilder();
 	
@@ -20,7 +20,7 @@ public class Template {
 		// TODO Auto-generated constructor stub
 		this.templateKey = templateKey;
 		this.templateUrl = templateUrl;
-		this.type = TEMPLATE_TYPE.getTypeForExtension(FileUtil.getFileExtension(templateUrl));
+		this.type = FILE_TYPE.getTypeForExtension(FileUtil.getFileExtension(templateUrl));
 		this.templateDir =  FileUtil.getFileDir(templateUrl, "/");
 		this.templateFileName = FileUtil.getFileName(templateUrl, "/");
 		this.extension = FileUtil.getFileExtension(templateUrl);
@@ -37,7 +37,7 @@ public class Template {
 		return template;
 	}
 
-	public TEMPLATE_TYPE getType() {
+	public FILE_TYPE getType() {
 		return type;
 	}
 

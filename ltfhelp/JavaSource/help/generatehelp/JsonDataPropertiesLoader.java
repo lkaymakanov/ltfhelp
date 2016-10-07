@@ -26,8 +26,12 @@ public class JsonDataPropertiesLoader {
 			PropertiesLoader jsonlines =	new PropertiesLoader(o.toString());
 			jsonlines.load();
 			jsonlines.printProperties();
-			jsonData.add(new PropertiesLoader(o.toString()));
+			jsonData.add(jsonlines);
 		}
+	}
+
+	public List<PropertiesLoader> getJsonData() {
+		return jsonData;
 	}
 
 	

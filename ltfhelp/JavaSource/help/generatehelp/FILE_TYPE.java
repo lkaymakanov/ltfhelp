@@ -1,6 +1,6 @@
 package help.generatehelp;
 
-public enum TEMPLATE_TYPE {
+public enum FILE_TYPE {
 	UNKNOWUN(""),
 	TEXT("txt"),
 	CSS("css"),
@@ -8,7 +8,7 @@ public enum TEMPLATE_TYPE {
 	JS("js");
 	
 	private String fileExt;
-	TEMPLATE_TYPE(String fileExt){
+	FILE_TYPE(String fileExt){
 		this.fileExt = fileExt;
 	}
 	public String getFileExt() {
@@ -16,8 +16,8 @@ public enum TEMPLATE_TYPE {
 	}
 
 	
-	public static TEMPLATE_TYPE getTypeForExtension(String ext){
-		for(TEMPLATE_TYPE t : TEMPLATE_TYPE.values()){
+	public static FILE_TYPE getTypeForExtension(String ext){
+		for(FILE_TYPE t : FILE_TYPE.values()){
 			if(t.getFileExt().equals(ext)) return t;
 		}
 		return null;

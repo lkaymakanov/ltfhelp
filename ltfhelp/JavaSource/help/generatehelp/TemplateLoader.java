@@ -15,6 +15,7 @@ public class TemplateLoader {
 
 	private Map<String, Template> templates = new Hashtable<String, Template>();
 	private Properties properties; 
+	private long count;
 	
 	public TemplateLoader(Properties properties){
 		this.properties = properties;
@@ -31,10 +32,20 @@ public class TemplateLoader {
 				continue;
 			}
 		}
+		count = templates.size();
 		return  properties;
 	}
 	
 	public Template getTemplate(String key){
 		return templates.get(key);
 	}
+
+	public long getCount() {
+		return count;
+	}
+	
+	public Set<String> getTemplateKeys(){
+		return templates.keySet();
+	}
+
 }
