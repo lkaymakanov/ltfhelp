@@ -4,9 +4,9 @@ import help.generatehelp.HelpUtils;
 
 public class CountrtyUtil {
 
-	public static void createCountry(){
+	public static String createCountry(){
 		CountrySelect sel = new CountrySelect();
 		HelpUtils.getSerServiceLocator().getHelpDao().execute(sel);
-		HelpUtils.log(HelpUtils.toJson(sel.getResult()));
+		return (HelpUtils.toJson(sel.getResult()));
 	}
 }

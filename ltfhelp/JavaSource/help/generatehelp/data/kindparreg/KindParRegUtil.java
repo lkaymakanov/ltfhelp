@@ -4,10 +4,10 @@ import help.generatehelp.HelpUtils;
 
 public class KindParRegUtil {
 
-	public static void createKindParreg(){
+	public static String createKindParreg(){
 		KindParRegSelect sel = new KindParRegSelect();
 		HelpUtils.getSerServiceLocator().getHelpDao().execute(sel);
-		HelpUtils.log(HelpUtils.toJson(sel.getResult()));
+		return (HelpUtils.toJson(sel.getResult()));
 	}
 	
 	public static void createSortingFunctions(){

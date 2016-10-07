@@ -4,10 +4,10 @@ import help.generatehelp.HelpUtils;
 
 public class ExchangeRegUtil {
 
-	public static void createExchangeReg(){
+	public static String  createExchangeReg(){
 		ExchangeRegSelect sel = new ExchangeRegSelect();
 		HelpUtils.getSerServiceLocator().getHelpDao().execute(sel);
-		HelpUtils.log(HelpUtils.toJson(sel.getResult()));
+		return (HelpUtils.toJson(sel.getResult()));
 	}
 
 	

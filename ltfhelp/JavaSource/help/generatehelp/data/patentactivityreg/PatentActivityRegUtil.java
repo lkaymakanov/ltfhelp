@@ -4,10 +4,10 @@ import help.generatehelp.HelpUtils;
 
 public class PatentActivityRegUtil {
 
-	public static void createPatentActivityReg(){
+	public static String createPatentActivityReg(){
 		PatentActivityRegSelect sel = new PatentActivityRegSelect();
 		HelpUtils.getSerServiceLocator().getHelpDao().execute(sel);
-		HelpUtils.log(HelpUtils.toJson(sel.getResult()));
+		return (HelpUtils.toJson(sel.getResult()));
 	}
 	
 	public static void createSortingFunctions(){

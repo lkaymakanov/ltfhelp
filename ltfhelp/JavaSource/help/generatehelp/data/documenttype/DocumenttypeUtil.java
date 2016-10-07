@@ -4,9 +4,9 @@ import help.generatehelp.HelpUtils;
 
 public class DocumenttypeUtil {
 
-	public static void createDocumentType(){
+	public static String createDocumentType(){
 		DocumenttypeSelect sel = new DocumenttypeSelect();
 		HelpUtils.getSerServiceLocator().getHelpDao().execute(sel);
-		HelpUtils.log(HelpUtils.toJson(sel.getResult()));
+		return (HelpUtils.toJson(sel.getResult()));
 	}
 }

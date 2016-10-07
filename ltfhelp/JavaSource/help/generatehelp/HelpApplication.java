@@ -1,6 +1,25 @@
 package help.generatehelp;
 
+import help.generatehelp.data.certreg.CertRegUtil;
+import help.generatehelp.data.chargereg.ChargeReg;
+import help.generatehelp.data.chargereg.ChargeRegUtil;
+import help.generatehelp.data.city.CityUtil;
+import help.generatehelp.data.country.CountrtyUtil;
+import help.generatehelp.data.documenttype.DocumenttypeUtil;
+import help.generatehelp.data.exchangereg.ExchangeRegUtil;
+import help.generatehelp.data.kinddebtreg.KinddebtregUtil;
+import help.generatehelp.data.kindhomeobjreg.KindHomeObjReg;
+import help.generatehelp.data.kindhomeobjreg.KindHomeObjRegUtil;
+import help.generatehelp.data.kindparreg.KindParRegUtil;
 import help.generatehelp.data.menu.MenuUtil;
+import help.generatehelp.data.municipality.MunicipalityUtil;
+import help.generatehelp.data.patentactivityreg.PatentActivityRegUtil;
+import help.generatehelp.data.province.ProvinceUtil;
+import help.generatehelp.data.reasonreg.ReasonRegUtil;
+import help.generatehelp.data.regnumber.RegNumberUtil;
+import help.generatehelp.data.servicereg.ServiceRegUtil;
+import help.generatehelp.data.taxperiod.TaxperiodUtil;
+import help.generatehelp.data.transpmeansreg.TranspmeansRegUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -97,6 +116,41 @@ public class HelpApplication {
 		StringBuilder bd = new StringBuilder();
 		bd.append(MenuUtil.getMenuNodes()); bd.append(MenuUtil.getRootNodes());
 		HelpUtils.writeToFile(bd.toString(), HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "menu.js");
+		
+		
+		//create city table
+		HelpUtils.writeToFile("var certreg = " + CertRegUtil.createCertReg() + ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "certreg.js");
+		
+		HelpUtils.writeToFile("var chargereg = " +ChargeRegUtil.createChargeReg()+ ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "chargereg.js");
+		
+		HelpUtils.writeToFile("var countries = " +CountrtyUtil.createCountry()+ ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "country.js");
+		
+		HelpUtils.writeToFile("var doctype = " +DocumenttypeUtil.createDocumentType()+ ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "doctype.js");
+		
+		HelpUtils.writeToFile("var kinddebtreg = " +KinddebtregUtil.createKindDebtReg()+ ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "kinddebtreg.js");
+		
+		HelpUtils.writeToFile("var exchangereg = " +ExchangeRegUtil.createExchangeReg()+ ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "exchangereg.js");
+		
+		HelpUtils.writeToFile("var kindhomeobjreg = " +KindHomeObjRegUtil.createKindHomeObjReg()+ ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "kindhomeobjreg.js");
+		
+		HelpUtils.writeToFile("var kindparreg = " +KindParRegUtil.createKindParreg()+ ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "kindparreg.js");
+		
+		HelpUtils.writeToFile("var municiaplities = " +MunicipalityUtil.createMunicipality()+ ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "municipality.js");
+		
+		HelpUtils.writeToFile("var patentactivities = " +PatentActivityRegUtil.createPatentActivityReg()+ ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "patentacivityreg.js");
+		
+		HelpUtils.writeToFile("var province = " +ProvinceUtil.createProvince()+ ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "province.js");
+		
+		HelpUtils.writeToFile("var reasonreg = " +ReasonRegUtil.createReasonReg()+ ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "reasonreg.js");
+		
+		HelpUtils.writeToFile("var regnumber = " +RegNumberUtil.createRegNumber()+ ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "regnumber.js");
+		
+		HelpUtils.writeToFile("var servicereg = " +ServiceRegUtil.createServiceReg()+ ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "servicereg.js");
+		
+		HelpUtils.writeToFile("var taxperiods = " +TaxperiodUtil.createTaxperiod()+ ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "taxperiods.js");
+		
+		HelpUtils.writeToFile("var transpmeansreg = " +TranspmeansRegUtil.createTranspmeansReg()+ ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "transpmeansreg.js");
+		
 		
 		
 		System.out.println("End");

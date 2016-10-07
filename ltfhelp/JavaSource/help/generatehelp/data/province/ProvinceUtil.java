@@ -4,10 +4,10 @@ import help.generatehelp.HelpUtils;
 
 public class ProvinceUtil {
 
-	public static void createProvince(){
+	public static String createProvince(){
 		ProvinceSelect sel = new ProvinceSelect();
 		HelpUtils.getSerServiceLocator().getHelpDao().execute(sel);
-		HelpUtils.log(HelpUtils.toJson(sel.getResult()));
+		return (HelpUtils.toJson(sel.getResult()));
 	}
 	
 

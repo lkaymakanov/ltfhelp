@@ -8,10 +8,10 @@ public class CityUtil {
 
 	
 
-	public static void createCity() throws UnsupportedEncodingException, IOException{
+	public static String createCity() throws UnsupportedEncodingException, IOException{
 		CitySelect sel = new CitySelect();
 		HelpUtils.getSerServiceLocator().getHelpDao().execute(sel);
-		HelpUtils.log(HelpUtils.toJson(sel.getResult()));
+		return (HelpUtils.toJson(sel.getResult()));
 	}
 	
 	public static void createSortingFunctions(){

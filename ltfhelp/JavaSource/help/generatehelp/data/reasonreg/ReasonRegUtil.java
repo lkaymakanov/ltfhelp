@@ -4,10 +4,10 @@ import help.generatehelp.HelpUtils;
 
 public class ReasonRegUtil {
 
-	public static void createReasonReg(){
+	public static String createReasonReg(){
 		ReasonRegSelect sel = new ReasonRegSelect();
 		HelpUtils.getSerServiceLocator().getHelpDao().execute(sel);
-		HelpUtils.log(HelpUtils.toJson(sel.getResult()));
+		return (HelpUtils.toJson(sel.getResult()));
 	}
 	
 	public static void createSortingFunctions(){

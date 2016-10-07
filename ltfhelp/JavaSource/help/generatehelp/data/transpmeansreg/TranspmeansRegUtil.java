@@ -5,10 +5,10 @@ import help.generatehelp.HelpUtils;
 public class TranspmeansRegUtil {
 
 	
-	public static void createTranspmeansReg()	{
+	public static String createTranspmeansReg()	{
 		TranspmeansRegSelect sel = new TranspmeansRegSelect();
 		HelpUtils.getSerServiceLocator().getHelpDao().execute(sel);
-		HelpUtils.log(HelpUtils.toJson(sel.getResult()));
+		return (HelpUtils.toJson(sel.getResult()));
 	}
 
 

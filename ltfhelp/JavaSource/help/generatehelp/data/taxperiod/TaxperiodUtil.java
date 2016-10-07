@@ -4,10 +4,10 @@ import help.generatehelp.HelpUtils;
 
 public class TaxperiodUtil {
 
-	public static void createTaxperiod(){
+	public static String createTaxperiod(){
 		TaxperiodSelect sel = new TaxperiodSelect();
 		HelpUtils.getSerServiceLocator().getHelpDao().execute(sel);
-		HelpUtils.log(HelpUtils.toJson(sel.getResult()));
+		return (HelpUtils.toJson(sel.getResult()));
 	}
 	
 	public static void createSortingFunctions(){

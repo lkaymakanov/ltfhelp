@@ -4,9 +4,9 @@ import help.generatehelp.HelpUtils;
 
 public class KinddebtregUtil {
 
-	public static void createKindDebtReg(){
+	public static String createKindDebtReg(){
 		KinddebtregSelect sel = new KinddebtregSelect();
 		HelpUtils.getSerServiceLocator().getHelpDao().execute(sel);
-		HelpUtils.log(HelpUtils.toJson(sel.getResult()));
+		return (HelpUtils.toJson(sel.getResult()));
 	}
 }

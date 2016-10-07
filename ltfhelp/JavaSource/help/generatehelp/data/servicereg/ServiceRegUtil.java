@@ -4,10 +4,10 @@ import help.generatehelp.HelpUtils;
 
 public class ServiceRegUtil {
 
-	public static void createServiceReg(){
+	public static String createServiceReg(){
 		ServiceRegSelect sel = new ServiceRegSelect();
 		HelpUtils.getSerServiceLocator().getHelpDao().execute(sel);
-		HelpUtils.log(HelpUtils.toJson(sel.getResult()));
+		return (HelpUtils.toJson(sel.getResult()));
 	}
 	
 

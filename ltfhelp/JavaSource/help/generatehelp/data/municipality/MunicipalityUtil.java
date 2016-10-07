@@ -5,10 +5,10 @@ import help.generatehelp.HelpUtils;
 public class MunicipalityUtil {
 
 
-	public static void createMunicipality(){
+	public static String createMunicipality(){
 		MunicipalitySelect sel = new MunicipalitySelect();
 		HelpUtils.getSerServiceLocator().getHelpDao().execute(sel);
-		HelpUtils.log(HelpUtils.toJson(sel.getResult()));
+		return (HelpUtils.toJson(sel.getResult()));
 	}
 	
 	public static void createSortingFunctions(){

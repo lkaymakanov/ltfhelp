@@ -4,10 +4,10 @@ import help.generatehelp.HelpUtils;
 
 public class RegNumberUtil {
 
-	public static void createRegNumber(){
+	public static String createRegNumber(){
 		RegNumberSelect sel = new RegNumberSelect();
 		HelpUtils.getSerServiceLocator().getHelpDao().execute(sel);
-		HelpUtils.log(HelpUtils.toJson(sel.getResult()));
+		return (HelpUtils.toJson(sel.getResult()));
 	}
 	
 	public static void createSortingFunctions(){

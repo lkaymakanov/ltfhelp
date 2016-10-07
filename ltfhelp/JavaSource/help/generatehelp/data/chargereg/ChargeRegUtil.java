@@ -5,10 +5,10 @@ import help.generatehelp.HelpUtils;
 public class ChargeRegUtil {
 
 
-	public static void createChargeReg(){
+	public static String createChargeReg(){
 		ChargeRegSelect sel = new ChargeRegSelect();
 		HelpUtils.getSerServiceLocator().getHelpDao().execute(sel);
-		HelpUtils.log(HelpUtils.toJson(sel.getResult()));
+		return (HelpUtils.toJson(sel.getResult()));
 	}
 	
 	public static void createSortingFunctions(){
