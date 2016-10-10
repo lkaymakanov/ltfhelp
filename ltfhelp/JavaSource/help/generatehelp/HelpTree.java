@@ -40,11 +40,33 @@ public class HelpTree implements Serializable {
 	}
 	
 	/**Returns relative path from dir to dir based on the root directory*/
-	static String routeFromDirToDir(String startDir, String endDir){
-		
-		return null;
+	static String routeFromDirToDir(HelpTree tree, String startDir, String endDir){
+		HelpTreeNode startDirNode = tree.getNodeByNodeName(startDir);
+		HelpTreeNode endDirNode = tree.getNodeByNodeName(endDir);
+		//if(startDirNode.getLevelFromRoot() == endDirNode.getLevelFromRoot()) return "";  //the same folder
+		int beginlevel = startDirNode.getLevelFromRoot();
+		String s = "";
+		while(beginlevel > 0){
+			s+="../";
+			beginlevel--;
+		}
+		return s+=endDir.replaceAll("\\.", "/");
 	}
 	
+	/***
+	 * The path from folder passes as param to root!!!
+	 * @return
+	 */
+	static String fromFolderToRoot(HelpTree tree, String folder){
+		HelpTreeNode node = tree.getNodeByNodeName(folder);
+		int beginlevel = node.getLevelFromRoot();
+		String s = "";
+		while(beginlevel > 0){
+			s+="../";
+			beginlevel--;
+		}
+		return s;
+	}
 	
 	static Map<String, HelpTreeNode> getTreeNodesFromProperties(Properties prop){
 		Map<String, HelpTreeNode> nodes = new Hashtable<String, HelpTreeNode>();

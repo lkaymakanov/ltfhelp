@@ -5,6 +5,7 @@ package help.generatehelp;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.Collection;
 import java.util.List;
@@ -125,6 +126,15 @@ public class HelpUtils {
 	}
 	
 	
+	public static String setTemplateParameters(String in , BindVariableData parameters){
+		Collection<BindVariableInfo> data =	parameters.getValues().values();
+		for(BindVariableInfo i : data){
+			in = in.replace("{"+ i.getPosition() + "P}", i.getValue() == null ? "null" : i.getValue().toString());
+		}
+		return in;
+	}
+	
+	
 	
 	/**Writes json string to file*/
 	public static void writeToFile(String  json, String fname) throws UnsupportedEncodingException, IOException{
@@ -134,6 +144,25 @@ public class HelpUtils {
 			fos.write(json.getBytes("UTF-8"));
 		}finally{
 			if(fos!=null) fos.close();
+		}
+	}
+	
+	
+	
+	public static void writeToFile(InputStream is, String fname) throws UnsupportedEncodingException, IOException{
+		FileOutputStream fos = null;
+		try{
+			fos = new FileOutputStream(new File(fname));
+			byte res [] = new byte[2];
+			int read = -1;
+			read = is.read(res);
+			while(read !=-1){
+				fos.write(res, 0, read);
+				read = is.read(res);
+			}
+		}finally{
+			if(fos!=null) fos.close();
+			is.close();
 		}
 	}
 	

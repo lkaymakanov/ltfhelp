@@ -1,5 +1,5 @@
 body {
-	background-color: rgb(40,40,40);
+	background-color:rgb(40,40,40);
 }
 
 h1{
@@ -16,6 +16,17 @@ span.expandbuttontitle {
 	top:-5px;
 }
 
+input.search{
+	border:solid 4px blue;
+	border-radius:3px;
+	padding:3px;
+	font-size:23px;
+	background-image: url('../images/search.png');
+	background-position: right;
+	height:48px;
+	width:250px;
+	background-repeat: no-repeat;
+}
 
 a.wlink{
 	text-decoration:none; 

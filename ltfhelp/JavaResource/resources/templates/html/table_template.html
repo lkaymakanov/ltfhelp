@@ -3,18 +3,11 @@
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 	<title>Export Data</title>
 	{1P}
-	<link rel="stylesheet" type="text/css" href="css/css.css">
-	<script src="js/data/country.js"></script>
-	<script src="js/functions/common.js"></script>
 </head>
 
 <body>
-	{2P}
-	<input id="searchtext" type="text" onkeyup="tc.filterText = this.value; tc.createTableForCurrentTableId(); return true;" />
+	<input id="searchtext" class="search" type="text" onkeyup="tc.filterText = this.value; tc.createTableForCurrentTableId(); return true;" />
 	<div id="tableDiv"></div>
-	<script>
-		var tc = new TableCreator().init_1('tableDiv', countries,getObjectPropertyNames(countries[0])); 
-		(tc.createTableForCurrentTableId());
-	</script>
+	{2P}
 </body>
 </html>

@@ -21,8 +21,12 @@ import help.generatehelp.data.servicereg.ServiceRegUtil;
 import help.generatehelp.data.taxperiod.TaxperiodUtil;
 import help.generatehelp.data.transpmeansreg.TranspmeansRegUtil;
 
+import java.awt.Dimension;
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class HelpApplication {
 	private PropertiesLoader appproperties;    		 	//main application properties file
@@ -41,6 +45,18 @@ public class HelpApplication {
 	private String PATH_TO_IMAGES;
 	private String PATH_TO_JS_DATA;
 	
+	//registers  links list
+	List<HtmlLink>  registers = new ArrayList<HtmlLink>();
+	
+	List<HtmlLink>  rdpVpns = new ArrayList<HtmlLink>();
+	
+	List<HtmlLink>  dbCredentials = new ArrayList<HtmlLink>();
+	
+	List<HtmlLink>  ltfUsers = new ArrayList<HtmlLink>();
+	
+	List<HtmlLink>  webServices = new ArrayList<HtmlLink>();
+	
+	List<HtmlLink>  menuDbTables = new ArrayList<HtmlLink>();
 	
 	public void init() throws IOException{
 		
@@ -50,7 +66,7 @@ public class HelpApplication {
 		appproperties.printProperties();
 		
 		//load help directory tree structure properties
-		PropertiesLoader helpTreeProperties = 	new PropertiesLoader(appproperties.getProperties().get(AppConstants.HELP_STRUCTURE_KEY).toString());
+		PropertiesLoader helpTreeProperties = new PropertiesLoader(appproperties.getProperties().get(AppConstants.HELP_STRUCTURE_KEY).toString());
 		helpTreeProperties.load();
 		helpTreeProperties.printProperties();
 		
@@ -75,17 +91,19 @@ public class HelpApplication {
 		PATH_TO_IMAGES = (helpOutputPaths.getProperties().getProperty(AppConstants.PATH_TO_IMAGES_KEY));
 		PATH_TO_JS_DATA = (helpOutputPaths.getProperties().getProperty(AppConstants.PATH_TO_JS_DATA_KEY));
 		
-		
-		
-		//load json data files & save them to output files!!!
-		jsonProperties = new JsonDataPropertiesLoader(appproperties);
-		for(PropertiesLoader l : jsonProperties.getJsonData()){
-			new HelpOutputFileJsonProperies(HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA), " = [ ", " ]; ", l).saveFileContent();
-		}
 
     	//load html templates 
 		htmlTemplateLoader = new TemplateLoader(new PropertiesLoader(appproperties.getProperties().get(AppConstants.HTML_TEMPLATES_KEY).toString()).load());
 		htmlTemplateLoader.load();
+		
+		//load json data files & save them to output json file files!!!
+		jsonProperties = new JsonDataPropertiesLoader(appproperties);
+		for(PropertiesLoader l : jsonProperties.getJsonData()){
+			new HelpOutputFileJsonProperies(HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA), " = [ ", " ]; ", l).saveFileContent();
+			
+			//save html for json properties data data
+			saveRegisterTableHtml(htree, FileUtil.removeFileExtension(FileUtil.getFileName(l.getPropFile(), "/")));
+		}
 		
 		//save html templates
 		for(String k: htmlTemplateLoader.getTemplateKeys()){
@@ -100,6 +118,11 @@ public class HelpApplication {
 		for(String k: cssTemplateLoader.getTemplateKeys()){
 		 	new HelpOutputFileTemplate(HelpUtils.replaceDotWithFileSeparator(PATH_TO_CSS), cssTemplateLoader.getTemplate(k)).saveFileContent();
 		}
+		
+		//save images to output image files files
+		HelpUtils.writeToFile(ResourceLocator.getResourceStream("resources/images/folder.png"), HelpUtils.replaceDotWithFileSeparator(PATH_TO_IMAGES) + File.separator + "folder.png");
+		HelpUtils.writeToFile(ResourceLocator.getResourceStream("resources/images/folder_open.png"), HelpUtils.replaceDotWithFileSeparator(PATH_TO_IMAGES) + File.separator + "folder_open.png");
+		HelpUtils.writeToFile(ResourceLocator.getResourceStream("resources/images/search.png"), HelpUtils.replaceDotWithFileSeparator(PATH_TO_IMAGES) + File.separator + "search.png");
 		
 		
 		//load java script
@@ -117,62 +140,106 @@ public class HelpApplication {
 		bd.append(MenuUtil.getMenuNodes()); bd.append(MenuUtil.getRootNodes());
 		HelpUtils.writeToFile(bd.toString(), HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "menu.js");
 		
-		
-		//create city table
+
+		//create javascript data files for each register
 		HelpUtils.writeToFile("var certreg = " + CertRegUtil.createCertReg() + ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "certreg.js");
-		
 		HelpUtils.writeToFile("var chargereg = " +ChargeRegUtil.createChargeReg()+ ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "chargereg.js");
-		
-		HelpUtils.writeToFile("var countries = " +CountrtyUtil.createCountry()+ ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "country.js");
-		
+		HelpUtils.writeToFile("var country = " +CountrtyUtil.createCountry()+ ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "country.js");
 		HelpUtils.writeToFile("var doctype = " +DocumenttypeUtil.createDocumentType()+ ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "doctype.js");
-		
 		HelpUtils.writeToFile("var kinddebtreg = " +KinddebtregUtil.createKindDebtReg()+ ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "kinddebtreg.js");
-		
 		HelpUtils.writeToFile("var exchangereg = " +ExchangeRegUtil.createExchangeReg()+ ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "exchangereg.js");
-		
 		HelpUtils.writeToFile("var kindhomeobjreg = " +KindHomeObjRegUtil.createKindHomeObjReg()+ ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "kindhomeobjreg.js");
-		
 		HelpUtils.writeToFile("var kindparreg = " +KindParRegUtil.createKindParreg()+ ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "kindparreg.js");
-		
-		HelpUtils.writeToFile("var municiaplities = " +MunicipalityUtil.createMunicipality()+ ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "municipality.js");
-		
-		HelpUtils.writeToFile("var patentactivities = " +PatentActivityRegUtil.createPatentActivityReg()+ ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "patentacivityreg.js");
-		
+		HelpUtils.writeToFile("var municipality = " +MunicipalityUtil.createMunicipality()+ ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "municipality.js");
+		HelpUtils.writeToFile("var city = " +CityUtil.createCity()+ ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "city.js");
+		HelpUtils.writeToFile("var patentactivityreg = " +PatentActivityRegUtil.createPatentActivityReg()+ ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "patentactivityreg.js");
 		HelpUtils.writeToFile("var province = " +ProvinceUtil.createProvince()+ ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "province.js");
-		
 		HelpUtils.writeToFile("var reasonreg = " +ReasonRegUtil.createReasonReg()+ ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "reasonreg.js");
-		
 		HelpUtils.writeToFile("var regnumber = " +RegNumberUtil.createRegNumber()+ ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "regnumber.js");
-		
 		HelpUtils.writeToFile("var servicereg = " +ServiceRegUtil.createServiceReg()+ ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "servicereg.js");
-		
-		HelpUtils.writeToFile("var taxperiods = " +TaxperiodUtil.createTaxperiod()+ ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "taxperiods.js");
-		
+		HelpUtils.writeToFile("var taxperiod = " +TaxperiodUtil.createTaxperiod()+ ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "taxperiod.js");
 		HelpUtils.writeToFile("var transpmeansreg = " +TranspmeansRegUtil.createTranspmeansReg()+ ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "transpmeansreg.js");
 		
 		
+		//create html file for each register table
+		saveRegisterTableHtml(htree, "certreg");
+		saveRegisterTableHtml(htree, "chargereg");
+		saveRegisterTableHtml(htree, "country");
+		saveRegisterTableHtml(htree, "doctype");
+		saveRegisterTableHtml(htree, "kinddebtreg");
+		saveRegisterTableHtml(htree, "exchangereg");
+		saveRegisterTableHtml(htree, "kindhomeobjreg");
+		saveRegisterTableHtml(htree, "kindparreg");
+		saveRegisterTableHtml(htree, "municipality");
+		saveRegisterTableHtml(htree, "city");
+		saveRegisterTableHtml(htree, "patentactivityreg");
+		saveRegisterTableHtml(htree, "province");
+		saveRegisterTableHtml(htree, "reasonreg");
+		saveRegisterTableHtml(htree, "regnumber");
+		saveRegisterTableHtml(htree, "servicereg");
+		saveRegisterTableHtml(htree, "taxperiod");
+		saveRegisterTableHtml(htree, "transpmeansreg");
+		
+		
+		//create navigation page
+		
+		//create main page
+		
 		
 		System.out.println("End");
-		//jsTemplateLoader.
-		//new HelpOutputFileJsonProperies(HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA), " = [ ", " ]; ", jsTemplateLoader.ge).saveFileContent();
-		
-		//
-		
-		//
-		/*CityUtil.createCity();
-		ExchangeRegUtil.createExchangeReg();
-		KindHomeObjRegUtil.createKindHomeObjReg();
-		KindParRegUtil.createKindParreg();
-	    PatentActivityRegUtil.createPatentActivityReg();
-		ReasonRegUtil.createReasonReg();
-		RegNumberUtil.createRegNumber();
-		TranspmeansRegUtil.createTranspmeansReg();
-		ServiceRegUtil.createServiceReg();*/
-		
 		
 	}
 	
+	
+	/**
+	 * A javasctipt that creates toggle button with image!!!
+	 * @param openFolderimage
+	 * @param folderImage
+	 * @param dimension
+	 * @param elemetnId
+	 * @return
+	 */
+	private String createExpandButtonScript(String openFolderimage, String folderImage, Dimension dimension, String elemetnId){
+		String s = " createExpandButton('" + openFolderimage +"',  '" + folderImage +"'," +
+	    dimension.height +"," + dimension.width  +" , 'false', 'function(el){showelement(\'" + elemetnId + "\', true);}' , 'function(el){showelement(\'" + elemetnId + "\', false);}');";
+		return "<script>" + s + "</script>";
+ 	}
+	
+
+	/***
+	 * Creates ul list with links to pages!!!
+	 * @param links
+	 * @param ulId
+	 * @param ulclass
+	 * @return
+	 */
+	private String createUl(List<HtmlLink> links, String ulId, String ulclass){
+		String ul =  "<ul class=\"" + ulclass + "\"  style=\"display:none;\" id=\""+ulId +"\">\n";
+		for(HtmlLink l : links){
+			ul+="<li>"+l.toString() +"</li>\n";
+		}
+		return ul + "</ul> </hr>";
+	}
+	
+	
+	/**Save  html file for register*/
+	private void saveRegisterTableHtml(HelpTree htree, String regName ) throws UnsupportedEncodingException, IOException{
+		String pathFromMainDirToJsData = HelpTree.routeFromDirToDir(htree, PATH_TO_MAIN_HTML, PATH_TO_JS_DATA);
+		String pathFromMaindirtoCss = HelpTree.routeFromDirToDir(htree, PATH_TO_MAIN_HTML, PATH_TO_CSS);
+		String pathFromMainDirtoFunc =  HelpTree.routeFromDirToDir(htree, PATH_TO_MAIN_HTML, PATH_TO_JS_FUNCTIONS);
+		
+		List<String> pathFromMainDirToJsDatalist = new ArrayList<String>();
+		List<String> pathFromMaindirtoCsslist = new ArrayList<String>();
+		
+		pathFromMainDirToJsDatalist.add(pathFromMainDirToJsData + "/" + regName + ".js");
+		pathFromMainDirToJsDatalist.add(pathFromMainDirtoFunc + "/" + "common.js");
+		pathFromMainDirToJsDatalist.add(pathFromMainDirtoFunc + "/" + "createtable.js");
+		pathFromMaindirtoCsslist.add(pathFromMaindirtoCss + "/"+ "css.css");
+		
+		new HelpRegisterOutputHtml(HelpUtils.replaceDotWithFileSeparator(PATH_TO_MAIN_HTML), regName+ ".html", 
+				htmlTemplateLoader.getTemplate("table_template"),
+				pathFromMainDirToJsDatalist, pathFromMaindirtoCsslist, regName).saveFileContent();
+	}
 	
 	//DecodeTypesSelect s = new DecodeTypesSelect();
     //getServiceLocator().getActDao().execute(s);
