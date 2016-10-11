@@ -36,7 +36,7 @@ public class DataBaseTableUtil {
 			" </body>\n"+
 			" </html>\n";
 
-	public static void createTables() throws FileNotFoundException{
+	private  static List<DataBaseTableTableColumn> createTables() {
 		DataBaseTableTableColumnsSelesct sel = new DataBaseTableTableColumnsSelesct();
 		DecodeForColumnSelect dsel = new DecodeForColumnSelect();
 		HelpUtils.getSerServiceLocator().getHelpDao().execute(dsel);
@@ -56,13 +56,22 @@ public class DataBaseTableUtil {
 			List<SelectItem> decodes =  dsel.getItems(c.getColKey());
 			if(decodes !=null){
 				c.setDecodeValues(decodes);
+				
 			}
 		}
 		
-		saveTablesToFile();
-		saveTableIndex(tablesMap.keySet());
+		//saveTablesToFile();
+		//saveTableIndex(tablesMap.keySet());
 		HelpUtils.log(tablesMap.keySet());
+		return sel.getColumns();
 	}
+	
+	
+	public static String getTableColumsAsJson() {
+		return HelpUtils.toJson(createTables());
+	}
+	
+	
 	
 	
 	private static void saveTablesToFile() throws FileNotFoundException{

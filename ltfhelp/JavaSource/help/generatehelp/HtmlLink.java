@@ -26,6 +26,6 @@ public class HtmlLink {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return   " <a class\"" + classs + "\" target=\"" + target  +"\" href=\""+ hrefBase +  href + "\">" + text + "</a>";
+		return   " <a class=\"" + classs + "\" target=\"" + target  +"\" href=\""+ hrefBase +  href + "\">" + text + "</a>";
 	}
 }

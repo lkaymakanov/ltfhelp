@@ -4,6 +4,7 @@ import help.generatehelp.data.certreg.CertRegUtil;
 import help.generatehelp.data.chargereg.ChargeRegUtil;
 import help.generatehelp.data.city.CityUtil;
 import help.generatehelp.data.country.CountrtyUtil;
+import help.generatehelp.data.databasetable.DataBaseTableUtil;
 import help.generatehelp.data.documenttype.DocumenttypeUtil;
 import help.generatehelp.data.exchangereg.ExchangeRegUtil;
 import help.generatehelp.data.kinddebtreg.KinddebtregUtil;
@@ -19,14 +20,12 @@ import help.generatehelp.data.servicereg.ServiceRegUtil;
 import help.generatehelp.data.taxperiod.TaxperiodUtil;
 import help.generatehelp.data.transpmeansreg.TranspmeansRegUtil;
 
-import java.awt.Dimension;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.is_bg.ltf.db.common.BindVariableData;
 
 public class HelpApplication {
 	private PropertiesLoader appproperties;    		 	//main application properties file
@@ -49,16 +48,16 @@ public class HelpApplication {
 	
 	//registers  links list
 	List<HtmlLink>  registers = new ArrayList<HtmlLink>();
+	List<HtmlLink>  others = new ArrayList<HtmlLink>();
+	List<HtmlLink>  menuDbTables = new ArrayList<HtmlLink>();
 	
-	List<HtmlLink>  rdpVpns = new ArrayList<HtmlLink>();
-	
+/*	List<HtmlLink>  rdpVpns = new ArrayList<HtmlLink>();
 	List<HtmlLink>  dbCredentials = new ArrayList<HtmlLink>();
-	
 	List<HtmlLink>  ltfUsers = new ArrayList<HtmlLink>();
-	
 	List<HtmlLink>  webServices = new ArrayList<HtmlLink>();
 	
-	List<HtmlLink>  menuDbTables = new ArrayList<HtmlLink>();
+	*/
+	
 	
 	public void init() throws IOException{
 		
@@ -66,6 +65,7 @@ public class HelpApplication {
 		appproperties = new PropertiesLoader(AppConstants.PATH_TO_APP_PROPERTY_FILE);
 		appproperties.load();
 		appproperties.printProperties();
+		
 		
 		//load help directory tree structure properties
 		PropertiesLoader helpTreeProperties = new PropertiesLoader(appproperties.getProperties().get(AppConstants.HELP_STRUCTURE_KEY).toString());
@@ -76,6 +76,9 @@ public class HelpApplication {
 		HelpTree htree = 	new HelpTree(helpTreeProperties.getProperties()).constructTree();
 		htree.printTree();
 		htree.createHelpDirectories();
+		
+		
+		
 		
 		//load help output properties
 		helpOutputPaths = new PropertiesLoader(AppConstants.PATH_TO_HELP_OUTPUT_PATHS);
@@ -93,6 +96,9 @@ public class HelpApplication {
 		PATH_TO_IMAGES = (helpOutputPaths.getProperties().getProperty(AppConstants.PATH_TO_IMAGES_KEY));
 		PATH_TO_JS_DATA = (helpOutputPaths.getProperties().getProperty(AppConstants.PATH_TO_JS_DATA_KEY));
 		PATH_TO_MATEUS_HELP = (helpOutputPaths.getProperties().getProperty(AppConstants.PATH_TO_MATUES_HELP_KEY));
+		
+		//the path from main html folder to root + path to main html
+		String base = HelpTree.fromFolderToRoot(htree, PATH_TO_MAIN_HTML) + HelpUtils.replaceDotWithSeparator(PATH_TO_MAIN_HTML, "/") + "/";
 
     	//load html templates 
 		htmlTemplateLoader = new TemplateLoader(new PropertiesLoader(appproperties.getProperties().get(AppConstants.HTML_TEMPLATES_KEY).toString()).load());
@@ -104,7 +110,11 @@ public class HelpApplication {
 			new HelpOutputFileJsonProperies(HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA), " = [ ", " ]; ", l).saveFileContent();
 			
 			//save html for json properties data data
-			saveRegisterTableHtml(htree, FileUtil.removeFileExtension(FileUtil.getFileName(l.getPropFile(), "/")));
+			String name = FileUtil.removeFileExtension(FileUtil.getFileName(l.getPropFile(), "/"));
+			saveRegisterTableHtml(htree, name);
+			
+			//create html link to page
+			others.add(new HtmlLink(base, name + ".html", AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, name.toUpperCase()));
 		}
 		
 		//save html templates
@@ -161,7 +171,7 @@ public class HelpApplication {
 		HelpUtils.writeToFile("var servicereg = " +ServiceRegUtil.createServiceReg()+ ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "servicereg.js");
 		HelpUtils.writeToFile("var taxperiod = " +TaxperiodUtil.createTaxperiod()+ ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "taxperiod.js");
 		HelpUtils.writeToFile("var transpmeansreg = " +TranspmeansRegUtil.createTranspmeansReg()+ ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "transpmeansreg.js");
-		
+		HelpUtils.writeToFile("var tablecolumns =  " + DataBaseTableUtil.getTableColumsAsJson()+ ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "tablecolumns.js");
 		
 		//create html file for each register table
 		saveRegisterTableHtml(htree, "certreg");
@@ -183,20 +193,18 @@ public class HelpApplication {
 		saveRegisterTableHtml(htree, "transpmeansreg");
 		
 		
-		String base = HelpTree.fromFolderToRoot(htree, PATH_TO_MATEUS_HELP) + HelpUtils.replaceDotWithSeparator(PATH_TO_MAIN_HTML, "/") + "/";
-		
 		//add links to register pages in register list
-		registers.add(new HtmlLink(base, "certreg.html",AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "CERTREG"));
-		registers.add(new HtmlLink(base, "chargereg.html",AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "CHARGREREG"));
-		registers.add(new HtmlLink(base, "country.html",AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "COUNTRY"));
-		registers.add(new HtmlLink(base, "doctype.html",AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "DOCTYPE"));
-		registers.add(new HtmlLink(base, "kinddebtreg.html",AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "KINDDEBTREG"));
-		registers.add(new HtmlLink(base, "exchangereg.html",AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "EXCHANGEREG"));
-		registers.add(new HtmlLink(base, "kindhomeobjreg.html",AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "KINDHOMEOBJREG"));
-		registers.add(new HtmlLink(base, "kindparreg.html",AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "KINDPARREG"));
-		registers.add(new HtmlLink(base, "municipality.html",AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "MUNICIPALITY"));
-		registers.add(new HtmlLink(base, "city.html",AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "CITY"));
-		registers.add(new HtmlLink(base, "patentactivityreg.html",AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "PATENTACTIVITYREG"));
+		registers.add(new HtmlLink(base, "certreg.html", AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "CERTREG"));
+		registers.add(new HtmlLink(base, "chargereg.html", AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "CHARGREREG"));
+		registers.add(new HtmlLink(base, "country.html", AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "COUNTRY"));
+		registers.add(new HtmlLink(base, "doctype.html", AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "DOCTYPE"));
+		registers.add(new HtmlLink(base, "kinddebtreg.html", AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "KINDDEBTREG"));
+		registers.add(new HtmlLink(base, "exchangereg.html", AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "EXCHANGEREG"));
+		registers.add(new HtmlLink(base, "kindhomeobjreg.html", AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "KINDHOMEOBJREG"));
+		registers.add(new HtmlLink(base, "kindparreg.html", AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "KINDPARREG"));
+		registers.add(new HtmlLink(base, "municipality.html", AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "MUNICIPALITY"));
+		registers.add(new HtmlLink(base, "city.html", AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "CITY"));
+		registers.add(new HtmlLink(base, "patentactivityreg.html", AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "PATENTACTIVITYREG"));
 		registers.add(new HtmlLink(base, "province.html",AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "PROVINCE"));
 		registers.add(new HtmlLink(base, "reasonreg.html",AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "REASONREG"));
 		registers.add(new HtmlLink(base, "regnumber.html",AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "REGNUMBER"));
@@ -204,19 +212,20 @@ public class HelpApplication {
 		registers.add(new HtmlLink(base, "taxperiod.html",AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "TAXPERIOD"));
 		registers.add(new HtmlLink(base, "transpmeansreg.html",AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "TRANSPMEANSREG"));
 		
-		
-		//create ul for registers
-		String pathTocss = HelpTree.fromFolderToRoot(htree, PATH_TO_MATEUS_HELP) + HelpUtils.replaceDotWithSeparator(PATH_TO_IMAGES, "/");
-		System.out.println(HelpUtils.createExpandButtonScript(pathTocss + "/folder_open.png", pathTocss + "/folder.png", new Dimension(20,20), "registers"));
-		BindVariableData registerTitle = new BindVariableData();
-		registerTitle.setString("REGISTERS");
-		System.out.println(HelpUtils.setTemplateParameters(EXPANDBUTTON_TEXT, registerTitle));
-		System.out.println(HelpUtils.createUl(registers, "registers", AppConstants.UL_CLASS));
+		//add links to menu & db tables
+		menuDbTables.add(new HtmlLink(base, "menu.html", AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "MENU"));
+		menuDbTables.add(new HtmlLink(base, "tablecolumnsearch.html", AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "TABLE_COLUMNS"));
 		
 		//create navigation page
+		NavigationPageCreator navpage = new NavigationPageCreator(htree, base, htmlTemplateLoader.getTemplate("navigation"));
+		navpage.setRegisters(registers);
+		navpage.setOthers(others);
+		navpage.setMenuDbTables(menuDbTables);
+		navpage.saveFileContent();
+		
+		
 		
 		//create main page
-		
 		System.out.println("End");
 		
 	}

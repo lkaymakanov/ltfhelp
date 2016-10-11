@@ -216,7 +216,7 @@ public class HelpUtils {
 	 */
 	public static String createExpandButtonScript(String openFolderimage, String folderImage, Dimension dimension, String elemetnId){
 		String s = " createExpandButton('" + openFolderimage +"',  '" + folderImage +"'," +
-	    dimension.height +"," + dimension.width  +" , 'false', 'function(el){showelement(\'" + elemetnId + "\', true);}' , 'function(el){showelement(\'" + elemetnId + "\', false);}');";
+	    dimension.height +"," + dimension.width  +" , 'false', 'function(el){showelement(\\'" + elemetnId + "\\', true);}' , 'function(el){showelement(\\'" + elemetnId + "\\', false);}');";
 		return "<script>" + s + "</script>";
  	}
 	
@@ -233,7 +233,7 @@ public class HelpUtils {
 		for(HtmlLink l : links){
 			ul+="<li>"+l.toString() +"</li>\n";
 		}
-		return ul + "</ul> </hr>";
+		return ul + "</ul> <hr>";
 	}
 	
 	public static void log(Object o){
