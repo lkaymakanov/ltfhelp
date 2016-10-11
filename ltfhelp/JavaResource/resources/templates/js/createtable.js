@@ -101,7 +101,7 @@ function TableCreator(){
 		var hrefId;
 		for(i=0; i < this.objectpropNames.length; i++){
 			hrefId = singlequote + this.tableid + '_col' + i + singlequote;
-			sortLink = '<a id="'+ this.tableid + '_col' + i + '" href="#" data-ascend="true" onclick="'+ this.tableRefName+ '.sortByColumnIndex(' + i+  ', ' + hrefId + ');">'+ this.objectpropNames[i]+' </a>';
+			sortLink = '<a id="'+ this.tableid + '_col' + i + '" href="#" data-ascend="true" onclick="'+ this.tableRefName+ '.sortByColumnIndex(' + i+  ', ' + hrefId + ');">'+ this.objectpropNames[i].toUpperCase()+' </a>';
 			cells+= this.createTableCell(sortLink, false);
 		}
 		return '<tr class="header">' + cells + '</tr>';
