@@ -2,6 +2,7 @@ package help.generatehelp;
 
 
 
+import java.awt.Dimension;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -202,6 +203,37 @@ public class HelpUtils {
 	 */
 	public static <T extends IToJson>  String toJson(List<T>  list){
 		return toJson(list, "", "");
+	}
+	
+	
+	/**
+	 * A javasctipt that creates toggle button with image!!!
+	 * @param openFolderimage
+	 * @param folderImage
+	 * @param dimension
+	 * @param elemetnId
+	 * @return
+	 */
+	public static String createExpandButtonScript(String openFolderimage, String folderImage, Dimension dimension, String elemetnId){
+		String s = " createExpandButton('" + openFolderimage +"',  '" + folderImage +"'," +
+	    dimension.height +"," + dimension.width  +" , 'false', 'function(el){showelement(\'" + elemetnId + "\', true);}' , 'function(el){showelement(\'" + elemetnId + "\', false);}');";
+		return "<script>" + s + "</script>";
+ 	}
+	
+
+	/***
+	 * Creates ul list with links to pages!!!
+	 * @param links
+	 * @param ulId
+	 * @param ulclass
+	 * @return
+	 */
+	public static String createUl(List<HtmlLink> links, String ulId, String ulclass){
+		String ul =  "<ul class=\"" + ulclass + "\"  style=\"display:none;\" id=\""+ulId +"\">\n";
+		for(HtmlLink l : links){
+			ul+="<li>"+l.toString() +"</li>\n";
+		}
+		return ul + "</ul> </hr>";
 	}
 	
 	public static void log(Object o){

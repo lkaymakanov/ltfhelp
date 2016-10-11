@@ -1,14 +1,12 @@
 package help.generatehelp;
 
 import help.generatehelp.data.certreg.CertRegUtil;
-import help.generatehelp.data.chargereg.ChargeReg;
 import help.generatehelp.data.chargereg.ChargeRegUtil;
 import help.generatehelp.data.city.CityUtil;
 import help.generatehelp.data.country.CountrtyUtil;
 import help.generatehelp.data.documenttype.DocumenttypeUtil;
 import help.generatehelp.data.exchangereg.ExchangeRegUtil;
 import help.generatehelp.data.kinddebtreg.KinddebtregUtil;
-import help.generatehelp.data.kindhomeobjreg.KindHomeObjReg;
 import help.generatehelp.data.kindhomeobjreg.KindHomeObjRegUtil;
 import help.generatehelp.data.kindparreg.KindParRegUtil;
 import help.generatehelp.data.menu.MenuUtil;
@@ -38,16 +36,16 @@ public class HelpApplication {
 	private TemplateLoader jsTemplateLoader;
 	private PropertiesLoader helpOutputPaths;
 	
-	private String PATH_TO_TABLE_JS_DATA;
-	private String PATH_TO_JS_FUNCTIONS;
-	private String PATH_TO_MAIN_HTML;
-	private String PATH_TO_TABLE;
-	private String PATH_TO_CSS;
-	private String PATH_TO_TABLE_JS_FUNCTIONS;
-	private String PATH_TO_IMAGES;
-	private String PATH_TO_JS_DATA;
-	private String PATH_TO_MATEUS_HELP;
-	private final static String EXPANDBUTTON_TEXT = "<span class=\"expandbuttontitle\">{1P}:</span>";
+	public static String PATH_TO_TABLE_JS_DATA;
+	public static String PATH_TO_JS_FUNCTIONS;
+	public static String PATH_TO_MAIN_HTML;
+	public static String PATH_TO_TABLE;
+	public static String PATH_TO_CSS;
+	public static String PATH_TO_TABLE_JS_FUNCTIONS;
+	public static String PATH_TO_IMAGES;
+	public static String PATH_TO_JS_DATA;
+	public static String PATH_TO_MATEUS_HELP;
+	public final static String EXPANDBUTTON_TEXT = "<span class=\"expandbuttontitle\">{1P}:</span>";
 	
 	//registers  links list
 	List<HtmlLink>  registers = new ArrayList<HtmlLink>();
@@ -209,11 +207,11 @@ public class HelpApplication {
 		
 		//create ul for registers
 		String pathTocss = HelpTree.fromFolderToRoot(htree, PATH_TO_MATEUS_HELP) + HelpUtils.replaceDotWithSeparator(PATH_TO_IMAGES, "/");
-		System.out.println(createExpandButtonScript(pathTocss + "/folder_open.png", pathTocss + "/folder.png", new Dimension(20,20), "registers"));
-		BindVariableData registerTitle = 	new BindVariableData();
+		System.out.println(HelpUtils.createExpandButtonScript(pathTocss + "/folder_open.png", pathTocss + "/folder.png", new Dimension(20,20), "registers"));
+		BindVariableData registerTitle = new BindVariableData();
 		registerTitle.setString("REGISTERS");
 		System.out.println(HelpUtils.setTemplateParameters(EXPANDBUTTON_TEXT, registerTitle));
-		System.out.println(createUl(registers, "registers", AppConstants.UL_CLASS));
+		System.out.println(HelpUtils.createUl(registers, "registers", AppConstants.UL_CLASS));
 		
 		//create navigation page
 		
@@ -224,35 +222,7 @@ public class HelpApplication {
 	}
 	
 	
-	/**
-	 * A javasctipt that creates toggle button with image!!!
-	 * @param openFolderimage
-	 * @param folderImage
-	 * @param dimension
-	 * @param elemetnId
-	 * @return
-	 */
-	private String createExpandButtonScript(String openFolderimage, String folderImage, Dimension dimension, String elemetnId){
-		String s = " createExpandButton('" + openFolderimage +"',  '" + folderImage +"'," +
-	    dimension.height +"," + dimension.width  +" , 'false', 'function(el){showelement(\'" + elemetnId + "\', true);}' , 'function(el){showelement(\'" + elemetnId + "\', false);}');";
-		return "<script>" + s + "</script>";
- 	}
-	
 
-	/***
-	 * Creates ul list with links to pages!!!
-	 * @param links
-	 * @param ulId
-	 * @param ulclass
-	 * @return
-	 */
-	private String createUl(List<HtmlLink> links, String ulId, String ulclass){
-		String ul =  "<ul class=\"" + ulclass + "\"  style=\"display:none;\" id=\""+ulId +"\">\n";
-		for(HtmlLink l : links){
-			ul+="<li>"+l.toString() +"</li>\n";
-		}
-		return ul + "</ul> </hr>";
-	}
 	
 	
 	/**Save  html file for register*/
@@ -274,48 +244,6 @@ public class HelpApplication {
 				pathFromMainDirToJsDatalist, pathFromMaindirtoCsslist, regName).saveFileContent();
 	}
 	
-	//DecodeTypesSelect s = new DecodeTypesSelect();
-    //getServiceLocator().getActDao().execute(s);
-    //s.getResult();
-    //HelpUtils.createTables();
-    //HelpUtils.createMenu();
-    //System.out.println(HelpUtils.getDecodeTypeAsJson());
-    //MenuUtil.createMenu();
-    //TaxperiodUtil.createTaxperiod();
-    //CountrtyUtil.createCountry();
-    //DocumenttypeUtil.createDocumentType();
-    //KinddebtregUtil.createKindDebtReg();
-    //MunicipalityUtil.createMunicipality();
-	//CertRegUtil.createSortingFunctions();
-	//CertRegUtil.createCertReg();
-	//CityUtil.createCity();
-	//CityUtil.createSortingFunctions();
-	//MenuUtil.createMenu();
-	//MenuUtil.createSortingFunctions();
-	//CountrtyUtil.createCountry();
-	//DocumenttypeUtil.createDocumentType();
-	//System.out.println(DecodeTypeUtils.getDecodeTypeAsJson());
-	//MenuUtil.createMenu();
-	//ExchangeRegUtil.createExchangeReg();
-	//ExchangeRegUtil.createSortingFunctions();
-	//KindHomeObjRegUtil.createKindHomeObjReg();
-	//KindHomeObjRegUtil.createSortingFunctions();
-	//KindParRegUtil.createKindParreg();
-	//KindParRegUtil.createSortingFunctions();
-	/*MunicipalityUtil.createMunicipality();
-	MunicipalityUtil.createSortingFunctions();
-    PatentActivityRegUtil.createPatentActivityReg();
-	PatentActivityRegUtil.createSortingFunctions();
-	ProvinceUtil.createProvince();
-	ProvinceUtil.createSortingFunctions();
-	ReasonRegUtil.createReasonReg();
-	ReasonRegUtil.createSortingFunctions();
-	RegNumberUtil.createRegNumber();
-	RegNumberUtil.createSortingFunctions();
-	TranspmeansRegUtil.createTranspmeansReg();
-	TranspmeansRegUtil.createSortingFunctions();
-	ServiceRegUtil.createServiceReg();
-	ServiceRegUtil.createSortingFunctions();*/
 	
 	
 	
