@@ -16,7 +16,7 @@
 <input id="treeviewCheck" type="checkbox" checked="true" onchange="m.showMenu(document.getElementById('treeviewCheck').checked);" >Tree View<br>
 </div>
 
-<input id="searchtext" type="text" onkeyup="m.menuTable.filterText = this.value; m.showMenu(document.getElementById('treeviewCheck').checked); return true;" />
+<input id="searchtext" type="text"  class="search" onkeyup="m.menuTable.filterText = this.value; m.showMenu(document.getElementById('treeviewCheck').checked); return true;" />
 <div id="treeview"></div>
 
 <script>

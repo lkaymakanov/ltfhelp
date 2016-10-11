@@ -1,8 +1,8 @@
 <html>
 <head>
-	<link   rel="stylesheet" type="text/css" href="css/css.css">
-	<script src="js/data/tablecolumns.js"></script>
-	<script src="js/functions/tablecolumns.js" ></script>
+	<link   rel="stylesheet" type="text/css" href="../css/css.css">
+	<script src="../js/data/tablecolumns.js"></script>
+	<script src="../js/functions/tablecolumns.js" ></script>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 </head>
 
@@ -14,7 +14,7 @@
 		<input id="ckDirectMatch" type="checkbox" >Direct match<br>
 		<input id="highlight" type="checkbox" checked="true">HighLight<br>
 	</div>
-	<input id="searchtext" type="text" onkeyup="showFiltered(tablecolumns.filter(filterColumn)); return true;" onblur = "document.getElementById('filtered').innerHTML1 = '';" />
+	<input id="searchtext"  class="search" type="text" onkeyup="showFiltered(tablecolumns.filter(filterColumn)); return true;" onblur = "document.getElementById('filtered').innerHTML1 = '';" />
 	<div id="filtered"></div>
 </body>
 </html>
