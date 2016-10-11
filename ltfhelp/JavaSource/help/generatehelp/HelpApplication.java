@@ -28,6 +28,8 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.is_bg.ltf.db.common.BindVariableData;
+
 public class HelpApplication {
 	private PropertiesLoader appproperties;    		 	//main application properties file
 	private JsonDataPropertiesLoader jsonProperties;  	//property files containing json data for  pages
@@ -44,6 +46,8 @@ public class HelpApplication {
 	private String PATH_TO_TABLE_JS_FUNCTIONS;
 	private String PATH_TO_IMAGES;
 	private String PATH_TO_JS_DATA;
+	private String PATH_TO_MATEUS_HELP;
+	private final static String EXPANDBUTTON_TEXT = "<span class=\"expandbuttontitle\">{1P}:</span>";
 	
 	//registers  links list
 	List<HtmlLink>  registers = new ArrayList<HtmlLink>();
@@ -90,7 +94,7 @@ public class HelpApplication {
 		PATH_TO_TABLE_JS_FUNCTIONS = (helpOutputPaths.getProperties().getProperty(AppConstants.PATH_TO_TABLE_JS_FUNCTIONS_KEY));
 		PATH_TO_IMAGES = (helpOutputPaths.getProperties().getProperty(AppConstants.PATH_TO_IMAGES_KEY));
 		PATH_TO_JS_DATA = (helpOutputPaths.getProperties().getProperty(AppConstants.PATH_TO_JS_DATA_KEY));
-		
+		PATH_TO_MATEUS_HELP = (helpOutputPaths.getProperties().getProperty(AppConstants.PATH_TO_MATUES_HELP_KEY));
 
     	//load html templates 
 		htmlTemplateLoader = new TemplateLoader(new PropertiesLoader(appproperties.getProperties().get(AppConstants.HTML_TEMPLATES_KEY).toString()).load());
@@ -151,7 +155,7 @@ public class HelpApplication {
 		HelpUtils.writeToFile("var kindhomeobjreg = " +KindHomeObjRegUtil.createKindHomeObjReg()+ ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "kindhomeobjreg.js");
 		HelpUtils.writeToFile("var kindparreg = " +KindParRegUtil.createKindParreg()+ ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "kindparreg.js");
 		HelpUtils.writeToFile("var municipality = " +MunicipalityUtil.createMunicipality()+ ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "municipality.js");
-		HelpUtils.writeToFile("var city = " +CityUtil.createCity()+ ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "city.js");
+		HelpUtils.writeToFile("var city = " + CityUtil.createCity()+ ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "city.js");
 		HelpUtils.writeToFile("var patentactivityreg = " +PatentActivityRegUtil.createPatentActivityReg()+ ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "patentactivityreg.js");
 		HelpUtils.writeToFile("var province = " +ProvinceUtil.createProvince()+ ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "province.js");
 		HelpUtils.writeToFile("var reasonreg = " +ReasonRegUtil.createReasonReg()+ ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "reasonreg.js");
@@ -181,10 +185,39 @@ public class HelpApplication {
 		saveRegisterTableHtml(htree, "transpmeansreg");
 		
 		
+		String base = HelpTree.fromFolderToRoot(htree, PATH_TO_MATEUS_HELP) + HelpUtils.replaceDotWithSeparator(PATH_TO_MAIN_HTML, "/") + "/";
+		
+		//add links to register pages in register list
+		registers.add(new HtmlLink(base, "certreg.html",AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "CERTREG"));
+		registers.add(new HtmlLink(base, "chargereg.html",AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "CHARGREREG"));
+		registers.add(new HtmlLink(base, "country.html",AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "COUNTRY"));
+		registers.add(new HtmlLink(base, "doctype.html",AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "DOCTYPE"));
+		registers.add(new HtmlLink(base, "kinddebtreg.html",AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "KINDDEBTREG"));
+		registers.add(new HtmlLink(base, "exchangereg.html",AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "EXCHANGEREG"));
+		registers.add(new HtmlLink(base, "kindhomeobjreg.html",AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "KINDHOMEOBJREG"));
+		registers.add(new HtmlLink(base, "kindparreg.html",AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "KINDPARREG"));
+		registers.add(new HtmlLink(base, "municipality.html",AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "MUNICIPALITY"));
+		registers.add(new HtmlLink(base, "city.html",AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "CITY"));
+		registers.add(new HtmlLink(base, "patentactivityreg.html",AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "PATENTACTIVITYREG"));
+		registers.add(new HtmlLink(base, "province.html",AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "PROVINCE"));
+		registers.add(new HtmlLink(base, "reasonreg.html",AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "REASONREG"));
+		registers.add(new HtmlLink(base, "regnumber.html",AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "REGNUMBER"));
+		registers.add(new HtmlLink(base, "servicereg.html",AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "SERVICEREG"));
+		registers.add(new HtmlLink(base, "taxperiod.html",AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "TAXPERIOD"));
+		registers.add(new HtmlLink(base, "transpmeansreg.html",AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "TRANSPMEANSREG"));
+		
+		
+		//create ul for registers
+		String pathTocss = HelpTree.fromFolderToRoot(htree, PATH_TO_MATEUS_HELP) + HelpUtils.replaceDotWithSeparator(PATH_TO_IMAGES, "/");
+		System.out.println(createExpandButtonScript(pathTocss + "/folder_open.png", pathTocss + "/folder.png", new Dimension(20,20), "registers"));
+		BindVariableData registerTitle = 	new BindVariableData();
+		registerTitle.setString("REGISTERS");
+		System.out.println(HelpUtils.setTemplateParameters(EXPANDBUTTON_TEXT, registerTitle));
+		System.out.println(createUl(registers, "registers", AppConstants.UL_CLASS));
+		
 		//create navigation page
 		
 		//create main page
-		
 		
 		System.out.println("End");
 		

@@ -13,6 +13,7 @@ public class AppConstants {
 	
 	//keys of the output help path values
 	public static final String PATH_TO_TABLE_JS_DATA_KEY  = "path_to_table_js_data";
+	public static final String PATH_TO_MATUES_HELP_KEY = "path_to_mateus_help";
 	public static final String PATH_TO_JS_FUNCTIONS_KEY = "path_to_js_functions";
 	public static final String PATH_TO_MAIN_HTML_KEY = "path_to_main_html";
 	public static final String PATH_TO_TABLE_KEY = "path_to_table";
@@ -21,5 +22,8 @@ public class AppConstants {
 	public static final String PATH_TO_IMAGES_KEY = "path_to_images";
 	public static final String PATH_TO_JS_DATA_KEY = "path_to_js_data";
 	
+	public static final String TARGET = "mateus";
+	public static final String ULLINKS_CLASS = "wlink";
+	public static final String UL_CLASS = "navigation";
 }
 	

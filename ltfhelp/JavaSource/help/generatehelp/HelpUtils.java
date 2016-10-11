@@ -188,6 +188,14 @@ public class HelpUtils {
 	}
 	
 	/***
+	 * Replaces the dots in the directory path with file separator
+	 * @return
+	 */
+	public static String replaceDotWithSeparator(String in, String separator){
+		return in.replaceAll("\\.", separator);
+	}
+	
+	/***
 	 * Converts a list of toJson objects into a json array
 	 * @param list
 	 * @return
