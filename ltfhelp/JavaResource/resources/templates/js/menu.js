@@ -1,4 +1,3 @@
-﻿
 /**A bfs search function for creating menu*/
 function bfs(menu, rootNode, createmenuFunctionObject){
 	this.queue = [];
