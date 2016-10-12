@@ -1,4 +1,4 @@
-﻿/**
+/**
  * A simple expand collapse button class
  */
 function ExpandButton(){

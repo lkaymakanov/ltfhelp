@@ -1,4 +1,4 @@
-﻿var selectedLinkId="-1";
+var selectedLinkId="-1";
 
 /**used to create the links to the real applications ....*/
 function AppLinks(){
