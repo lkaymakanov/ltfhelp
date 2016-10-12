@@ -1,9 +1,10 @@
+
 package help.generatehelp;
 
 import java.util.List;
 
 /***
- * Creates links to javascript files!!!
+ * Creates links to javascript files from html files!!!
  * @author lubo
  *
  */

@@ -6,6 +6,11 @@ import java.util.Hashtable;
 import java.util.Map;
 import java.util.Properties;
 
+/***
+ * Memory representation of the help directory tree described in properties!!!
+ * @author lubo
+ *
+ */
 public class HelpTree implements Serializable {
 
 	/**
@@ -19,7 +24,7 @@ public class HelpTree implements Serializable {
 		linearNodes = getTreeNodesFromProperties(prop);
 	}
 	
-	
+	/**Constructs & returns the help directory tree*/
 	HelpTree constructTree(){
 		//add each element to its parent
 		for(String k :linearNodes.keySet()){
@@ -93,7 +98,7 @@ public class HelpTree implements Serializable {
 	}
 	
 	/***
-	 * Creates all the directories of the help tree!!!
+	 * Creates all the directories of the help tree on the disk!!!
 	 * @param node
 	 */
 	private void createHelpDirectories(HelpTreeNode node){
@@ -120,7 +125,7 @@ public class HelpTree implements Serializable {
 		for(HelpTreeNode nd :node.getChildren()){
 			printNode(nd);
 		}
-		HelpUtils.log(node.getKey() + "  --->  level = " + node.levelFromRoot);
+		HelpUtils.log(node.getKey() + "  ---> level = " + node.levelFromRoot);
 	}
 	
 	/**prints the memory directory tree*/

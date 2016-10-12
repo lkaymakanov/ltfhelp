@@ -1,3 +1,4 @@
+
 package help.generatehelp;
 
 import java.io.BufferedReader;
@@ -27,7 +28,7 @@ class ResourceTemplateReader {
 	
 	
 	public Template load() throws IOException{
-		System.out.println("======================== LOADING TEMPLATE for URL : " + resourceUrl + " ======== ");
+		HelpUtils.log("======================== LOADING TEMPLATE for URL : " + resourceUrl + " ======== ");
 		try{
 			if(loaded == true) return template;
 			template = new Template(resourceUrl, templateKey);

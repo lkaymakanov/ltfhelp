@@ -34,7 +34,7 @@ public class TestQModule {
 		@Override
 		public Connection getConnection(String name) {
 			// TODO Auto-generated method stub
-			return null;
+			return getConnection();
 		}
     }
 
@@ -42,6 +42,7 @@ public class TestQModule {
      * * Тест модул - главна функция.
      *
      * @param args
+     * 
      *            the arguments
      * @throws IOException 
      * @throws ClassNotFoundException 

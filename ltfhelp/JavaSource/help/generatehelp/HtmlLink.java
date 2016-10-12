@@ -1,5 +1,10 @@
 package help.generatehelp;
 
+/***
+ * Represents html link!!!
+ * @author lubo
+ *
+ */
 public class HtmlLink {
 
 	String href = "";

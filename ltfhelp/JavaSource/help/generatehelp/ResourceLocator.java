@@ -16,6 +16,7 @@ public class ResourceLocator  {
 	}
 	
 	static InputStream getResourceStream(String resourceName) {
+		System.out.println("============== GETTING RESOURCE FOR URL: "+ resourceName +" ===============");
 		return  ResourceLocator.class.getClassLoader().getResourceAsStream(resourceName);
 	}
 	
