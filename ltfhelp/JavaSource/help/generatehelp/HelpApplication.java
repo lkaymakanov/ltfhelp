@@ -50,12 +50,12 @@ public class HelpApplication {
 	List<HtmlLink>  registers = new ArrayList<HtmlLink>();
 	List<HtmlLink>  others = new ArrayList<HtmlLink>();
 	List<HtmlLink>  menuDbTables = new ArrayList<HtmlLink>();
+	List<StringToJsonWrapper> helpImages = new ArrayList<StringToJsonWrapper>();
 	
 /*	List<HtmlLink>  rdpVpns = new ArrayList<HtmlLink>();
 	List<HtmlLink>  dbCredentials = new ArrayList<HtmlLink>();
 	List<HtmlLink>  ltfUsers = new ArrayList<HtmlLink>();
 	List<HtmlLink>  webServices = new ArrayList<HtmlLink>();
-	
 	*/
 	
 	
@@ -76,8 +76,6 @@ public class HelpApplication {
 		HelpTree htree = 	new HelpTree(helpTreeProperties.getProperties()).constructTree();
 		htree.printTree();
 		htree.createHelpDirectories();
-		
-		
 		
 		
 		//load help output properties
@@ -135,7 +133,14 @@ public class HelpApplication {
 		HelpUtils.writeToFile(ResourceLocator.getResourceStream("resources/images/folder.png"), HelpUtils.replaceDotWithFileSeparator(PATH_TO_IMAGES) + File.separator + "folder.png");
 		HelpUtils.writeToFile(ResourceLocator.getResourceStream("resources/images/folder_open.png"), HelpUtils.replaceDotWithFileSeparator(PATH_TO_IMAGES) + File.separator + "folder_open.png");
 		HelpUtils.writeToFile(ResourceLocator.getResourceStream("resources/images/search.png"), HelpUtils.replaceDotWithFileSeparator(PATH_TO_IMAGES) + File.separator + "search.png");
+		HelpUtils.writeToFile(ResourceLocator.getResourceStream("resources/images/blood.png"), HelpUtils.replaceDotWithFileSeparator(PATH_TO_IMAGES) + File.separator + "blood.png");
 		
+		//save help pictures to out put files!!!
+		for(int i =0; i < 17; i++){
+			String helpFileName = "help"+ i + ".png";
+			HelpUtils.writeToFile(ResourceLocator.getResourceStream("resources/images/" + helpFileName), HelpUtils.replaceDotWithFileSeparator(PATH_TO_IMAGES) + File.separator + helpFileName );
+			helpImages.add(new StringToJsonWrapper(helpFileName));
+		}
 		
 		//load java script
 		jsTemplateLoader = new TemplateLoader(new PropertiesLoader(appproperties.getProperties().get(AppConstants.JS_LINK_FILE_KEY).toString()).load());
@@ -212,9 +217,11 @@ public class HelpApplication {
 		registers.add(new HtmlLink(base, "taxperiod.html",AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "TAXPERIOD"));
 		registers.add(new HtmlLink(base, "transpmeansreg.html",AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "TRANSPMEANSREG"));
 		
-		//add links to menu & db tables
+		//add links to menu & db tables in menudb list
 		menuDbTables.add(new HtmlLink(base, "menu.html", AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "MENU"));
 		menuDbTables.add(new HtmlLink(base, "tablecolumnsearch.html", AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "TABLE_COLUMNS"));
+		
+		//create empty page
 		
 		//create navigation page
 		NavigationPageCreator navpage = new NavigationPageCreator(htree, base, htmlTemplateLoader.getTemplate("navigation"));
@@ -223,7 +230,9 @@ public class HelpApplication {
 		navpage.setMenuDbTables(menuDbTables);
 		navpage.saveFileContent();
 		
-		
+		//create empty page
+		EmptyPageCreator emptyPageCreator = new EmptyPageCreator(htree,  htmlTemplateLoader.getTemplate("empty"), helpImages);
+		emptyPageCreator.saveFileContent();
 		
 		//create main page
 		System.out.println("End");

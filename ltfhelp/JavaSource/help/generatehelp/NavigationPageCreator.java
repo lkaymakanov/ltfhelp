@@ -55,7 +55,7 @@ public class NavigationPageCreator extends HelpOutputFileBase {
 	//script that creates expand/collapse button!!!
 	private String createExpandButtonForUl(String ulName){
 		String pathToImages = pathToRoot + HelpUtils.replaceDotWithSeparator(HelpApplication.PATH_TO_IMAGES, "/");
-		return HelpUtils.createExpandButtonScript(pathToImages + "/folder_open.png", pathToImages + "/folder.png", new Dimension(20,20), ulName) + "\n";
+		return HelpUtils.createExpandButtonScript(pathToImages + "/folder_open.png", pathToImages + "/folder.png", new Dimension(32,32), ulName) + "\n";
 	}
 	
 	private String createRigistersUl(){
