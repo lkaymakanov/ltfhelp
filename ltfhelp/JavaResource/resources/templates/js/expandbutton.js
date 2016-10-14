@@ -17,24 +17,27 @@ function ExpandButton(){
 			el.innerHTML = '<img style="width:' + this.width + 'px; height:' + this.height + 'px; cursor:pointer;" src="'+ this.closeImg + '"></img>';
 			if(this.oncolapse != null )this.oncolapse(el);
 		}else{
-			el.dataset.expand='true';
+			el.dataset.expand = 'true';
 			el.innerHTML = '<img style="width:' + this.width + 'px; height:' + this.height + 'px; cursor:pointer;" src="'+ this.openImg + '"></img>';
 			if(this.onexpand !=null )this.onexpand(el);
 		}
 	};
+	
+	
+	//argument constructor
+	ExpandButton.prototype.init_1 = function (openImg, closeImg, height, width, expand, onexpand, oncolapse){
+	    this.openImg = openImg;
+		this.closeImg = closeImg;
+		this.height = height;       //the height of the button in pixels
+		this.width = width;		   //the width of the button in pixels
+		this.expand = 'expand';
+		this.oncolapse = eval(oncolapse);
+		this.onexpand = eval(onexpand);
+	    return this;
+	};
+
 };
 
-//argument constructor
-ExpandButton.prototype.init_1 = function (openImg, closeImg, height, width, expand, onexpand, oncolapse){
-    this.openImg = openImg;
-	this.closeImg = closeImg;
-	this.height=height;       //the height of the button in pixels
-	this.width=width;		   //the width of the button in pixels
-	this.expand = 'expand';
-	this.oncolapse = eval(oncolapse);
-	this.onexpand = eval(onexpand);
-    return this;
-};
 
 //shows or hides element by id
 function showelement(elId, show){

@@ -68,11 +68,13 @@ function AppLinks(){
 	this.writeLinkList = function(ulclass, ulid){
 		document.write(this.createLinkList(ulclass, ulid));
 	}
+	
+	AppLinks.prototype.init_1 = function(thisref, applinks){
+		this.applinks = applinks;
+		this.thisref = thisref;
+		this.applinks = applinks.sort(this.sortByName);
+		return this;
+	};
 };
 
-AppLinks.prototype.init_1 = function(thisref, applinks){
-	this.applinks = applinks;
-	this.thisref = thisref;
-	this.applinks = applinks.sort(this.sortByName);
-	return this;
-};
+

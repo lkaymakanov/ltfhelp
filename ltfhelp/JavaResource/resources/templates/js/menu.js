@@ -115,17 +115,18 @@ function MenuCreate(){
 			this.menuTable.createTableForCurrentTableId();
 		}
 	};
+	
+	//argument constructor
+	MenuCreate.prototype.init_1 = function (menuNodes, rootNodes){
+		this.menuNodes = menuNodes;    //all menu nodes
+		this.rootNodes = rootNodes;    //menu root nodes
+		this.menuTable = new TableCreator().init_1('treeview', menuNodes, getObjectPropertyNames(menuNodes[0])); 
+	    return this;
+	};
 
 };
 
 
-//argument constructor
-MenuCreate.prototype.init_1 = function (menuNodes, rootNodes){
-	this.menuNodes = menuNodes;    //all menu nodes
-	this.rootNodes = rootNodes;    //menu root nodes
-	this.menuTable = new TableCreator().init_1('treeview', menuNodes, getObjectPropertyNames(menuNodes[0])); 
-    return this;
-};
 
 
 

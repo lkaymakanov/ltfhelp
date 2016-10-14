@@ -1,5 +1,8 @@
 /*A class that will create html tables based on json array object*/
 function TableCreator(){
+	if(!(this instanceof arguments.callee)){
+		return new TableCreator();
+	}
 	this.objectpropNames;     //array with object properties
 	this.objects;        //the array of objects that we create table for
 	this.oddrowclass = 'odd';
@@ -28,7 +31,7 @@ function TableCreator(){
 		return b;
 	};
 	
-	/**applys the filter to the objects array of the table & returns the filtered data set*/
+	/**apply the filter to the objects array of the table & returns the filtered data set*/
 	this.getFiltereredContent = function(){
 		return this.objects.filter(this.filterColumn, this);
 	};
@@ -91,7 +94,6 @@ function TableCreator(){
 			href.dataset.ascend = 'true';
 		}
 	};
-	
 
 	//creates table header!!!
 	this.createHeader = function(){
@@ -107,7 +109,7 @@ function TableCreator(){
 		return '<tr class="header">' + cells + '</tr>';
 	};
 	
-	//creates a singe table cell by value!!!
+	//creates a single table cell by value!!!
 	this.createTableCell = function(value, highlight){
 		return '<td>' + highlightText(value+'', this.filterText, highlight) + '</td>';
 	};
@@ -143,52 +145,18 @@ function TableCreator(){
 		}
 		return  '<tr class="' + cls +'">' + cells + '</tr>';
 	};
+	
+	//argument constructor
+	TableCreator.prototype.init_1 = function (tableid, objects, objectpropNames){
+		this.tableid = tableid;
+		this.objectpropNames = objectpropNames;    //array with object properties
+		this.objects =  objects;                   //the array of objects that we create table for
+		eval('var sfun = '+ this.createSortFunctionObject()+';');
+		this.sortfunctions = sfun;
+	    return this;
+	};
+
 };
 
-
-
-//argument constructor
-TableCreator.prototype.init_1 = function (tableid, objects, objectpropNames){
-	this.tableid = tableid;
-	this.objectpropNames = objectpropNames;    //array with object properties
-	this.objects =  objects;                   //the array of objects that we create table for
-	eval('var sfun = '+ this.createSortFunctionObject()+';');
-	this.sortfunctions = sfun;
-    return this;
-};
-
-
-
-
-
-/*
-function sortByTaxperiodId(a,b){
-  if (a.taxperiod_id < b.taxperiod_id)
-    return -1;
-  if (a.taxperiod_id > b.taxperiod_id)
-    return 1;
-  return 0;
-};
-
-
-function createTableRow(taxperiod, index){
-	var cls = ( index%2 == 0) ? 'even': 'odd';
-	return '<tr class="' + cls +'">' +
-	'<td>' + taxperiod.taxperiod_id + '</td>' +  '<td>' + 
-	taxperiod.begin_date +   '</td>' + 
-	'<td>' +taxperiod.end_date +  '</td>' + 
-	'<td>' +taxperiod.taxperiod_kind +  '</td>' + '</tr>'; 
-}
-
-function recreateTable(sortfunction){
-	var d = document.getElementById('tableDiv');
-	var tableStr='<table class="register">';
-	var header='<tr class="header">' + '<td>' + '<a href="#" onclick="recreateTable(sortByTaxperiodId);" > TaxperiodId</a>' +  '</td>' +  '<td>' + '<a href="#" onclick="recreateTable(sortBybeginDate);" > BeginDate</a>' + '</td>' +  '<td>' + 'EndDate' + '</td>' +  '<td>' + 'Kind' + '</td>' +  '</tr>';
-	tableStr+=header;
-	taxperiods.sort(sortfunction);
-	for(i=0; i < taxperiods.length; i++){tableStr+=(createTableRow(taxperiods[i], i));}
-	tableStr+='</table>';
-	d.innerHTML = tableStr;
-}*/
 
 
