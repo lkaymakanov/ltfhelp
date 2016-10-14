@@ -2,6 +2,7 @@ package help.generatehelp;
 
 
 
+
 import java.io.IOException;
 import java.sql.Connection;
 
@@ -68,10 +69,7 @@ public class TestQModule {
     	    	return new ElapsedTimer();
     	    }
     	});
-    	//HelpUtils.log("Data base connection initialized.....");
-    	//TaxperiodUtil.createTaxperiod();
-    	HelpApplication hApp = new HelpApplication();
-    	hApp.init();
+    	
     }
     
 }

@@ -18,4 +18,5 @@ public class StringToJsonWrapper implements IToJson {
 	public void setValue(String value) {
 		this.value = value;
 	}
+
 }

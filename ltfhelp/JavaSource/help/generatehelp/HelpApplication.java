@@ -17,6 +17,7 @@ import help.generatehelp.data.province.ProvinceUtil;
 import help.generatehelp.data.reasonreg.ReasonRegUtil;
 import help.generatehelp.data.regnumber.RegNumberUtil;
 import help.generatehelp.data.servicereg.ServiceRegUtil;
+import help.generatehelp.data.sqlfunctions.SqlFunctionUtil;
 import help.generatehelp.data.taxperiod.TaxperiodUtil;
 import help.generatehelp.data.transpmeansreg.TranspmeansRegUtil;
 
@@ -177,6 +178,9 @@ public class HelpApplication {
 		HelpUtils.writeToFile("var taxperiod = " +TaxperiodUtil.createTaxperiod()+ ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "taxperiod.js");
 		HelpUtils.writeToFile("var transpmeansreg = " +TranspmeansRegUtil.createTranspmeansReg()+ ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "transpmeansreg.js");
 		HelpUtils.writeToFile("var tablecolumns =  " + DataBaseTableUtil.getTableColumsAsJson()+ ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "tablecolumns.js");
+		HelpUtils.writeToFile("var sqlfunproto =  " + SqlFunctionUtil.createSqlFunstions("postgres") + ";", HelpUtils.replaceDotWithFileSeparator(PATH_TO_JS_DATA) + File.separator +  "sqlfunproto.js");
+		
+
 		
 		//create html file for each register table
 		saveRegisterTableHtml(htree, "certreg");
@@ -196,7 +200,7 @@ public class HelpApplication {
 		saveRegisterTableHtml(htree, "servicereg");
 		saveRegisterTableHtml(htree, "taxperiod");
 		saveRegisterTableHtml(htree, "transpmeansreg");
-		
+		saveRegisterTableHtml(htree, "sqlfunproto");
 		
 		//add links to register pages in register list
 		registers.add(new HtmlLink(base, "certreg.html", AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "CERTREG"));
@@ -216,6 +220,7 @@ public class HelpApplication {
 		registers.add(new HtmlLink(base, "servicereg.html",AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "SERVICEREG"));
 		registers.add(new HtmlLink(base, "taxperiod.html",AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "TAXPERIOD"));
 		registers.add(new HtmlLink(base, "transpmeansreg.html",AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "TRANSPMEANSREG"));
+		registers.add(new HtmlLink(base, "sqlfunproto.html",AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "SQL FUNCTIONS PROTOTYPE"));
 		
 		//add links to menu & db tables in menudb list
 		menuDbTables.add(new HtmlLink(base, "menu.html", AppConstants.TARGET, "", AppConstants.ULLINKS_CLASS, "MENU"));

@@ -239,4 +239,19 @@ public class HelpUtils {
 	public static void log(Object o){
 		DBConfig.getDbLogFactory().getLog(HelpUtils.class).debug(o);
 	}
+	
+	
+	public static  String rtrim(String s){
+		if(s == null) return s;
+		int index = s.length()-1;
+		if(index == -1) return s;
+		for(; index>=0; index--){
+			while(index >=0 && Character.isWhitespace(s.charAt(index))){
+				System.out.println(Character.isWhitespace(s.charAt(index)));
+				index--; 
+			}
+		}
+		if(index <= -1) return s;
+		return s.substring(0, index);
+	}
 }
