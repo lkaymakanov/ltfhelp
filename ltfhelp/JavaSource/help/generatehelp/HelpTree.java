@@ -47,8 +47,6 @@ public class HelpTree implements Serializable {
 	/**Returns relative path from dir to dir based on the root directory*/
 	static String routeFromDirToDir(HelpTree tree, String startDir, String endDir){
 		HelpTreeNode startDirNode = tree.getNodeByNodeName(startDir);
-		HelpTreeNode endDirNode = tree.getNodeByNodeName(endDir);
-		//if(startDirNode.getLevelFromRoot() == endDirNode.getLevelFromRoot()) return "";  //the same folder
 		int beginlevel = startDirNode.getLevelFromRoot();
 		String s = "";
 		while(beginlevel > 0){

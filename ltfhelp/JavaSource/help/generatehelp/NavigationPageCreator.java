@@ -16,13 +16,13 @@ import net.is_bg.ltf.db.common.BindVariableData;
  */
 public class NavigationPageCreator extends HelpOutputFileBase {
 	private Template navigationTemplate;
-	private String navigationBasePath;
-	private HelpTree htree;
-	private List<HtmlLink>  registers = new ArrayList<HtmlLink>();
-	private List<HtmlLink>  rdpVpns = new ArrayList<HtmlLink>();
+	//private String navigationBasePath;
+	//private HelpTree htree;
+/*	private List<HtmlLink>  rdpVpns = new ArrayList<HtmlLink>();
 	private List<HtmlLink>  dbCredentials = new ArrayList<HtmlLink>();
 	private List<HtmlLink>  ltfUsers = new ArrayList<HtmlLink>();
-	private List<HtmlLink>  webServices = new ArrayList<HtmlLink>();
+	private List<HtmlLink>  webServices = new ArrayList<HtmlLink>();*/
+	private List<HtmlLink>  registers = new ArrayList<HtmlLink>();
 	private List<HtmlLink>  menuDbTables = new ArrayList<HtmlLink>();
 	private List<HtmlLink> others = new ArrayList<>();
 	private String pathToRoot = "";
@@ -31,9 +31,9 @@ public class NavigationPageCreator extends HelpOutputFileBase {
 	 
 	public NavigationPageCreator(HelpTree htree, String navigationBasePath, Template template){
 		super(HelpUtils.replaceDotWithFileSeparator(HelpApplication.PATH_TO_MAIN_HTML), "navigation.html");
-		this.navigationBasePath  = navigationBasePath;
+		//this.navigationBasePath  = navigationBasePath;
 		this.navigationTemplate = template;
-		this.htree = htree;
+		//this.htree = htree;
 		this.pathToRoot = HelpTree.fromFolderToRoot(htree, HelpApplication.PATH_TO_MAIN_HTML);
 		
 		String pathTojsData = pathToRoot + HelpUtils.replaceDotWithSeparator(HelpApplication.PATH_TO_JS_DATA, "/");

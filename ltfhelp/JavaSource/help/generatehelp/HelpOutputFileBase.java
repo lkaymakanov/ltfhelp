@@ -35,5 +35,9 @@ public abstract class HelpOutputFileBase {
 		return fileName;
 	}
 
+	public FILE_TYPE getFtype() {
+		return ftype;
+	}
+
 	
 }

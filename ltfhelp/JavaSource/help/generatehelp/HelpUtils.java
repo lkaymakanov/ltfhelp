@@ -103,10 +103,12 @@ public class HelpUtils {
 	}
 	
 	
+	@SuppressWarnings("unchecked")
 	public static void setLong(ToJsonBase obj, String name, long value){
 		 obj.getPropertyByName(name).setValue(new LongToJsonWrapper(value));
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static void setString(ToJsonBase obj, String name, String value){
 		obj.getPropertyByName(name).setValue(new StringToJsonWrapper(value));
 	}

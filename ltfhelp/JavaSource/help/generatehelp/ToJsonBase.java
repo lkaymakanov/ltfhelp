@@ -7,17 +7,21 @@ import java.util.Map;
 import java.util.Set;
 
 public class ToJsonBase implements IToJson {
+	@SuppressWarnings("rawtypes")
 	private List<Property> properties = new ArrayList<Property>();
+	@SuppressWarnings("rawtypes")
 	private Map<String, Property> propMap = new Hashtable<String, Property>();
+	@SuppressWarnings("rawtypes")
 	private List<Property> serializable = new ArrayList<Property>();    //only serializable properties
 	
 	
-	public void addProperty(Property p){
+	public void addProperty(@SuppressWarnings("rawtypes") Property p){
 		properties.add(p);
 		if(!p.isSkipSerialization()) serializable.add(p);
 		propMap.put(p.getName(), p);
 	}
 	
+	@SuppressWarnings("rawtypes")
 	public Property getPropertyByName(String pName){
 		return propMap.get(pName);
 	}
@@ -30,7 +34,7 @@ public class ToJsonBase implements IToJson {
 		i = 0; last= serializable.size() - 1;
 		StringBuilder jsonarry  = new StringBuilder();
 		jsonarry.append("{");
-		for(Property el: serializable){
+		for(@SuppressWarnings("rawtypes") Property el: serializable){
 			if(el.isSkipSerialization()) continue;
 			jsonarry.append(el.toJson() + (i == last ?  "" :  ", "));
 			i++;
