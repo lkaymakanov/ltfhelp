@@ -69,7 +69,7 @@ public class TestQModule {
     	    	return new ElapsedTimer();
     	    }
     	});
-    	
+    	new HelpApplication().init();
     }
     
 }
