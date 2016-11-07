@@ -10,22 +10,52 @@ import java.util.Vector;
 
 public class SimpleOffsetEncoderDecoder {
 
-	private int offset;
+	private int [] offsets;
 	private String alphabet=" ./\\~!@#$%^&*()_+{}[];:|',\"_1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 	private int length = alphabet.length();
+
 	
-	
-	public SimpleOffsetEncoderDecoder(int offset){
-		this.offset =  offset % length;
-		if(this.offset == 0) this.offset = 3;
+	public SimpleOffsetEncoderDecoder(String alphabet, String passPhrase){
+		this.alphabet = alphabet;
+		this.offsets = passPhraseToIntArray(this.alphabet, passPhrase);
+		this.length = alphabet.length();
 	}
 	
-	public SimpleOffsetEncoderDecoder(String alphabet, int offset){
+
+	public SimpleOffsetEncoderDecoder(String passPhrase){
+		this.offsets =  passPhraseToIntArray(alphabet, passPhrase);
+		this.length = alphabet.length();
+	}
+	
+	public SimpleOffsetEncoderDecoder(int [] offsets){
+		this.offsets =  offsets;
+	}
+	
+	public SimpleOffsetEncoderDecoder(String alphabet, int [] offsets){
 		this.alphabet = alphabet;
 		this.length = alphabet.length();
-		this.offset =  offset % length;
-		if(this.offset == 0) this.offset = 3;
+		this.offsets = offsets;
 	}
+	
+	private int [] passPhraseToIntArray(String alphabet, String passPhrase){
+		int arr [] = new int [passPhrase.length()];
+		int aplhlength = alphabet.length();
+		for(int i = 0; i < passPhrase.length(); i++){
+			arr[i] = (passPhrase.codePointAt(i) % aplhlength);
+		}
+		return arr;
+	}
+	
+	public SimpleOffsetEncoderDecoder(int offset){
+		this.offsets =  new int [] {offset};
+	}
+	
+	public SimpleOffsetEncoderDecoder(String alphabet, int  offset){
+		this.alphabet = alphabet;
+		this.length = alphabet.length();
+		this.offsets =  new int [] {offset};
+	}
+	
 	
 	public  String encode(String s){
 		if(s == null) return null;
@@ -33,8 +63,8 @@ public class SimpleOffsetEncoderDecoder {
 		StringBuilder sb = new StringBuilder();
 		for(int i=0; i < s.length(); i++){
 			char currentChar = s.charAt(i);
-			if(charPosisition(currentChar) < 0) sb.append(currentChar);
-			else sb.append(encode(s.charAt(i)));
+			if(charPosisitionInAlphabet(currentChar) < 0) sb.append(currentChar);
+			else sb.append(encode(s.charAt(i), i));
 		}
 		return sb.toString();
 	}
@@ -45,27 +75,27 @@ public class SimpleOffsetEncoderDecoder {
 		StringBuilder sb = new StringBuilder();
 		for(int i=0; i < s.length(); i++){
 			char currentChar = s.charAt(i);
-			if(charPosisition(currentChar) < 0) sb.append(currentChar);
-			else sb.append(decode(s.charAt(i)));
+			if(charPosisitionInAlphabet(currentChar) < 0) sb.append(currentChar);
+			else sb.append(decode(s.charAt(i), i));
 		}
 		return sb.toString();
 	}
 	
-	public char encode(char c){
-		return alphabet.charAt(newCharPostion(charPosisition(c), 1));
+	private char encode(char c, int charPosInString){
+		return alphabet.charAt(newCharPostion(charPosisitionInAlphabet(c), charPosInString, 1));
 	}
 	
-	public char decode(char c){
-		return alphabet.charAt(newCharPostion(charPosisition(c), -1));
+	private char decode(char c, int charPosInString){
+		return alphabet.charAt(newCharPostion(charPosisitionInAlphabet(c), charPosInString, -1));
 	}
 	
-	private int charPosisition(char c){
+	private int charPosisitionInAlphabet(char c){
 		return alphabet.indexOf(c);
 	}
 	
-	private int newCharPostion(int position, int  mult){
-	   int offset = (this.offset * mult);
-	   return 	(position + offset) >= length ? ((position + offset) - length) : ((position + offset) < 0 ? (position + offset)  + length : (position + offset) );
+	private int newCharPostion(int positionInAlphabet, int positionInString, int  mult){
+	   int offset = (offsets[(positionInString % this.offsets.length)]* mult);
+	   return 	(positionInAlphabet + offset) >= length ? ((positionInAlphabet + offset) - length) : ((positionInAlphabet + offset) < 0 ? (positionInAlphabet + offset)  + length : (positionInAlphabet + offset) );
 	}
 	
 	
@@ -146,15 +176,14 @@ public class SimpleOffsetEncoderDecoder {
 	      return fileContent;
 	}
 	
-	private static final String ALPHABET = "myalphbetus";    //alphabet encrypting for the source files names
-	private static final int OFFSET = 2;     //offset for letters of files names
+	private static final String ALPHABET = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";    //alphabet encrypting for the source files names
 	private static final String PASSWORD = "pass";   //file encryption password
 	final static EncipherDecipher encc = new EncipherDecipher(PASSWORD);    //file name encryptor/ decryptor            
-	final static SimpleOffsetEncoderDecoder enc = new SimpleOffsetEncoderDecoder(ALPHABET, OFFSET);    //file name encryptor / decryptor
+	final static SimpleOffsetEncoderDecoder enc = new SimpleOffsetEncoderDecoder(ALPHABET, PASSWORD);    //file name encryptor / decryptor
 	final static String decfolderParent = "D:";   //the parent folder of the folder to be decrypted
 	final static String enfolderParent = "D:";    //the parent folder of the folder to be encrypted
-	final static File encroot = new File("D:\\sources");     //the path to the folder to be encrypted
-	final static File decroot = new File("D:\\folder_to_be_decrypted");     //the path to the folder to be decrypted
+	final static File encroot = new File("D:\\path_to_file_to_be_encrypted");     //the path to the folder to be encrypted
+	final static File decroot = new File("D:\\path_to_file_to_be_decrypted");     //the path to the folder to be decrypted
 	
 	
 	/***
