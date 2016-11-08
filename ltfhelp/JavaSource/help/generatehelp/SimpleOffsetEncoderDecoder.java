@@ -9,20 +9,18 @@ import java.util.Vector;
 
 
 public class SimpleOffsetEncoderDecoder {
-
+	private static String defaultAlphabet = " ./\\~!@#$%^&*()_+{}[];:|',\"_1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 	private int [] offsets;
-	private String alphabet=" ./\\~!@#$%^&*()_+{}[];:|',\"_1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-	private int length = alphabet.length();
+	private String alphabet;
+	private int length ;
+	private int scrableFactor = 10;    //factor for scrambling alphabet default 10
 
 	/**
 	 * @param alphabet
 	 * @param passPhrase
 	 */
 	public SimpleOffsetEncoderDecoder(String alphabet, String passPhrase){
-		this.alphabet = alphabet;
-		this.length = alphabet.length();
-		this.offsets = passPhraseToIntArray(this.alphabet, passPhrase);
-		this.alphabet = scrambleAlphabet();
+		this(alphabet, passPhrase, passPhrase.length());
 	}
 	
 
@@ -31,8 +29,15 @@ public class SimpleOffsetEncoderDecoder {
 	 * @param passPhrase
 	 */
 	public SimpleOffsetEncoderDecoder(String passPhrase){
-		this.offsets =  passPhraseToIntArray(alphabet, passPhrase);
+		this(defaultAlphabet, passPhrase, passPhrase.length());
+	}
+	
+	
+	private SimpleOffsetEncoderDecoder(String alphabet, String passPhrase, int scrambleFactor){
+		this.alphabet = alphabet;
+		this.scrableFactor = scrambleFactor;
 		this.length = alphabet.length();
+		this.offsets = passPhraseToIntArray(this.alphabet, passPhrase);
 		this.alphabet = scrambleAlphabet();
 	}
 	
@@ -53,16 +58,21 @@ public class SimpleOffsetEncoderDecoder {
 	 */
 	private String scrambleAlphabet(){
 		StringBuilder bd = new StringBuilder();
-		char alphabetChars [] = new char [alphabet.length()];
-		for(int i=0; i < alphabet.length(); i++){
-			alphabetChars[i] = alphabet.charAt(i);
+		String currentAlphabet = alphabet;
+		for(int p=0; p < scrableFactor; p++){
+			bd = new StringBuilder();
+			char alphabetChars [] = new char [currentAlphabet.length()];
+			for(int i=0; i < currentAlphabet.length(); i++){
+				alphabetChars[i] = currentAlphabet.charAt(i);
+			}
+			int offsetsLength = offsets.length;
+			for(int i=0; i < currentAlphabet.length(); i++){
+				swap(alphabetChars, i, offsets[i % offsetsLength]);
+			}
+			bd.append(alphabetChars);
+			currentAlphabet = bd.toString();
 		}
-		int offsetsLength = offsets.length;
-		for(int i=0; i < alphabet.length(); i++){
-			swap(alphabetChars, i, offsets[i % offsetsLength]);
-		}
-		bd.append(alphabetChars);
-		return bd.toString();
+		return currentAlphabet;
 	}
 	
 	private void swap(char [] chars, int index1, int index2){
@@ -77,9 +87,6 @@ public class SimpleOffsetEncoderDecoder {
 		}
 		return arr;
 	}
-	
-
-	
 	
 	public  String encode(String s){
 		if(s == null) return null;
@@ -125,10 +132,6 @@ public class SimpleOffsetEncoderDecoder {
 	private int newCharPostion(int positionInAlphabet, int positionInString, int offset, int  mult){
 	   return 	(positionInAlphabet + offset) >= length ? ((positionInAlphabet + offset) - length) : ((positionInAlphabet + offset) < 0 ? (positionInAlphabet + offset)  + length : (positionInAlphabet + offset) );
 	}
-	
-	
-	
-	
 	
 	//encode/decode file helper util methods
 	private static String encodeDecodePath(String path, String root, SimpleOffsetEncoderDecoder enc, boolean encode){
@@ -215,8 +218,9 @@ public class SimpleOffsetEncoderDecoder {
 	private static final String PASSWORD = "pass";   //file encryption password
 	final static EncipherDecipher encipherDecipher = new EncipherDecipher(PASSWORD);    //file name encryptor/ decryptor            
 	final static SimpleOffsetEncoderDecoder simpleOffsetEncoderDecoder = new SimpleOffsetEncoderDecoder(ALPHABET, PASSWORD);    //file name encryptor / decryptor
-	final static File encroot = new File("path_to_the_folder_to_be_encrypted");     //the path to the folder to be encrypted
-	final static File decroot = new File("path_to_the_folder_to_be_decrypted");     //the path to the folder to be decrypted
+	final static File encroot = new File("the path to the folder to be encrypted");     //the path to the folder to be encrypted
+	final static File decroot = new File("the path to the folder to be encrypted");     //the path to the folder to be decrypted
+	
 	
 	
 	/***
@@ -264,6 +268,6 @@ public class SimpleOffsetEncoderDecoder {
 	
 	public static void main(String []args) throws UnsupportedEncodingException{
 		//new EncryptProjectFiles().encrypt();
-		new DecryptProjectFiles().decrypt();
+	   // new DecryptProjectFiles().decrypt();
 	}
 }
