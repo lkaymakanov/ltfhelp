@@ -36,6 +36,16 @@ public class SimpleOffsetEncoderDecoder {
 		this.alphabet = scrambleAlphabet();
 	}
 	
+	/*	
+	public SimpleOffsetEncoderDecoder(int offset){
+		this.offsets =  new int [] {offset};
+	}
+	
+	public SimpleOffsetEncoderDecoder(String alphabet, int  offset){
+		this.alphabet = alphabet;
+		this.length = alphabet.length();
+		this.offsets =  new int [] {offset};
+	}*/
 	
 	
 	/***
@@ -68,15 +78,7 @@ public class SimpleOffsetEncoderDecoder {
 		return arr;
 	}
 	
-	public SimpleOffsetEncoderDecoder(int offset){
-		this.offsets =  new int [] {offset};
-	}
-	
-	public SimpleOffsetEncoderDecoder(String alphabet, int  offset){
-		this.alphabet = alphabet;
-		this.length = alphabet.length();
-		this.offsets =  new int [] {offset};
-	}
+
 	
 	
 	public  String encode(String s){
