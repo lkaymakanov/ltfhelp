@@ -14,27 +14,49 @@ public class SimpleOffsetEncoderDecoder {
 	private String alphabet=" ./\\~!@#$%^&*()_+{}[];:|',\"_1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 	private int length = alphabet.length();
 
-	
+	/**
+	 * @param alphabet
+	 * @param passPhrase
+	 */
 	public SimpleOffsetEncoderDecoder(String alphabet, String passPhrase){
 		this.alphabet = alphabet;
-		this.offsets = passPhraseToIntArray(this.alphabet, passPhrase);
 		this.length = alphabet.length();
+		this.offsets = passPhraseToIntArray(this.alphabet, passPhrase);
+		this.alphabet = scrambleAlphabet();
 	}
 	
 
+	/***
+	 * 
+	 * @param passPhrase
+	 */
 	public SimpleOffsetEncoderDecoder(String passPhrase){
 		this.offsets =  passPhraseToIntArray(alphabet, passPhrase);
 		this.length = alphabet.length();
+		this.alphabet = scrambleAlphabet();
 	}
 	
-	public SimpleOffsetEncoderDecoder(int [] offsets){
-		this.offsets =  offsets;
+	
+	
+	/***
+	 * Scrambles alphabet by offsets!
+	 */
+	private String scrambleAlphabet(){
+		StringBuilder bd = new StringBuilder();
+		char alphabetChars [] = new char [alphabet.length()];
+		for(int i=0; i < alphabet.length(); i++){
+			alphabetChars[i] = alphabet.charAt(i);
+		}
+		int offsetsLength = offsets.length;
+		for(int i=0; i < alphabet.length(); i++){
+			swap(alphabetChars, i, offsets[i % offsetsLength]);
+		}
+		bd.append(alphabetChars);
+		return bd.toString();
 	}
 	
-	public SimpleOffsetEncoderDecoder(String alphabet, int [] offsets){
-		this.alphabet = alphabet;
-		this.length = alphabet.length();
-		this.offsets = offsets;
+	private void swap(char [] chars, int index1, int index2){
+	   char c1=	chars[index1];  chars[index1] = chars[index2]; chars[index2] = c1;
 	}
 	
 	private int [] passPhraseToIntArray(String alphabet, String passPhrase){
@@ -94,18 +116,26 @@ public class SimpleOffsetEncoderDecoder {
 	}
 	
 	private int newCharPostion(int positionInAlphabet, int positionInString, int  mult){
-	   int offset = (offsets[(positionInString % this.offsets.length)]* mult);
+	   return newCharPostion(positionInAlphabet, positionInString,  (offsets[(positionInString % this.offsets.length)]* mult), mult);
+	}
+	
+	
+	private int newCharPostion(int positionInAlphabet, int positionInString, int offset, int  mult){
 	   return 	(positionInAlphabet + offset) >= length ? ((positionInAlphabet + offset) - length) : ((positionInAlphabet + offset) < 0 ? (positionInAlphabet + offset)  + length : (positionInAlphabet + offset) );
 	}
 	
 	
-	private static String encodePath(String path, String root, SimpleOffsetEncoderDecoder enc){
+	
+	
+	
+	//encode/decode file helper util methods
+	private static String encodeDecodePath(String path, String root, SimpleOffsetEncoderDecoder enc, boolean encode){
 		String pathnoRoot = path.replace(root, "");   //remove root
 		
 		//split to folders 
 		String [] folders = pathnoRoot.replace("\\", "/").split("/");
 		for(int i = 0; i < folders.length; i++){   //encode folder names
-			folders[i]= enc.encode(folders[i]);
+			folders[i]= encode ?  enc.encode(folders[i]) : enc.decode(folders[i]);
 		}
 		
 		//construct back folder path
@@ -116,23 +146,26 @@ public class SimpleOffsetEncoderDecoder {
 		return res;
 	}
 	
-	private static String decodePath(String path, String root, SimpleOffsetEncoderDecoder enc){
-		String pathnoRoot = path.replace(root, "");   //remove root
-		
-		//split to folders 
-		String [] folders = pathnoRoot.replace("\\", "/").split("/");
-		for(int i = 0; i < folders.length; i++){   //decode folder names
-			folders[i]= enc.decode(folders[i]);
-		}
-		
-		//construct back folder path
-		String res = root + File.separator;
-		for(String s : folders) {
-			res+=s+ File.separator;
-		}
-		return res;
-	}
 	
+	/***
+	 * 
+	 * @param node
+	 * @param encrypt
+	 */
+	private static void encryptDecryptFile(File node, boolean encrypt, SimpleOffsetEncoderDecoder simpleOffsetEncoderDecoder, EncipherDecipher encipherDecipher ){
+		String newDirPath = SimpleOffsetEncoderDecoder.encodeDecodePath(node.getPath(), decroot.getParent(), simpleOffsetEncoderDecoder, encrypt);
+		System.out.println("Folder is " + node.getPath() + (encrypt ? " encoded folder is " :  " decoded folder is ") +newDirPath);
+		if(node.isDirectory()) new File(newDirPath).mkdir();
+		else
+			try {
+				File file = new File(newDirPath); file.createNewFile();
+				//encrypt/decrypt and save to file 
+				SimpleOffsetEncoderDecoder.saveToFile(file, encrypt ?  encipherDecipher.encrypt(SimpleOffsetEncoderDecoder.readFileContent(node)):  encipherDecipher.decrypt(SimpleOffsetEncoderDecoder.readFileContent(node)));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	}
 	
 	private static void saveToFile(File file, byte [] bytes) throws IOException{
 		FileOutputStream fOutputStream = new FileOutputStream(file);
@@ -176,14 +209,12 @@ public class SimpleOffsetEncoderDecoder {
 	      return fileContent;
 	}
 	
-	private static final String ALPHABET = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";    //alphabet encrypting for the source files names
+	private static final String ALPHABET = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";    //alphabet for encrypting  the source files names
 	private static final String PASSWORD = "pass";   //file encryption password
-	final static EncipherDecipher encc = new EncipherDecipher(PASSWORD);    //file name encryptor/ decryptor            
-	final static SimpleOffsetEncoderDecoder enc = new SimpleOffsetEncoderDecoder(ALPHABET, PASSWORD);    //file name encryptor / decryptor
-	final static String decfolderParent = "D:";   //the parent folder of the folder to be decrypted
-	final static String enfolderParent = "D:";    //the parent folder of the folder to be encrypted
-	final static File encroot = new File("D:\\path_to_file_to_be_encrypted");     //the path to the folder to be encrypted
-	final static File decroot = new File("D:\\path_to_file_to_be_decrypted");     //the path to the folder to be decrypted
+	final static EncipherDecipher encipherDecipher = new EncipherDecipher(PASSWORD);    //file name encryptor/ decryptor            
+	final static SimpleOffsetEncoderDecoder simpleOffsetEncoderDecoder = new SimpleOffsetEncoderDecoder(ALPHABET, PASSWORD);    //file name encryptor / decryptor
+	final static File encroot = new File("path_to_the_folder_to_be_encrypted");     //the path to the folder to be encrypted
+	final static File decroot = new File("path_to_the_folder_to_be_decrypted");     //the path to the folder to be decrypted
 	
 	
 	/***
@@ -202,18 +233,7 @@ public class SimpleOffsetEncoderDecoder {
 				@Override
 				public void OnForward(File node) {
 					// TODO Auto-generated method stub
-					String newDirPath = SimpleOffsetEncoderDecoder.decodePath(node.getPath(), decfolderParent, enc);
-					System.out.println("folder is " + node.getPath() + " decoded folder = " +newDirPath);
-					if(node.isDirectory()) new File(newDirPath).mkdir();
-					else
-						try {
-							File file = new File(newDirPath); file.createNewFile();
-							//encrypt and save to file 
-							SimpleOffsetEncoderDecoder.saveToFile(file, encc.decrypt(SimpleOffsetEncoderDecoder.readFileContent(node)));
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
+					SimpleOffsetEncoderDecoder.encryptDecryptFile(node, false, simpleOffsetEncoderDecoder, encipherDecipher);
 				}
 			});
 		}
@@ -234,20 +254,7 @@ public class SimpleOffsetEncoderDecoder {
 				}
 				@Override
 				public void OnForward(File node) {
-					// TODO Auto-generated method stub
-					String newDirPath = SimpleOffsetEncoderDecoder.encodePath(node.getPath(), enfolderParent, enc);
-					
-					System.out.println("folder is " + node.getPath() + " encoded folder = " + newDirPath);
-					if(node.isDirectory()) new File(newDirPath).mkdir();
-					else
-						try {
-							File file = new File(newDirPath); file.createNewFile();
-							//encrypt and save to file 
-							SimpleOffsetEncoderDecoder.saveToFile(file, encc.encrypt(SimpleOffsetEncoderDecoder.readFileContent(node)));
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
+					SimpleOffsetEncoderDecoder.encryptDecryptFile(node, true, simpleOffsetEncoderDecoder, encipherDecipher);
 				}
 			});
 		}
@@ -255,6 +262,6 @@ public class SimpleOffsetEncoderDecoder {
 	
 	public static void main(String []args) throws UnsupportedEncodingException{
 		//new EncryptProjectFiles().encrypt();
-		//new DecryptProjectFiles().decrypt();
+		new DecryptProjectFiles().decrypt();
 	}
 }
