@@ -1,4 +1,4 @@
-/*A class that will create html tables based on json array object*/
+/**A class that will create html tables based on json array object*/
 function TableCreator(){
 	if(!(this instanceof arguments.callee)){
 		return new TableCreator();
